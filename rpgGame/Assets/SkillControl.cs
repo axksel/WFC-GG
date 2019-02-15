@@ -28,6 +28,7 @@ public class SkillControl : MonoBehaviour
             EquippedPosition.transform.RotateAround(transform.position, Vector3.up, 1000 * Time.deltaTime);
             count += 1000 * Time.deltaTime;
         }
+       
      
        
 
