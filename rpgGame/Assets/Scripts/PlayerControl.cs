@@ -12,15 +12,20 @@ public class PlayerControl : MonoBehaviour
     public float movementSpeed;
 
     UnityEngine.AI.NavMeshAgent agent;
+    //public NavMeshSurface[] surfaces;
+
 
 
     void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+
+
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+// Update is called once per frame
+void FixedUpdate()
     {
         dir = joystick.GetComponent<Joystick>().direction;
         //transform.position += new Vector3(dir.x, 0, dir.y).normalized * 0.001f * Mathf.Clamp(dir.magnitude, 0, 30) * movementSpeed;
