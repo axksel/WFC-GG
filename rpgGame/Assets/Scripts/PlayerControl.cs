@@ -68,7 +68,7 @@ public class PlayerControl : MonoBehaviour
         {
             shouldMove = true;
             anim.SetLayerWeight(2, 0);
-            anim.SetLayerWeight(1, 0.5f);
+            anim.SetLayerWeight(1, 0.8f);
         }
 
 
