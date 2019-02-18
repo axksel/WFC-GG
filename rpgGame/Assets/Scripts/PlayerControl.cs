@@ -6,14 +6,10 @@ using UnityEngine.UI;
 public class PlayerControl : MonoBehaviour
 {
 
-    public GameObject joystick;
+    private GameObject joystick;
     private Vector2 dir;
 
-    public float movementSpeed;
-    public GameObject ting;
-
     UnityEngine.AI.NavMeshAgent agent;
-    //public NavMeshSurface[] surfaces;
 
     Animator anim;
     Vector2 smoothDeltaPosition = Vector2.zero;
@@ -21,10 +17,12 @@ public class PlayerControl : MonoBehaviour
     RaycastHit hitInfo = new RaycastHit();
 
     Vector2 velocity = Vector2.zero;
+    bool shouldMove;
 
 
     void Start()
     {
+        joystick = GameObject.FindGameObjectWithTag("Joystick");
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         anim = GetComponent<Animator>();
         agent.updatePosition = false;
@@ -33,6 +31,7 @@ public class PlayerControl : MonoBehaviour
     private void Update()
     {
         dir = joystick.GetComponent<Joystick>().direction;
+
         agent.speed = Mathf.Clamp(dir.magnitude, 0, 30) / 8;
         agent.destination = transform.position + new Vector3(dir.x, 0, dir.y).normalized / 5;
         Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
@@ -50,7 +49,15 @@ public class PlayerControl : MonoBehaviour
         if (Time.deltaTime > 1e-5f)
             velocity = smoothDeltaPosition / Time.deltaTime;
 
-        bool shouldMove = velocity.magnitude > 0.5f /*&& agent.remainingDistance > agent.radius*/;
+        if (dir == Vector2.zero)
+        {
+           shouldMove = false;
+        }
+        else
+        {
+            shouldMove = true;
+        }
+
 
         // Update animation parameters
         anim.SetBool("shouldMove", shouldMove);
@@ -83,5 +90,7 @@ public class PlayerControl : MonoBehaviour
     {
         // Update position to agent position
         transform.position = agent.nextPosition;
+        anim.ApplyBuiltinRootMotion();
+
     }
 }
