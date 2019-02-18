@@ -18,14 +18,17 @@ public class PlayerControl : MonoBehaviour
 
     Vector2 velocity = Vector2.zero;
     bool shouldMove;
+    Button interactButton;
 
 
     void Start()
     {
-        joystick = GameObject.FindGameObjectWithTag("Joystick");
+        interactButton = GameObject.FindGameObjectWithTag("interactButton").GetComponent<Button>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         anim = GetComponent<Animator>();
         agent.updatePosition = false;
+
+        joystick = GameObject.FindGameObjectWithTag("Joystick");
     }
 
     private void Update()
@@ -68,7 +71,7 @@ public class PlayerControl : MonoBehaviour
         {
             shouldMove = true;
             anim.SetLayerWeight(2, 0);
-            anim.SetLayerWeight(1, 0.8f);
+            anim.SetLayerWeight(1, 0.5f);
         }
 
 
@@ -88,6 +91,30 @@ public class PlayerControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+
+        if (other.gameObject.tag == "Interactable")
+        {
+            interactButton.interactable = true;
+            interactButton.GetComponentInChildren<Text>().text = other.gameObject.GetComponent<IsInteracable>().ReturnName();
+            interactButton.onClick.AddListener(other.gameObject.GetComponent<IsInteracable>().Interact);
+
+        }
+
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+
+
+        if (other.gameObject.tag == "Interactable")
+        {
+            interactButton.interactable = false;
+            interactButton.onClick.RemoveAllListeners();
+
+        }
+
 
     }
 

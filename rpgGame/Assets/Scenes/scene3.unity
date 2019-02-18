@@ -2168,15 +2168,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: slotMachine
       objectReference: {fileID: 0}
+    - target: {fileID: 6846440001342674535, guid: 845a96718481e3d47a28186c33f255ea,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 8008218255050300972, guid: 845a96718481e3d47a28186c33f255ea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.14
       objectReference: {fileID: 0}
     - target: {fileID: 8008218255050300972, guid: 845a96718481e3d47a28186c33f255ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 8008218255050300972, guid: 845a96718481e3d47a28186c33f255ea,
         type: 3}
@@ -2222,6 +2227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529594621523082095, guid: 845a96718481e3d47a28186c33f255ea,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 341368546154685535, guid: 845a96718481e3d47a28186c33f255ea,
         type: 3}
@@ -3495,18 +3505,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1318368781}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1354274351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2317675039806208350, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+    type: 3}
+  m_PrefabInstance: {fileID: 671587696}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1354274352 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
     type: 3}
   m_PrefabInstance: {fileID: 671587696}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1354274351}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5585f65d715771f47ac7dbd340d0466c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1354274358
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354274351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.75
+  m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!54 &1354274359
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354274351}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1367418251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3912,6 +3957,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 46546
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289383838481444042, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289383838481444042, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_TagString
+      value: interactButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681601391647373341, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681601391647373341, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661536923712311365, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f14a7861c663949bdd78656874322e, type: 3}

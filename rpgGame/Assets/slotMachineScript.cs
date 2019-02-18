@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class slotMachineScript : MonoBehaviour
+public class slotMachineScript : MonoBehaviour,IsInteracable
 {
     public SkillScriptableObject skill;
     public SkillListScriptableObject soldSKill;
@@ -27,8 +27,19 @@ public class slotMachineScript : MonoBehaviour
         }
     }
 
+
+    public string ReturnName()
+    {
+
+
+        return "Buy "+skill.name+" for "+skill.price + " gold";
+    }
+
+
     public void Interact()
     {
+
+        Debug.Log("heallo");
         if (playerGold.value >= skill.price)
         {
             soldSKill.list.Clear();
@@ -36,8 +47,6 @@ public class slotMachineScript : MonoBehaviour
             soldSKill.list.Add(skill);
             playerGold.value = playerGold.value - skill.price;
             weaponBought.Invoke();
-            
-            
 
         }
 
