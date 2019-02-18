@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 5693702094884009201}
   - component: {fileID: 2192852175976967900}
   - component: {fileID: 8643984699783951604}
+  - component: {fileID: 8971095289483193415}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -366,6 +367,38 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8971095289483193415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317675039806208350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5585f65d715771f47ac7dbd340d0466c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedSkill: {fileID: 0}
+  EquippedPosition: {fileID: 2429023858024435525}
+  button: {fileID: 0}
+  count: 0
+  whoa:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2317675039806208350}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &2406945281193815668
 GameObject:
   m_ObjectHideFlags: 0
