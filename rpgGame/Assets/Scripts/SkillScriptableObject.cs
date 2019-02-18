@@ -7,4 +7,7 @@ public class SkillScriptableObject : ScriptableObject
     public string objectName = "New MyScriptableObject";
     public int dmg;
     public GameObject skillPrefab;
+    public bool isLoot;
+    public int price;
+
 }
