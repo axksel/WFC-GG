@@ -30,6 +30,15 @@ public class PlayerControl : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey("space"))
+        {
+            anim.SetBool("swordSlash", true);
+        }
+        if (anim.GetCurrentAnimatorStateInfo(1).IsName("swordSlash"))
+        {
+            anim.SetBool("swordSlash", false);
+        }
+
         dir = joystick.GetComponent<Joystick>().direction;
 
         agent.speed = Mathf.Clamp(dir.magnitude, 0, 30) / 8;
@@ -51,11 +60,15 @@ public class PlayerControl : MonoBehaviour
 
         if (dir == Vector2.zero)
         {
-           shouldMove = false;
+            anim.SetLayerWeight(1, 0);
+            anim.SetLayerWeight(2, 1);
+            shouldMove = false;
         }
         else
         {
             shouldMove = true;
+            anim.SetLayerWeight(2, 0);
+            anim.SetLayerWeight(1, 0.5f);
         }
 
 
@@ -91,6 +104,5 @@ public class PlayerControl : MonoBehaviour
         // Update position to agent position
         transform.position = agent.nextPosition;
         anim.ApplyBuiltinRootMotion();
-
     }
 }
