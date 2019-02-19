@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour
         {
             anim.SetBool("swordSlash", true);
         }
-        if (anim.GetCurrentAnimatorStateInfo(1).IsName("swordSlash"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("swordSlash"))
         {
             anim.SetBool("swordSlash", false);
         }
@@ -63,15 +63,15 @@ public class PlayerControl : MonoBehaviour
 
         if (dir == Vector2.zero)
         {
-            anim.SetLayerWeight(1, 0);
-            anim.SetLayerWeight(2, 1);
+            //anim.SetLayerWeight(1, 0);
+            //anim.SetLayerWeight(2, 1);
             shouldMove = false;
         }
         else
         {
             shouldMove = true;
-            anim.SetLayerWeight(2, 0);
-            anim.SetLayerWeight(1, 0.5f);
+            //anim.SetLayerWeight(2, 0);
+            //anim.SetLayerWeight(1, 0.5f);
         }
 
 
