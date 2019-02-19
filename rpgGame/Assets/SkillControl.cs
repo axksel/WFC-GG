@@ -16,7 +16,7 @@ public class SkillControl : MonoBehaviour
     public static GameObject tmpSkill;
     void Start()
     {
-         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation, EquippedPosition.transform);
+         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, equippedSkill.list[0].skillPrefab.transform.rotation, EquippedPosition.transform);
         button.GetComponentInChildren<Text>().text = equippedSkill.list[0].name;
         enemiesInRange.list.Clear();
        
