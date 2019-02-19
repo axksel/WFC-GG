@@ -7,6 +7,4 @@ public interface EnemyIO
 {
     
     int TakeDamage(int amount);
-    void setIndex(int index);
-    int getIndex();
 }

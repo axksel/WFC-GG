@@ -6,23 +6,20 @@ public class enemyScript : MonoBehaviour,EnemyIO
 {
 
     public int health;
-    int index;
+    public EnemyList enemiesInRange;
+
     public int TakeDamage(int amount)
     {
         health = health - amount;
+        if (health <= 0)
+        {
+            enemiesInRange.list.Remove(this.gameObject);
+            Destroy(gameObject, 1);
+        }
+
+
         return health - amount;
         
     }
 
-    public void setIndex( int index)
-    {
-
-        this.index = index;
-    }
-
-    public int getIndex()
-    {
-
-        return index;
-    }
 }

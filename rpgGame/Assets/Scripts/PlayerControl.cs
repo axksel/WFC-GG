@@ -104,11 +104,7 @@ public class PlayerControl : MonoBehaviour
 
         if (other.gameObject.tag == "enemy")
         {
-            EnemyIO tmp = other.GetComponent<EnemyIO>();
-            tmp.setIndex(enemiesInRange.list.Count);
             enemiesInRange.list.Add(other.gameObject);
-            
-
         }
 
 
@@ -126,9 +122,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (other.gameObject.tag == "enemy")
         {
-            EnemyIO tmp = other.GetComponent<EnemyIO>();
-            tmp.getIndex();
-            enemiesInRange.list.RemoveAt(tmp.getIndex());
+            enemiesInRange.list.Remove(other.gameObject);
             
         }
 
