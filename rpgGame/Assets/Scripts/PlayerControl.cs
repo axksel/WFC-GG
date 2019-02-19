@@ -11,7 +11,8 @@ public class PlayerControl : MonoBehaviour
 
     UnityEngine.AI.NavMeshAgent agent;
 
-    Animator anim;
+    [HideInInspector]
+    public Animator anim;
     Vector2 smoothDeltaPosition = Vector2.zero;
     public EnemyList enemiesInRange;
 
@@ -20,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     Vector2 velocity = Vector2.zero;
     bool shouldMove;
     Button interactButton;
+    
 
 
     void Start()
@@ -30,14 +32,12 @@ public class PlayerControl : MonoBehaviour
         agent.updatePosition = false;
 
         joystick = GameObject.FindGameObjectWithTag("Joystick");
+
     }
 
     private void Update()
     {
-        if (Input.GetKey("space"))
-        {
-            anim.SetBool("swordSlash", true);
-        }
+
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("swordSlash"))
         {
             anim.SetBool("swordSlash", false);

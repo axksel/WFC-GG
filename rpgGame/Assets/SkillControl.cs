@@ -12,14 +12,17 @@ public class SkillControl : MonoBehaviour
     public float count=0;
     public EnemyList enemiesInRange;
     public GameObject enemu;
-
     public static GameObject tmpSkill;
+    public ParticleSystem attack;
+    PlayerControl playerControl;
+
     void Start()
     {
          tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, equippedSkill.list[0].skillPrefab.transform.rotation, EquippedPosition.transform);
         button.GetComponentInChildren<Text>().text = equippedSkill.list[0].name;
         enemiesInRange.list.Clear();
-       
+        attack = Instantiate(attack, transform);
+        playerControl = GetComponent<PlayerControl>();
 
 
     }
@@ -27,6 +30,10 @@ public class SkillControl : MonoBehaviour
  
     public void Attack()
     {
+        if (!attack.isPlaying)
+            attack.Play();
+
+        playerControl.anim.SetBool("swordSlash", true);
 
         foreach (var item in enemiesInRange.list)
         {
