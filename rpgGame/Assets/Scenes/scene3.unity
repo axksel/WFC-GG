@@ -1850,6 +1850,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 2035376059}
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: equippedSkill
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b4f6cd359119eb49a1ad34923aa581a,
+        type: 2}
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: enemiesInRange
+      value: 
+      objectReference: {fileID: 11400000, guid: b57a3e8e473da814ba2246ecef0e8236,
+        type: 2}
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: enemu
+      value: 
+      objectReference: {fileID: 1287405896}
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 189888154332586449, guid: 012034c26655376418cb1b3b400db4c6,
+        type: 3}
     - target: {fileID: 2317675039806208350, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
         type: 3}
       propertyPath: m_Name
@@ -1910,34 +1938,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: button
-      value: 
-      objectReference: {fileID: 2035376059}
-    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: equippedSkill
-      value: 
-      objectReference: {fileID: 11400000, guid: 5b4f6cd359119eb49a1ad34923aa581a,
-        type: 2}
-    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: enemiesInRange
-      value: 
-      objectReference: {fileID: 11400000, guid: b57a3e8e473da814ba2246ecef0e8236,
-        type: 2}
-    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: enemu
-      value: 
-      objectReference: {fileID: 1287405896}
-    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: attack
-      value: 
-      objectReference: {fileID: 189888154332586449, guid: 012034c26655376418cb1b3b400db4c6,
-        type: 3}
     - target: {fileID: 2192852175976967900, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
         type: 3}
       propertyPath: enemiesInRange
@@ -4356,6 +4356,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_BestFit
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695967198950138520, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695967198950138520, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076399618615345425, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076399618615345425, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076399618615345425, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076399618615345425, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076399618615345425, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076399618615345425, guid: 59f14a7861c663949bdd78656874322e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2176564882123901249, guid: 59f14a7861c663949bdd78656874322e,
         type: 3}
