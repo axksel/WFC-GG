@@ -9,23 +9,19 @@ public class slotMachineScript : MonoBehaviour,IsInteracable
     public SkillListScriptableObject soldSKill;
     public intScriptableObject playerGold;
     public UnityEvent weaponBought;
-    public bool bob = false;
+    public Transform skillPlacement;
     void Start()
     {
       // Instantiate(skill.skillPrefab, transform.position, Quaternion.identity);
         skill.isLoot = true;
         soldSKill.list.Clear();
 
+        GameObject tmp = Instantiate(skill.skillPrefab, skillPlacement.position, skillPlacement.rotation,skillPlacement);
+        tmp.transform.localScale = Vector3.Scale(tmp.transform.localScale , new Vector3(2, 2,2));
+       
     }
 
-    private void Update()
-    {
-        if (bob)
-        {
-            Interact();
-            bob = false;
-        }
-    }
+ 
 
 
     public string ReturnName()
@@ -39,7 +35,7 @@ public class slotMachineScript : MonoBehaviour,IsInteracable
     public void Interact()
     {
 
-        Debug.Log("heallo");
+       ;
         if (playerGold.value >= skill.price)
         {
             soldSKill.list.Clear();

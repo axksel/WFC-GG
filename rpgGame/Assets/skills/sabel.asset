@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f62ddfcf7338ef94b8505d1273531642, type: 3}
-  m_Name: inventorySKills
+  m_Script: {fileID: 11500000, guid: cf1713e8ae0ce5f44bf8a122f24ccc52, type: 3}
+  m_Name: sabel
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 11400000, guid: 03075b39d67ab6d4f95df28512e39156, type: 2}
+  objectName: sabel
+  dmg: 50
+  skillPrefab: {fileID: 5001367381221627160, guid: 012cdbd1e989b7d41a0f39f1f928eebc,
+    type: 3}
+  isLoot: 1
+  price: 300

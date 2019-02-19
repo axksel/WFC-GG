@@ -14,10 +14,9 @@ public class SkillControl : MonoBehaviour
     public static GameObject tmpSkill;
     void Start()
     {
-         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation);
-        tmpSkill.transform.SetParent(EquippedPosition.transform);
+         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation, EquippedPosition.transform);
         button.GetComponentInChildren<Text>().text = equippedSkill.list[0].name;
-        Debug.Log(equippedSkill.list[0].name);
+      
         
  
     }
@@ -34,8 +33,7 @@ public class SkillControl : MonoBehaviour
         Destroy(tmpSkill);
          equippedSkill.list.Clear();
         equippedSkill.list.Add( newWeapon.list[0]);
-        GameObject tmptmp = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation);
-        tmptmp.transform.SetParent(EquippedPosition.transform);
+        tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation, EquippedPosition.transform);
         button.GetComponentInChildren<Text>().text = equippedSkill.list[0].name;
 
     }
