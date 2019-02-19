@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
 
     Animator anim;
     Vector2 smoothDeltaPosition = Vector2.zero;
+    public EnemyList enemiesInRange;
 
     RaycastHit hitInfo = new RaycastHit();
 
@@ -86,7 +87,7 @@ public class PlayerControl : MonoBehaviour
     void FixedUpdate()
     {
 
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -98,6 +99,15 @@ public class PlayerControl : MonoBehaviour
             interactButton.interactable = true;
             interactButton.GetComponentInChildren<Text>().text = other.gameObject.GetComponent<IsInteracable>().ReturnName();
             interactButton.onClick.AddListener(other.gameObject.GetComponent<IsInteracable>().Interact);
+
+        }
+
+        if (other.gameObject.tag == "enemy")
+        {
+            EnemyIO tmp = other.GetComponent<EnemyIO>();
+            tmp.setIndex(enemiesInRange.list.Count);
+            enemiesInRange.list.Add(other.gameObject);
+            
 
         }
 
@@ -114,7 +124,13 @@ public class PlayerControl : MonoBehaviour
             interactButton.onClick.RemoveAllListeners();
 
         }
-
+        if (other.gameObject.tag == "enemy")
+        {
+            EnemyIO tmp = other.GetComponent<EnemyIO>();
+            tmp.getIndex();
+            enemiesInRange.list.RemoveAt(tmp.getIndex());
+            
+        }
 
     }
 

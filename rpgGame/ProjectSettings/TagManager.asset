@@ -7,6 +7,7 @@ TagManager:
   - Joystick
   - Interactable
   - interactButton
+  - enemy
   layers:
   - Default
   - TransparentFX

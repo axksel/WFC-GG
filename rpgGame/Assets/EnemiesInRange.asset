@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf1713e8ae0ce5f44bf8a122f24ccc52, type: 3}
-  m_Name: morgenstjerne
+  m_Script: {fileID: 11500000, guid: dfd1f3aad9a3d3d40902799af2d05ec4, type: 3}
+  m_Name: EnemiesInRange
   m_EditorClassIdentifier: 
-  objectName: morgenstjerne
-  dmg: 600
-  skillPrefab: {fileID: 3003037447984631801, guid: ce3823a70e0ec9d4a87fa768ba4a229d,
-    type: 3}
-  isLoot: 1
-  price: 50

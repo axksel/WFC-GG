@@ -10,21 +10,31 @@ public class SkillControl : MonoBehaviour
     public GameObject EquippedPosition;
     public GameObject button;
     public float count=0;
+    public EnemyList enemiesInRange;
+    public GameObject enemu;
 
     public static GameObject tmpSkill;
     void Start()
     {
          tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation, EquippedPosition.transform);
         button.GetComponentInChildren<Text>().text = equippedSkill.list[0].name;
-      
-        
- 
+        enemiesInRange.list.Clear();
+       
+
+
     }
 
  
     public void Attack()
     {
-       
+
+        foreach (var item in enemiesInRange.list)
+        {
+            item.GetComponent<EnemyIO>().TakeDamage(equippedSkill.list[0].dmg);
+            
+        }
+           
+        
        //Jeg tror angrebet skal ligges her.
     }
 
