@@ -7,6 +7,15 @@ public class goldscript : MonoBehaviour,IsInteracable
     public int amount;
     public intScriptableObject playerGold;
 
+
+    private void Start()
+    {
+        if (amount == 0)
+        {
+            amount = Random.Range(0,30);
+        }
+    }
+
     public string ReturnName()
     {
 

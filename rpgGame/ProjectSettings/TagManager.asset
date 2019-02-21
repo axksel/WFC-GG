@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - interactButton
   - enemy
+  - PlayerDmgCollider
   layers:
   - Default
   - TransparentFX
