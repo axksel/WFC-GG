@@ -9,6 +9,7 @@ TagManager:
   - interactButton
   - enemy
   - PlayerDmgCollider
+  - Key
   layers:
   - Default
   - TransparentFX
