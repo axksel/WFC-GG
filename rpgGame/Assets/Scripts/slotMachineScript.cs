@@ -17,7 +17,7 @@ public class slotMachineScript : MonoBehaviour,IsInteracable
         soldSKill.list.Clear();
 
         GameObject tmp = Instantiate(skill.skillPrefab, skillPlacement.position, skillPlacement.rotation,skillPlacement);
-        tmp.transform.localScale = Vector3.Scale(tmp.transform.localScale , new Vector3(2, 2,2));
+        tmp.transform.localScale = Vector3.Scale(tmp.transform.localScale , new Vector3(1, 1,1));
        
     }
 
