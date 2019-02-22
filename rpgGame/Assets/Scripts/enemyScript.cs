@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class enemyScript : MonoBehaviour,EnemyIO
 {
@@ -13,20 +14,32 @@ public class enemyScript : MonoBehaviour,EnemyIO
     public float alertDistance = 10f;
     NavMeshAgent enemyAgent;
     float time;
-    float attackSpeed = 2;
+    float attackSpeed = 50;
     public GameObject projectile;
+
+    public GameObject healthBarImage;
+    float fullHealth;
+    float fillamount;
+    Image healthBar;
 
     public void Start()
     {
+        fullHealth = health;
+        healthBar = healthBarImage.GetComponent<Image>();
+
         enemyAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
-        
+        if (health / fullHealth != healthBar.fillAmount)
+        {
+            fillamount = Mathf.Lerp(fillamount, health / fullHealth, 0.05f);
+        }
+        healthBar.fillAmount = fillamount;
 
 
-        
+
         if (Vector3.Distance(transform.position, player.transform.position)<alertDistance)
         {
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));

@@ -23,8 +23,9 @@ public class goldscript : MonoBehaviour,IsInteracable
     }
     public void Interact()
     {
+        transform.position = new Vector3(0, 0, -1000);
         playerGold.value += amount;
-        Destroy(gameObject);
+        Destroy(gameObject, 0.05f);
 
     }
 }

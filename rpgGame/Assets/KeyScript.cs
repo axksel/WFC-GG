@@ -13,8 +13,9 @@ public class KeyScript : MonoBehaviour,IsInteracable
 
     public void Interact()
     {
+        transform.position = new Vector3(0, 0, -1000);
         inventory.list.Add(this.gameObject);
-        gameObject.SetActive(false);
+        GetComponent<MeshRenderer>().enabled = false;
 
     }
 

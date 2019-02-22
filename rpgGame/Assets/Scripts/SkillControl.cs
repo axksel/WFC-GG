@@ -19,11 +19,11 @@ public class SkillControl : MonoBehaviour
     void Start()
     {
         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation * Quaternion.Euler(new Vector3(0, 0, 60)), EquippedPosition.transform);
-        button.GetComponentInChildren<Text>().text = equippedSkill.list[0].name;
+        button.GetComponentInChildren<Text>().text = "";
         enemiesInRange.list.Clear();
         attack = Instantiate(attack, transform);
         playerControl = GetComponent<PlayerControl>();
-
+        button.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
 
     }
 
@@ -51,7 +51,8 @@ public class SkillControl : MonoBehaviour
          equippedSkill.list.Clear();
         equippedSkill.list.Add( newWeapon.list[0]);
         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation * Quaternion.Euler(new Vector3(0,0,60)), EquippedPosition.transform);
-        button.GetComponentInChildren<Text>().text = equippedSkill.list[0].name;
+        button.GetComponentInChildren<Text>().text = "";
+        button.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
 
     }
    

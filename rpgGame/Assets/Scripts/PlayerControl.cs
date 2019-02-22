@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -97,7 +98,7 @@ public class PlayerControl : MonoBehaviour
         if (other.gameObject.tag == "Interactable")
         {
             interactButton.interactable = true;
-            interactButton.GetComponentInChildren<Text>().text = other.gameObject.GetComponent<IsInteracable>().ReturnName();
+            interactButton.GetComponentInChildren<TextMeshProUGUI>().text = other.gameObject.GetComponent<IsInteracable>().ReturnName();
             interactButton.onClick.AddListener(other.gameObject.GetComponent<IsInteracable>().Interact);
 
         }
@@ -117,6 +118,7 @@ public class PlayerControl : MonoBehaviour
         if (other.gameObject.tag == "Interactable")
         {
             interactButton.interactable = false;
+            interactButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
             interactButton.onClick.RemoveAllListeners();
 
         }
