@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class enemyScript : MonoBehaviour,EnemyIO
 {
@@ -9,22 +10,42 @@ public class enemyScript : MonoBehaviour,EnemyIO
     public EnemyList enemiesInRange;
     public GameObject loot;
     public GameObject player;
-    public float alertDistance =1.5f;
+    public float alertDistance = 10f;
+    NavMeshAgent enemyAgent;
+    float time;
+    float attackSpeed = 2;
+    public GameObject projectile;
 
-
-    
+    public void Start()
+    {
+        enemyAgent = GetComponent<NavMeshAgent>();
+    }
 
     private void Update()
     {
-        transform.LookAt(new Vector3(player.transform.position.x,transform.position.y, player.transform.position.z));
+        
 
 
         
         if (Vector3.Distance(transform.position, player.transform.position)<alertDistance)
         {
-            Attack();
-            
-        }  
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+            enemyAgent.destination = player.transform.position;
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) < alertDistance / 2)
+        {
+            enemyAgent.destination = transform.position;
+            if (time + attackSpeed < Time.time)
+            {
+                Attack();
+            }
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) > alertDistance)
+        {
+            enemyAgent.destination = transform.position;
+        }
     }
 
     public int TakeDamage(int amount)
@@ -46,7 +67,9 @@ public class enemyScript : MonoBehaviour,EnemyIO
 
     public void Attack()
     {
-        Debug.Log("lol");
-
+        Debug.Log("Enemy Attacking");
+        time = Time.time;
+        GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
+        proj.GetComponent<Rigidbody>().AddForce(proj.transform.forward * 100);
     }
 }

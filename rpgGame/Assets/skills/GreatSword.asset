@@ -15,3 +15,6 @@ MonoBehaviour:
   objectName: Great Sword
   dmg: 100
   skillPrefab: {fileID: 1264880130, guid: cf233bdde8c2ba541bdff8e63b1860b1, type: 3}
+  isLoot: 1
+  price: 0
+  icon: {fileID: 21300000, guid: fa51de0ca21b5c848a6668842ee21e26, type: 3}

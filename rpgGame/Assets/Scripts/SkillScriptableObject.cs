@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "skill", menuName = "Skill", order = 1)]
 public class SkillScriptableObject : ScriptableObject
@@ -9,5 +10,6 @@ public class SkillScriptableObject : ScriptableObject
     public GameObject skillPrefab;
     public bool isLoot;
     public int price;
+    public Sprite icon;
 
 }

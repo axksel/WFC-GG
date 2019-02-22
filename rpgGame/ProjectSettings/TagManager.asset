@@ -10,6 +10,7 @@ TagManager:
   - enemy
   - PlayerDmgCollider
   - Key
+  - Projectile
   layers:
   - Default
   - TransparentFX
