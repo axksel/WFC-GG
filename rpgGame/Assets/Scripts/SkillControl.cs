@@ -8,7 +8,8 @@ public class SkillControl : MonoBehaviour
 {
     public SkillListScriptableObject equippedSkill;
     public GameObject EquippedPosition;
-    public GameObject button;
+    public GameObject attackButton;
+    public GameObject spellIcon;
     public float count=0;
     public EnemyList enemiesInRange;
     public GameObject enemu;
@@ -20,15 +21,15 @@ public class SkillControl : MonoBehaviour
     void Start()
     {
         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation * Quaternion.Euler(new Vector3(0, 0, 60)), EquippedPosition.transform);
-        button.GetComponentInChildren<Text>().text = "";
+        attackButton.GetComponentInChildren<Text>().text = "";
         enemiesInRange.list.Clear();
         attack = Instantiate(attack, transform);
         playerControl = GetComponent<PlayerControl>();
-        button.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
-
+        attackButton.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
+        spellIcon.GetComponent<Image>().sprite = equippedAimed.list[0].icon;
     }
 
- 
+
     public void Attack()
     {
         if (!attack.isPlaying)
@@ -51,8 +52,8 @@ public class SkillControl : MonoBehaviour
          equippedSkill.list.Clear();
         equippedSkill.list.Add( newWeapon.list[0]);
         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation * Quaternion.Euler(new Vector3(0,0,60)), EquippedPosition.transform);
-        button.GetComponentInChildren<Text>().text = "";
-        button.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
+        attackButton.GetComponentInChildren<Text>().text = "";
+        attackButton.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
 
     }
 
@@ -60,7 +61,7 @@ public class SkillControl : MonoBehaviour
     {
         Debug.Log(attackDir);
         attackDir.Normalize();
-        GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position+new Vector3(0,0.4f,0), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
+        GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position+new Vector3(0,0.4f,0) + new Vector3(attackDir.x, 0, attackDir.y), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
         proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
         proj.GetComponent<Projectile>().attackDamage = equippedAimed.list[0].dmg;
     }

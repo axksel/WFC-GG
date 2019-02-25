@@ -39,73 +39,89 @@ public class Joystick : MonoBehaviour
             joystickInner.GetComponent<Image>().color = curColor;
         }
 
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
-        {
-            direction = Input.mousePosition - joystickOuter.transform.position;
-            joystickPressed = true;
-            FadeIn();
-        }
+//#if UNITY_EDITOR
 
-        if (Input.GetMouseButton(0) && joystickPressed)
-        {
-            direction = Input.mousePosition - joystickOuter.transform.position;          
-            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
-            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
-        }
+//        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
+//        {
+//            direction = Input.mousePosition - joystickOuter.transform.position;
+//            joystickPressed = true;
+//            FadeIn();
+//        }
 
-        if (Input.GetMouseButtonUp(0) && joystickPressed)
-        {
-            joystickPressed = false;
-            FadeOut();
-            direction = Vector2.zero;
-          
-        }
+//        if (Input.GetMouseButton(0) && joystickPressed)
+//        {
+//            direction = Input.mousePosition - joystickOuter.transform.position;
+//            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
+//            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
+//        }
 
-#endif
+//        if (Input.GetMouseButtonUp(0) && joystickPressed)
+//        {
+//            joystickPressed = false;
+//            FadeOut();
+//            direction = Vector2.zero;
+//        }
+
+//#endif
+
+
 
 #if UNITY_ANDROID
 
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
-            switch (touch.phase)
+            int tapCount = Input.touchCount;
+            
+
+            for (int i = 0; i < tapCount; i++)
             {
-                case TouchPhase.Began:
+                int[] ids = new int[tapCount];
+                Touch touch = Input.GetTouch(i);
+                Debug.Log(Vector2.Distance(touch.position, joystickOuter.transform.position));
+                switch (touch.phase)
+                {
+                   
+                    case TouchPhase.Began:
 
-                    if(Vector2.Distance(touch.position, joystickOuter.transform.position) < 50){
-                        joystickInner.SetActive(true);
-                        direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
-                        joystickPressed = true;
-                        FadeIn();
-                    }
-                    break;
+                        if (Vector2.Distance(touch.position, joystickOuter.transform.position) < 50)
+                        {
+                            ids[i] = touch.fingerId;
+                            joystickInner.SetActive(true);
+                            this.direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
+                            joystickPressed = true;
+                            FadeIn();
+                        }
+                        break;
 
-                case TouchPhase.Moved:
-                    if (joystickPressed)
-                    {
-                        direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
-                        joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
-                    }
-                    break;
+                    case TouchPhase.Moved:
+                        if (joystickPressed && touch.fingerId == ids[i] && Vector2.Distance(touch.position, joystickOuter.transform.position) < 100)
+                        {
+                            this.direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
+                            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(this.direction, radius);
+                            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, this.direction));
+                        }
+                        break;
 
-                case TouchPhase.Ended:
-                    if (joystickPressed)
-                    {
-                        joystickInner.SetActive(false);
-                        direction = Vector2.zero;
-                        FadeOut();
-                    }
-                    break;
+                    case TouchPhase.Ended:
+                        if (joystickPressed && touch.fingerId == ids[i])
+                        {
+                            joystickInner.SetActive(false);
+                            weaponFired.Invoke(this.direction);
+                            this.direction = Vector2.zero;
+                            FadeOut();
+                        }
+                        break;
+                }
             }
         }
+            
 
 #endif
     }
 
     public void FadeOut()
     {
-        weaponFired.Invoke(direction);
+        
         this.targetAlpha = 0.0f;
     }
 
