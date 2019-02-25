@@ -14,7 +14,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
     public float alertDistance = 10f;
     NavMeshAgent enemyAgent;
     float time;
-    float attackSpeed = 50;
+    float attackSpeed = 1;
     public GameObject projectile;
 
     public GameObject healthBarImage;
@@ -22,6 +22,11 @@ public class enemyScript : MonoBehaviour,EnemyIO
     float fillamount;
     Image healthBar;
     Animator anim;
+    public intScriptableObject playerHealth;
+    int attackDamage = 5;
+
+
+    Vector3 startPosition;
 
     public void Start()
     {
@@ -30,6 +35,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
 
         enemyAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        startPosition = transform.position;
     }
 
     private void Update()
@@ -47,20 +53,30 @@ public class enemyScript : MonoBehaviour,EnemyIO
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             enemyAgent.destination = player.transform.position;
             anim.SetBool("Walk", true);
+            anim.SetBool("Idle", false);
         }
 
-        if (Vector3.Distance(transform.position, player.transform.position) < alertDistance / 2)
+        if (Vector3.Distance(transform.position, player.transform.position) < 0.5f)
         {
             enemyAgent.destination = transform.position;
+            anim.SetBool("Punch", true);
             if (time + attackSpeed < Time.time)
             {
                 Attack();
             }
         }
+        else
+        {
+            anim.SetBool("Punch", false);
+        }
 
         if (Vector3.Distance(transform.position, player.transform.position) > alertDistance)
         {
-            enemyAgent.destination = transform.position;
+            enemyAgent.destination = startPosition;
+            if(Vector3.Distance(transform.position, startPosition) < 1f ){
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
+            }
         }
     }
 
@@ -89,9 +105,9 @@ public class enemyScript : MonoBehaviour,EnemyIO
 
     public void Attack()
     {
-        Debug.Log("Enemy Attacking");
         time = Time.time;
-        GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
-        proj.GetComponent<Rigidbody>().AddForce(proj.transform.forward * 100);
+        playerHealth.value -= attackDamage;
+        /*GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
+        proj.GetComponent<Rigidbody>().AddForce(proj.transform.forward * 100);*/
     }
 }

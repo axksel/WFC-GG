@@ -670,10 +670,11 @@ MonoBehaviour:
   enemiesInRange: {fileID: 11400000, guid: b57a3e8e473da814ba2246ecef0e8236, type: 2}
   loot: {fileID: 8563483207670871291, guid: 5fded58ce29451c47a70cd4c72b766ff, type: 3}
   player: {fileID: 2317675039806208350, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e, type: 3}
-  alertDistance: 10
+  alertDistance: 2
   projectile: {fileID: 487509448492710838, guid: 032fe450fefb42d4c85ca120168a114d,
     type: 3}
   healthBarImage: {fileID: 1494796098656406168}
+  playerHealth: {fileID: 11400000, guid: 093735e0598757843a4efd9e6e777771, type: 2}
 --- !u!65 &2865601234734081116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -697,7 +698,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1
+  m_Speed: 0.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
