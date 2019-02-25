@@ -21,6 +21,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
     float fullHealth;
     float fillamount;
     Image healthBar;
+    Animator anim;
 
     public void Start()
     {
@@ -28,6 +29,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
         healthBar = healthBarImage.GetComponent<Image>();
 
         enemyAgent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -44,6 +46,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
         {
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             enemyAgent.destination = player.transform.position;
+            anim.SetBool("Walk", true);
         }
 
         if (Vector3.Distance(transform.position, player.transform.position) < alertDistance / 2)
@@ -66,10 +69,16 @@ public class enemyScript : MonoBehaviour,EnemyIO
         health = health - amount;
         if (health <= 0)
         {
+            anim.SetBool("Dead", true);
             enemiesInRange.list.Remove(this.gameObject);
-            Destroy(gameObject, 1);
+            //Destroy(gameObject, 1);
             GameObject loottmp = Instantiate(loot, new Vector3(transform.position.x,0.3f,transform.position.z), Quaternion.identity);
             loottmp.GetComponent<goldscript>().amount = Random.Range(50, 100);
+            this.enabled = false;
+            Collider box = GetComponent<BoxCollider>();
+            box.enabled = false;
+            enemyAgent.enabled = false;
+            healthBar.enabled = false;
         }
 
 
