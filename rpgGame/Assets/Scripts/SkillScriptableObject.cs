@@ -11,5 +11,6 @@ public class SkillScriptableObject : ScriptableObject
     public bool isLoot;
     public int price;
     public Sprite icon;
+    public bool isRanged =false;
 
 }

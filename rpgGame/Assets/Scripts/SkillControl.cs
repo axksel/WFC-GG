@@ -14,7 +14,7 @@ public class SkillControl : MonoBehaviour
     public GameObject enemu;
     public static GameObject tmpSkill;
     public ParticleSystem attack;
-    public GameObject fireball;
+    public SkillScriptableObject equippedAimed;
     PlayerControl playerControl;
 
     void Start()
@@ -61,7 +61,7 @@ public class SkillControl : MonoBehaviour
     {
         Debug.Log(attackDir);
         attackDir.Normalize();
-        GameObject proj = Instantiate(fireball, transform.position, transform.rotation);
+        GameObject proj = Instantiate(equippedAimed.skillPrefab, transform.position, transform.rotation);
         proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
     }
     
