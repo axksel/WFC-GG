@@ -21,7 +21,7 @@ public class Joystick : MonoBehaviour
 
     private int screenWidth;
     private int screenHeight;
-
+    public bool iceblast;
 
     void Start()
     {
@@ -75,9 +75,8 @@ public class Joystick : MonoBehaviour
 
             for (int i = 0; i < tapCount; i++)
             {
-                int[] ids = new int[tapCount];
+                
                 Touch touch = Input.GetTouch(i);
-                Debug.Log(Vector2.Distance(touch.position, joystickOuter.transform.position));
                 switch (touch.phase)
                 {
                    
@@ -85,7 +84,7 @@ public class Joystick : MonoBehaviour
 
                         if (Vector2.Distance(touch.position, joystickOuter.transform.position) < 50)
                         {
-                            ids[i] = touch.fingerId;
+                            Debug.Log(iceblast);
                             joystickInner.SetActive(true);
                             this.direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
                             joystickPressed = true;
@@ -94,8 +93,9 @@ public class Joystick : MonoBehaviour
                         break;
 
                     case TouchPhase.Moved:
-                        if (joystickPressed && touch.fingerId == ids[i] && Vector2.Distance(touch.position, joystickOuter.transform.position) < 100)
+                        if (joystickPressed && Vector2.Distance(touch.position, joystickOuter.transform.position) < 100)
                         {
+
                             this.direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
                             joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(this.direction, radius);
                             joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, this.direction));
@@ -103,12 +103,16 @@ public class Joystick : MonoBehaviour
                         break;
 
                     case TouchPhase.Ended:
-                        if (joystickPressed && touch.fingerId == ids[i])
+                        if (joystickPressed && Vector2.Distance(touch.position, joystickOuter.transform.position) < 100)
                         {
                             joystickInner.SetActive(false);
-                            weaponFired.Invoke(this.direction);
+                            if (iceblast)
+                            {
+                                weaponFired.Invoke(this.direction);
+                            }
                             this.direction = Vector2.zero;
                             FadeOut();
+                            joystickPressed = false;
                         }
                         break;
                 }

@@ -59,7 +59,7 @@ public class SkillControl : MonoBehaviour
 
     public void RangedAttack(Vector2 attackDir )
     {
-        Debug.Log(attackDir);
+        //Debug.Log(attackDir);
         attackDir.Normalize();
         GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position+new Vector3(0,0.4f,0) + new Vector3(attackDir.x, 0, attackDir.y), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
         proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
