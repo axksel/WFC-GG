@@ -6,6 +6,10 @@ public class goldscript : MonoBehaviour,IsInteracable
 {
     public int amount;
     public intScriptableObject playerGold;
+    float scaleRate = 1f;
+    Vector3 scale;
+    Vector3 endScale;
+
 
 
     private void Start()
@@ -14,6 +18,17 @@ public class goldscript : MonoBehaviour,IsInteracable
         {
             amount = Random.Range(0,30);
         }
+        endScale = transform.localScale;
+        transform.localScale = new Vector3(0, 0, 0);
+    }
+
+    private void Update()
+    {
+       scale.x = Mathf.Lerp(scale.x, endScale.x, this.scaleRate * Time.deltaTime);
+        scale.y = scale.x;
+        scale.z = scale.x;
+        transform.localScale = scale;
+
     }
 
     public string ReturnName()

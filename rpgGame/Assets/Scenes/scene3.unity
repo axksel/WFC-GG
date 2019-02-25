@@ -145,12 +145,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!224 &82424825 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3646537108597434786, guid: 59f14a7861c663949bdd78656874322e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1519810364}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &120089193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -820,6 +814,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 080be88a3d2f4084aaa63544e0fcb10e,
     type: 3}
   m_PrefabInstance: {fileID: 344022743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &347900229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1188832320, guid: 59f14a7861c663949bdd78656874322e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1519810364}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &382251021
 PrefabInstance:
@@ -2532,12 +2532,12 @@ PrefabInstance:
         type: 3}
       propertyPath: joystickOuter
       value: 
-      objectReference: {fileID: 1188832320}
+      objectReference: {fileID: 347900229}
     - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
         type: 3}
       propertyPath: joystickInner
       value: 
-      objectReference: {fileID: 2024586955}
+      objectReference: {fileID: 1054014644}
     - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
         type: 3}
       propertyPath: weaponFired.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3460,6 +3460,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1001032345}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1054014644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2024586955, guid: 59f14a7861c663949bdd78656874322e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1519810364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1058357151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3594,80 +3600,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1150386150}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1188832320
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1188832321}
-  - component: {fileID: 1188832323}
-  - component: {fileID: 1188832322}
-  m_Layer: 5
-  m_Name: joystickOuterAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1188832321
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188832320}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 82424825}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 108.8, y: 426}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1188832322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188832320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a4a1d12d31fa6114fa9f6d86841cc581, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
---- !u!222 &1188832323
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188832320}
-  m_CullTransparentMesh: 0
 --- !u!1001 &1224620528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4737,6 +4669,14 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1188832321, guid: 59f14a7861c663949bdd78656874322e, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024586956, guid: 59f14a7861c663949bdd78656874322e, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f14a7861c663949bdd78656874322e, type: 3}
 --- !u!1 &1547285202 stripped
@@ -5720,80 +5660,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2012338396}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2024586955
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2024586956}
-  - component: {fileID: 2024586958}
-  - component: {fileID: 2024586957}
-  m_Layer: 5
-  m_Name: joystickInnerAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2024586956
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024586955}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 82424825}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 108.8, y: 426}
-  m_SizeDelta: {x: 150, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2024586957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024586955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ab93723be61f7084fbfbedd19050205d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
---- !u!222 &2024586958
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024586955}
-  m_CullTransparentMesh: 0
 --- !u!1 &2029188068
 GameObject:
   m_ObjectHideFlags: 0
