@@ -51,6 +51,7 @@ public class Joystick : MonoBehaviour
         {
             direction = Input.mousePosition - joystickOuter.transform.position;          
             joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
+            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
         }
 
         if (Input.GetMouseButtonUp(0) && joystickPressed)
