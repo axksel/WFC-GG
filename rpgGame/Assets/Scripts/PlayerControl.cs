@@ -120,6 +120,7 @@ public class PlayerControl : MonoBehaviour
             interactButton.interactable = false;
             interactButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
             interactButton.onClick.RemoveAllListeners();
+            
 
         }
         if (other.gameObject.tag == "enemy")

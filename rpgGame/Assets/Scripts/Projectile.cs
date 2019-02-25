@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public intScriptableObject playerHealth;
-    int attackDamage = 5;
+    
+    public int attackDamage = 5;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        //if(other.tag == "PlayerDmgCollider")
-        //{
-        //    playerHealth.value -= attackDamage;
-        //    Destroy(gameObject);
-        //}
-        
+        if (other.tag == "enemy")
+        {
+            other.gameObject.GetComponent<enemyScript>().TakeDamage(attackDamage);
+            Destroy(gameObject);
+        }
+
     }
 }
