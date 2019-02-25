@@ -14,7 +14,7 @@ public class SkillControl : MonoBehaviour
     public GameObject enemu;
     public static GameObject tmpSkill;
     public ParticleSystem attack;
-    public SkillScriptableObject equippedAimed;
+    public SkillListScriptableObject equippedAimed;
     PlayerControl playerControl;
 
     void Start()
@@ -60,9 +60,9 @@ public class SkillControl : MonoBehaviour
     {
         Debug.Log(attackDir);
         attackDir.Normalize();
-        GameObject proj = Instantiate(equippedAimed.skillPrefab, transform.position+new Vector3(0,0.4f,0), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
+        GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position+new Vector3(0,0.4f,0), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
         proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
-        proj.GetComponent<Projectile>().attackDamage = equippedAimed.dmg;
+        proj.GetComponent<Projectile>().attackDamage = equippedAimed.list[0].dmg;
     }
     
    

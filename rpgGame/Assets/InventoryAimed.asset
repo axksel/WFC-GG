@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf1713e8ae0ce5f44bf8a122f24ccc52, type: 3}
-  m_Name: IceBlast
+  m_Script: {fileID: 11500000, guid: f62ddfcf7338ef94b8505d1273531642, type: 3}
+  m_Name: InventoryAimed
   m_EditorClassIdentifier: 
-  objectName: IceBlast
-  dmg: 50
-  skillPrefab: {fileID: 1957099266950559588, guid: 1fe7799b47ce4254cbdc6ea117ea0dc5,
-    type: 3}
-  isLoot: 0
-  price: 50
-  icon: {fileID: 0}
-  isRanged: 1
+  list:
+  - {fileID: 11400000, guid: d6f813cc533d99e4c8881ed4e21b5086, type: 2}

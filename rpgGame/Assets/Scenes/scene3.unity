@@ -1873,7 +1873,7 @@ PrefabInstance:
         type: 3}
       propertyPath: equippedAimed
       value: 
-      objectReference: {fileID: 11400000, guid: d6f813cc533d99e4c8881ed4e21b5086,
+      objectReference: {fileID: 11400000, guid: 463c60f44c31cb44981792a2fd78907d,
         type: 2}
     - target: {fileID: 554972154678666011, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
         type: 3}
