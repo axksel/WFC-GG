@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorwayScript : MonoBehaviour,IsInteracable
 {
 
-    public GameObject door;
+   
     public EnemyList inventory;
    public string ReturnName()
     {
@@ -19,8 +19,9 @@ public class DoorwayScript : MonoBehaviour,IsInteracable
         {
             if(item.name == "key")
             {
+                transform.position = new Vector3(0, 0, -1000);
                 inventory.list.Remove(item);
-                Destroy(door);
+                Destroy(this.gameObject,0.02f);
             }
         }
 
