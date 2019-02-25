@@ -32,18 +32,17 @@ public class SkillControl : MonoBehaviour
     public void Attack()
     {
         if (!attack.isPlaying)
+        {
             attack.Play();
 
-        playerControl.anim.SetBool("swordSlash", true);
+            playerControl.anim.SetBool("swordSlash", true);
 
-        foreach (var item in enemiesInRange.list)
-        {
-            item.GetComponent<EnemyIO>().TakeDamage(equippedSkill.list[0].dmg);
-            
+            foreach (var item in enemiesInRange.list)
+            {
+                item.GetComponent<EnemyIO>().TakeDamage(equippedSkill.list[0].dmg);
+
+            }
         }
-           
-        
-       //Jeg tror angrebet skal ligges her.
     }
 
     public void ChangeEquippedSkill(SkillListScriptableObject newWeapon)
