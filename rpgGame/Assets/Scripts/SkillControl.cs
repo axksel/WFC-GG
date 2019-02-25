@@ -14,6 +14,7 @@ public class SkillControl : MonoBehaviour
     public GameObject enemu;
     public static GameObject tmpSkill;
     public ParticleSystem attack;
+    public GameObject fireball;
     PlayerControl playerControl;
 
     void Start()
@@ -55,5 +56,14 @@ public class SkillControl : MonoBehaviour
         button.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
 
     }
+
+    public void RangedAttack(Vector2 attackDir )
+    {
+        Debug.Log(attackDir);
+        attackDir.Normalize();
+        GameObject proj = Instantiate(fireball, transform.position, transform.rotation);
+        proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
+    }
+    
    
 }

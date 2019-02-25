@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 
 public class Joystick : MonoBehaviour
@@ -12,6 +13,8 @@ public class Joystick : MonoBehaviour
     public Vector2 direction;
     private float radius;
     bool joystickPressed = false;
+    public Vector2Event weaponFired;
+    
 
     private float targetAlpha;
     public float FadeRate;
@@ -23,6 +26,7 @@ public class Joystick : MonoBehaviour
     void Start()
     {
         radius = joystickInner.GetComponentInParent<Canvas>().scaleFactor * 40;
+      
     }
 
     void Update()
@@ -52,8 +56,9 @@ public class Joystick : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && joystickPressed)
         {
             joystickPressed = false;
-            direction = Vector2.zero;
             FadeOut();
+            direction = Vector2.zero;
+          
         }
 
 #endif
@@ -99,6 +104,7 @@ public class Joystick : MonoBehaviour
 
     public void FadeOut()
     {
+        weaponFired.Invoke(direction);
         this.targetAlpha = 0.0f;
     }
 

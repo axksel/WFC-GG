@@ -131,7 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7996ff64dd68a4d88551be3401f442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 204701834}
   inventory: {fileID: 11400000, guid: 59b0566fe912ae947a056fc7268b9d5c, type: 2}
 --- !u!65 &66382977
 BoxCollider:
@@ -146,6 +145,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!224 &82424825 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3646537108597434786, guid: 59f14a7861c663949bdd78656874322e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1519810364}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &120089193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -389,12 +394,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: ebcf614e731713e47acef207c52b42df,
     type: 3}
   m_PrefabInstance: {fileID: 159086205}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &204701834 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: b5142c2c955f94540ae52247b37ae9ca,
-    type: 3}
-  m_PrefabInstance: {fileID: 833543450}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &232865540
 PrefabInstance:
@@ -1864,6 +1863,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 189888154332586449, guid: 012034c26655376418cb1b3b400db4c6,
         type: 3}
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: fireball
+      value: 
+      objectReference: {fileID: 487509448492710838, guid: 032fe450fefb42d4c85ca120168a114d,
+        type: 3}
     - target: {fileID: 554972154678666011, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2440,6 +2445,120 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 785872544}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &793292908
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1887165250253010856, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_Name
+      value: joystickAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010856, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.8864994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.3955956
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.078849
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010862, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: weaponFired.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: joystickOuter
+      value: 
+      objectReference: {fileID: 1188832320}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: joystickInner
+      value: 
+      objectReference: {fileID: 2024586955}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: weaponFired.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: weaponFired.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: weaponFired.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1354274352}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: weaponFired.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RangedAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887165250253010863, guid: 2193929e53a73584897dc33a368066a5,
+        type: 3}
+      propertyPath: weaponFired.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2193929e53a73584897dc33a368066a5, type: 3}
 --- !u!1001 &796253850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3469,6 +3588,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1150386150}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1188832320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1188832321}
+  - component: {fileID: 1188832323}
+  - component: {fileID: 1188832322}
+  m_Layer: 5
+  m_Name: joystickOuterAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1188832321
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188832320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 82424825}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 108.8, y: 426}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1188832322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188832320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: a4a1d12d31fa6114fa9f6d86841cc581, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1188832323
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188832320}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1224620528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3652,6 +3845,7 @@ MonoBehaviour:
   projectile: {fileID: 487509448492710838, guid: 032fe450fefb42d4c85ca120168a114d,
     type: 3}
   healthBarImage: {fileID: 1924048583}
+  playerHealth: {fileID: 0}
 --- !u!65 &1287405898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5520,6 +5714,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2012338396}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2024586955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024586956}
+  - component: {fileID: 2024586958}
+  - component: {fileID: 2024586957}
+  m_Layer: 5
+  m_Name: joystickInnerAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2024586956
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024586955}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 82424825}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 108.8, y: 426}
+  m_SizeDelta: {x: 150, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2024586957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024586955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: ab93723be61f7084fbfbedd19050205d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &2024586958
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024586955}
+  m_CullTransparentMesh: 0
 --- !u!1 &2029188068
 GameObject:
   m_ObjectHideFlags: 0
