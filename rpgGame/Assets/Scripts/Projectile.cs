@@ -15,6 +15,11 @@ public class Projectile : MonoBehaviour
             other.gameObject.GetComponent<enemyScript>().TakeDamage(attackDamage);
             Destroy(gameObject);
         }
+        else if(other.tag != "Player")
+        {
+            Destroy(gameObject);
+        }
+
 
     }
 }

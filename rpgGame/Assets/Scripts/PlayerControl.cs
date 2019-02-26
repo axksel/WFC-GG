@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
 
     private GameObject joystick;
     private Vector2 dir;
+   
 
     UnityEngine.AI.NavMeshAgent agent;
 
