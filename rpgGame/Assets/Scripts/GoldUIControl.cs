@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GoldUIControl : MonoBehaviour
 {
 
     public intScriptableObject gold;
-    Text text;
+    TextMeshProUGUI text;
 
     private void Start()
     {
-        text = GetComponent<Text>();
+        text = GetComponent<TextMeshProUGUI>();
     }
     // Update is called once per frame
     void Update()
     {
-        text.text = "Gold :" + gold.value;
+        text.text = "Gold : " + gold.value;
     }
 }

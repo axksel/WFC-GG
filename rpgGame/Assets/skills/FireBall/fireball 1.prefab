@@ -278,7 +278,7 @@ PrefabInstance:
     - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
         type: 3}
       propertyPath: InitialModule.gravityModifier.scalar
-      value: 0
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
         type: 3}
@@ -294,6 +294,16 @@ PrefabInstance:
         type: 3}
       propertyPath: UVModule.fps
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3517247717020497693, guid: 6da1afe171c45d948bbbee9d30a065a4,
         type: 3}
