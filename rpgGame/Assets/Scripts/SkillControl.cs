@@ -48,12 +48,20 @@ public class SkillControl : MonoBehaviour
 
     public void ChangeEquippedSkill(SkillListScriptableObject newWeapon)
     {
+
+        if (!newWeapon.list[0].isRanged) { 
         Destroy(tmpSkill);
          equippedSkill.list.Clear();
         equippedSkill.list.Add( newWeapon.list[0]);
         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation * Quaternion.Euler(new Vector3(0,0,60)), EquippedPosition.transform);
-        attackButton.GetComponentInChildren<Text>().text = "";
         attackButton.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
+        }
+        else
+        {
+            equippedAimed.list.Clear();
+            equippedAimed.list.Add(newWeapon.list[0]);
+            spellIcon.GetComponent<Image>().sprite = equippedAimed.list[0].icon;
+        }
 
     }
 

@@ -9,7 +9,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
 
     public int health;
     public GameObjectList enemiesInRange;
-    public GameObject loot;
+    public GameObjectList loot;
     public GameObject player;
     public float alertDistance = 10f;
     NavMeshAgent enemyAgent;
@@ -88,7 +88,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
             anim.SetBool("Dead", true);
             enemiesInRange.list.Remove(this.gameObject);
             //Destroy(gameObject, 1);
-            GameObject loottmp = Instantiate(loot, new Vector3(transform.position.x,0.3f,transform.position.z), Quaternion.identity);
+            GameObject loottmp = Instantiate(loot.list[Random.Range(0, loot.list.Count)], new Vector3(transform.position.x,0.3f,transform.position.z), Quaternion.identity);
             loottmp.GetComponent<goldscript>().amount = Random.Range(50, 100);
             this.enabled = false;
             Collider box = GetComponent<BoxCollider>();

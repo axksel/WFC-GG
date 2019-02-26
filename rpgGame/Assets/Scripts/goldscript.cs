@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class goldscript : MonoBehaviour,IsInteracable
 {
-    public int amount;
+    public int amount =0;
     public intScriptableObject playerGold;
     float scaleRate = 1f;
     Vector3 scale;
@@ -16,7 +16,7 @@ public class goldscript : MonoBehaviour,IsInteracable
     {
         if (amount == 0)
         {
-            amount = Random.Range(0,30);
+            amount = Random.Range(30,60);
         }
         endScale = transform.localScale;
         transform.localScale = new Vector3(0, 0, 0);

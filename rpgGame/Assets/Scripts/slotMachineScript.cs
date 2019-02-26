@@ -16,8 +16,13 @@ public class slotMachineScript : MonoBehaviour,IsInteracable
         skill.isLoot = true;
         soldSKill.list.Clear();
 
-        GameObject tmp = Instantiate(skill.skillPrefab, skillPlacement.position, skillPlacement.rotation,skillPlacement);
-        tmp.transform.localScale = Vector3.Scale(tmp.transform.localScale , new Vector3(1, 1,1));
+        if (!skill.isRanged) {
+            GameObject tmp = Instantiate(skill.skillPrefab, skillPlacement.position, skillPlacement.rotation, skillPlacement);
+        }
+        else
+        {
+            GameObject tmp = Instantiate(skill.skillPrefab, skillPlacement.position+new Vector3(0.4f,0.2f,0), skillPlacement.rotation, skillPlacement);
+        }
        
     }
 
