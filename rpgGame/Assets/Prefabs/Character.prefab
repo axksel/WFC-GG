@@ -345,6 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2a73b731caa204a85c5caf431160ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  enemiesInRange: {fileID: 0}
 --- !u!195 &8643984699783951604
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -381,8 +383,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equippedSkill: {fileID: 0}
   EquippedPosition: {fileID: 2429023858024435525}
-  button: {fileID: 0}
+  attackButton: {fileID: 0}
+  spellIcon: {fileID: 0}
   count: 0
+  enemiesInRange: {fileID: 0}
+  enemu: {fileID: 0}
+  attack: {fileID: 0}
+  equippedAimed: {fileID: 0}
 --- !u!1 &2406945281193815668
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,10 +10,13 @@ public class Joystick : MonoBehaviour
 
     public GameObject joystickOuter;
     public GameObject joystickInner;
+    public GameObject aimArrow;
     public Vector2 direction;
     private float radius;
     bool joystickPressed = false;
-    public Vector2Event weaponFired;    
+    public Vector2Event weaponFired;
+    public bool attackJoystick;
+    GameObject player;
 
     private float targetAlpha;
     public float FadeRate;
@@ -34,6 +37,7 @@ public class Joystick : MonoBehaviour
 
         spellCooldownFill = spellCooldown.GetComponent<Image>().fillAmount;
         spellTimer = -100;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -46,6 +50,18 @@ public class Joystick : MonoBehaviour
             joystickInner.GetComponent<Image>().color = curColor;
         }
 
+        if (attackJoystick)
+        {
+            aimArrow.transform.position = player.transform.position + new Vector3(0, 0.2f, 0);
+            Color curColor2 = aimArrow.GetComponentInChildren<MeshRenderer>().material.color;
+            float alphaDiff2 = Mathf.Abs(curColor.a - this.targetAlpha);
+            if (alphaDiff > 0.0001f)
+            {
+                curColor2.a = Mathf.Lerp(curColor2.a, targetAlpha, this.FadeRate * Time.deltaTime);
+                aimArrow.GetComponentInChildren<MeshRenderer>().material.color = curColor2;
+            }
+        }
+
         if (i < 1.0f)
         {
             i += Time.deltaTime / spellFirerate;
@@ -54,30 +70,30 @@ public class Joystick : MonoBehaviour
         spellCooldownFill = Mathf.Lerp(1, 0f, i);
         spellCooldown.GetComponent<Image>().fillAmount = spellCooldownFill;
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 
-            if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
-        {
-            direction = Input.mousePosition - joystickOuter.transform.position;
-            joystickPressed = true;
-            FadeIn();
-        }
+//            if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
+//        {
+//            direction = Input.mousePosition - joystickOuter.transform.position;
+//            joystickPressed = true;
+//            FadeIn();
+//        }
 
-        if (Input.GetMouseButton(0) && joystickPressed)
-        {
-            direction = Input.mousePosition - joystickOuter.transform.position;
-            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
-            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
-        }
+//        if (Input.GetMouseButton(0) && joystickPressed)
+//        {
+//            direction = Input.mousePosition - joystickOuter.transform.position;
+//            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
+//            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
+//        }
 
-        if (Input.GetMouseButtonUp(0) && joystickPressed)
-        {
-            joystickPressed = false;
-            FadeOut();
-            direction = Vector2.zero;
-        }
+//        if (Input.GetMouseButtonUp(0) && joystickPressed)
+//        {
+//            joystickPressed = false;
+//            FadeOut();
+//            direction = Vector2.zero;
+//        }
 
-#endif
+//#endif
 
 
 
@@ -109,7 +125,12 @@ public class Joystick : MonoBehaviour
                         {
                             this.direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
                             joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(this.direction, radius);
-                            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, this.direction));
+                            joystickInner.transform.eulerAngles = new Vector3(0, 0,Vector2.SignedAngle(Vector2.right, this.direction));
+                            if (attackJoystick)
+                            {
+                                
+                                aimArrow.transform.eulerAngles = new Vector3(90, Vector2.SignedAngle(this.direction, Vector2.up), 0);
+                            }
                         }
                         break;
 
