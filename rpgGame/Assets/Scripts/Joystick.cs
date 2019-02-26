@@ -13,20 +13,18 @@ public class Joystick : MonoBehaviour
     public Vector2 direction;
     private float radius;
     bool joystickPressed = false;
-    public Vector2Event weaponFired;
-    
+    public Vector2Event weaponFired;    
 
     private float targetAlpha;
     public float FadeRate;
 
     private int screenWidth;
     private int screenHeight;
-    public bool iceblast;
+    int id;
 
     void Start()
     {
-        radius = joystickInner.GetComponentInParent<Canvas>().scaleFactor * 40;
-      
+        radius = joystickInner.GetComponentInParent<Canvas>().scaleFactor * 40;     
     }
 
     void Update()
@@ -39,30 +37,30 @@ public class Joystick : MonoBehaviour
             joystickInner.GetComponent<Image>().color = curColor;
         }
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
 
-//        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
-//        {
-//            direction = Input.mousePosition - joystickOuter.transform.position;
-//            joystickPressed = true;
-//            FadeIn();
-//        }
+        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
+        {
+            direction = Input.mousePosition - joystickOuter.transform.position;
+            joystickPressed = true;
+            FadeIn();
+        }
 
-//        if (Input.GetMouseButton(0) && joystickPressed)
-//        {
-//            direction = Input.mousePosition - joystickOuter.transform.position;
-//            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
-//            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
-//        }
+        if (Input.GetMouseButton(0) && joystickPressed)
+        {
+            direction = Input.mousePosition - joystickOuter.transform.position;
+            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
+            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
+        }
 
-//        if (Input.GetMouseButtonUp(0) && joystickPressed)
-//        {
-//            joystickPressed = false;
-//            FadeOut();
-//            direction = Vector2.zero;
-//        }
+        if (Input.GetMouseButtonUp(0) && joystickPressed)
+        {
+            joystickPressed = false;
+            FadeOut();
+            direction = Vector2.zero;
+        }
 
-//#endif
+#endif
 
 
 
@@ -71,20 +69,17 @@ public class Joystick : MonoBehaviour
         if (Input.touchCount > 0)
         {
             int tapCount = Input.touchCount;
-            
 
             for (int i = 0; i < tapCount; i++)
             {
-                
                 Touch touch = Input.GetTouch(i);
+                
                 switch (touch.phase)
                 {
-                   
                     case TouchPhase.Began:
-
                         if (Vector2.Distance(touch.position, joystickOuter.transform.position) < 50)
                         {
-                            Debug.Log(iceblast);
+                            id = touch.fingerId;
                             joystickInner.SetActive(true);
                             this.direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
                             joystickPressed = true;
@@ -93,9 +88,8 @@ public class Joystick : MonoBehaviour
                         break;
 
                     case TouchPhase.Moved:
-                        if (joystickPressed && Vector2.Distance(touch.position, joystickOuter.transform.position) < 100)
+                        if (joystickPressed && id == touch.fingerId)
                         {
-
                             this.direction = touch.position - new Vector2(joystickOuter.transform.position.x, joystickOuter.transform.position.y);
                             joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(this.direction, radius);
                             joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, this.direction));
@@ -103,29 +97,23 @@ public class Joystick : MonoBehaviour
                         break;
 
                     case TouchPhase.Ended:
-                        if (joystickPressed && Vector2.Distance(touch.position, joystickOuter.transform.position) < 100)
+                        if (joystickPressed && id == touch.fingerId)
                         {
                             joystickInner.SetActive(false);
-                            if (iceblast)
-                            {
-                                weaponFired.Invoke(this.direction);
-                            }
-                            this.direction = Vector2.zero;
                             FadeOut();
+                            this.direction = Vector2.zero;
                             joystickPressed = false;
                         }
                         break;
                 }
             }
-        }
-            
-
+        }      
 #endif
     }
 
     public void FadeOut()
     {
-        
+        weaponFired.Invoke(this.direction);
         this.targetAlpha = 0.0f;
     }
 
