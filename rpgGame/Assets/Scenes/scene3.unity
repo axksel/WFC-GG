@@ -531,6 +531,116 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 272954629}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &278701218
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4313934973685356789, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_Name
+      value: shop (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685356789, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.718
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.111
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.535
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4313934973685056725, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8422183853627381211, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: skill
+      value: 
+      objectReference: {fileID: 11400000, guid: fe824bce2cede504d9c19fb67d5f5ab6,
+        type: 2}
+    - target: {fileID: 8422183853627381211, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: weaponBought.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1354274352}
+    - target: {fileID: 8422183853627381211, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: weaponBought.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeEquippedSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 3560356303684164272, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831732082296554588, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831732082296554588, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5831732082296554588, guid: 56125585993b7a34c93d5782eb915683,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56125585993b7a34c93d5782eb915683, type: 3}
 --- !u!1001 &293998899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5014,7 +5124,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skill
       value: 
-      objectReference: {fileID: 11400000, guid: a0d7e631f00a0424ba07d711099fad75,
+      objectReference: {fileID: 11400000, guid: d6f813cc533d99e4c8881ed4e21b5086,
         type: 2}
     - target: {fileID: 8422183853627381211, guid: 56125585993b7a34c93d5782eb915683,
         type: 3}

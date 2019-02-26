@@ -235,6 +235,71 @@ PrefabInstance:
       propertyPath: InitialModule.startRotation.scalar
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.45209503
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.2235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.5849056
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.2273182
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.024830889
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582919835129077236, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: UVModule.fps
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3517247717020497693, guid: 6da1afe171c45d948bbbee9d30a065a4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6aae5abc74819114f8de63f452647294, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6da1afe171c45d948bbbee9d30a065a4, type: 3}
 --- !u!4 &7375517641445073105 stripped

@@ -69,7 +69,7 @@ public class SkillControl : MonoBehaviour
     {
         //Debug.Log(attackDir);
         attackDir.Normalize();
-        GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position+new Vector3(0,0.4f,0) + new Vector3(attackDir.x, 0, attackDir.y), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
+        GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position + new Vector3(attackDir.x/2, 0.4f, attackDir.y/2), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
         proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
         proj.GetComponent<Projectile>().attackDamage = equippedAimed.list[0].dmg;
     }
