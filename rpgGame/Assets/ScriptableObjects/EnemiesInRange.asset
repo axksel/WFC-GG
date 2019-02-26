@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd1f3aad9a3d3d40902799af2d05ec4, type: 3}
   m_Name: EnemiesInRange
   m_EditorClassIdentifier: 
+  list: []

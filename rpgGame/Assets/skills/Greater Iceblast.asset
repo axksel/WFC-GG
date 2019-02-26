@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1713e8ae0ce5f44bf8a122f24ccc52, type: 3}
   m_Name: Greater Iceblast
   m_EditorClassIdentifier: 
-  objectName: New MyScriptableObject
-  dmg: 0
-  skillPrefab: {fileID: 0}
-  isLoot: 0
-  price: 0
-  icon: {fileID: 0}
-  isRanged: 0
+  objectName: Greater Iceblast
+  dmg: 500
+  skillPrefab: {fileID: 1957099266950559588, guid: 1fe7799b47ce4254cbdc6ea117ea0dc5,
+    type: 3}
+  isLoot: 1
+  price: 6000
+  icon: {fileID: 21300000, guid: fee903bdbae02be4ba511637ac0617ec, type: 3}
+  isRanged: 1

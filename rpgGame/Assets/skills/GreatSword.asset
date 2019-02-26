@@ -16,5 +16,6 @@ MonoBehaviour:
   dmg: 50
   skillPrefab: {fileID: 100000, guid: 0f6fdda82fdad4d4abc4a10a7f6ea12d, type: 3}
   isLoot: 1
-  price: 0
+  price: 500
   icon: {fileID: 21300000, guid: abc834b2f8b55fd4da18e44cbdfa6774, type: 3}
+  isRanged: 0
