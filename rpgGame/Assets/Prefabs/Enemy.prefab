@@ -673,6 +673,8 @@ MonoBehaviour:
   alertDistance: 200
   projectile: {fileID: 487509448492710838, guid: 032fe450fefb42d4c85ca120168a114d,
     type: 3}
+  bloodSplatter: {fileID: 1987484099555270474, guid: 65ec716bdf1b6ab4181665bbf8f083a1,
+    type: 3}
   healthBarImage: {fileID: 1494796098656406168}
   playerHealth: {fileID: 11400000, guid: 093735e0598757843a4efd9e6e777771, type: 2}
 --- !u!65 &2865601234734081116

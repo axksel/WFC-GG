@@ -2239,6 +2239,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8236719621176830643, guid: 549bd423957032a4495ec62e27b8a183,
+        type: 3}
+      propertyPath: bloodSplatter
+      value: 
+      objectReference: {fileID: 1987484099555270474, guid: 65ec716bdf1b6ab4181665bbf8f083a1,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
 --- !u!1001 &682580582
@@ -2415,6 +2421,7 @@ MonoBehaviour:
     type: 2}
   equippedLoadoutRanged: {fileID: 11400000, guid: 463c60f44c31cb44981792a2fd78907d,
     type: 2}
+  playerList: {fileID: 0}
   count: 0
   enemy: {fileID: 1510699295, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
 --- !u!4 &701753241
