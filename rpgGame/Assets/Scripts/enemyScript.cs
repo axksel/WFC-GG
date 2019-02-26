@@ -89,7 +89,6 @@ public class enemyScript : MonoBehaviour,EnemyIO
             enemiesInRange.list.Remove(this.gameObject);
             //Destroy(gameObject, 1);
             GameObject loottmp = Instantiate(loot.list[Random.Range(0, loot.list.Count)], new Vector3(transform.position.x,0.3f,transform.position.z), Quaternion.identity);
-            loottmp.GetComponent<goldscript>().amount = Random.Range(50, 100);
             this.enabled = false;
             Collider box = GetComponent<BoxCollider>();
             box.enabled = false;
