@@ -17,7 +17,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
     float time;
     float attackSpeed = 1;
     public GameObject projectile;
-
+    public GameObject bloodSplatter;
     public GameObject healthBarImage;
     float fullHealth;
     float fillamount;
@@ -84,6 +84,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
     public int TakeDamage(int amount)
     {
         health = health - amount;
+        Instantiate(bloodSplatter,new Vector3(transform.position.x,0, transform.position.z) +bloodSplatter.transform.position,bloodSplatter.transform.rotation);
         if (health <= 0)
         {
             anim.SetBool("Dead", true);
