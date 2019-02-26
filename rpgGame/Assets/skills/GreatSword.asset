@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GreatSword
   m_EditorClassIdentifier: 
   objectName: Great Sword
-  dmg: 50
+  dmg: 40
   skillPrefab: {fileID: 100000, guid: 0f6fdda82fdad4d4abc4a10a7f6ea12d, type: 3}
   isLoot: 1
-  price: 500
+  price: 70
   icon: {fileID: 21300000, guid: abc834b2f8b55fd4da18e44cbdfa6774, type: 3}
   isRanged: 0

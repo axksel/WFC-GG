@@ -625,7 +625,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510699295}
-  m_LocalRotation: {x: -0, y: 0.7195554, z: -0, w: 0.6944351}
+  m_LocalRotation: {x: 0, y: 0.719558, z: 0, w: 0.6944324}
   m_LocalPosition: {x: -4.909, y: 0.113, z: -3.532}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
@@ -666,11 +666,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b278f114c37af409b3343a034f6eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 250
   enemiesInRange: {fileID: 11400000, guid: b57a3e8e473da814ba2246ecef0e8236, type: 2}
-  loot: {fileID: 8563483207670871291, guid: 5fded58ce29451c47a70cd4c72b766ff, type: 3}
-  player: {fileID: 2317675039806208350, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e, type: 3}
-  alertDistance: 2
+  loot: {fileID: 11400000, guid: d7d7327b6b1b2814eacda9c40efa5900, type: 2}
+  playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
+  alertDistance: 200
   projectile: {fileID: 487509448492710838, guid: 032fe450fefb42d4c85ca120168a114d,
     type: 3}
   healthBarImage: {fileID: 1494796098656406168}
@@ -686,8 +686,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.7, z: 1}
+  m_Center: {x: 0, y: 0.91, z: 0}
 --- !u!195 &7781282180922667802
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -707,7 +707,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &1582844550

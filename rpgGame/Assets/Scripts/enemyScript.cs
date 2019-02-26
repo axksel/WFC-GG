@@ -10,7 +10,8 @@ public class enemyScript : MonoBehaviour,EnemyIO
     public int health;
     public GameObjectList enemiesInRange;
     public GameObjectList loot;
-    public GameObject player;
+    public GameObjectList playerList;
+    GameObject player;
     public float alertDistance = 10f;
     NavMeshAgent enemyAgent;
     float time;
@@ -32,7 +33,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
     {
         fullHealth = health;
         healthBar = healthBarImage.GetComponent<Image>();
-
+        player = playerList.list[0];
         enemyAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         startPosition = transform.position;
@@ -94,6 +95,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
             box.enabled = false;
             enemyAgent.enabled = false;
             healthBar.enabled = false;
+            
         }
 
 

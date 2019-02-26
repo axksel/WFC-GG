@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: sabel
   m_EditorClassIdentifier: 
   objectName: sabel
-  dmg: 10
+  dmg: 50
   skillPrefab: {fileID: 100000, guid: 274bd220e724ad44aaf1680e63e29130, type: 3}
   isLoot: 1
-  price: 300
+  price: 120
   icon: {fileID: 21300000, guid: 371cab52e12f04249ae38a6aa6c949b9, type: 3}
+  isRanged: 0

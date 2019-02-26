@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     public SkillListScriptableObject BeginnerLoadoutRanged;
     public SkillListScriptableObject equippedLoadoutSkill;
     public SkillListScriptableObject equippedLoadoutRanged;
+    public float count;
+    public GameObject enemy;
 
 
 
@@ -32,6 +34,12 @@ public class PlayerManager : MonoBehaviour
         {
             GameOver();
 
+        }
+        count += 7 * Time.deltaTime;
+        if (count > 100)
+        {
+            Instantiate(enemy, transform.position, Quaternion.identity);
+            count = 0;
         }
     }
 

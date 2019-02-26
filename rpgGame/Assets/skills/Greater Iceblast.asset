@@ -17,6 +17,6 @@ MonoBehaviour:
   skillPrefab: {fileID: 1957099266950559588, guid: 1fe7799b47ce4254cbdc6ea117ea0dc5,
     type: 3}
   isLoot: 1
-  price: 6000
-  icon: {fileID: 21300000, guid: fee903bdbae02be4ba511637ac0617ec, type: 3}
+  price: 300
+  icon: {fileID: 21300000, guid: 3792c80e878a9a541984a684232b07d8, type: 3}
   isRanged: 1

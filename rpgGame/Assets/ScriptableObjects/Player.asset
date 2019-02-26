@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f62ddfcf7338ef94b8505d1273531642, type: 3}
-  m_Name: BeginnerLoadoutRanged
+  m_Script: {fileID: 11500000, guid: dfd1f3aad9a3d3d40902799af2d05ec4, type: 3}
+  m_Name: Player
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 11400000, guid: fe824bce2cede504d9c19fb67d5f5ab6, type: 2}
+  list: []
