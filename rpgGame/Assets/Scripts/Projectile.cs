@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
             other.gameObject.GetComponent<enemyScript>().TakeDamage(attackDamage);
             Destroy(gameObject);
         }
-        else if(other.tag != "Player")
+        else if(other.tag != "Player" && other.tag != "Interactable")
         {
             Destroy(gameObject);
         }

@@ -607,7 +607,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skill
       value: 
-      objectReference: {fileID: 11400000, guid: fe824bce2cede504d9c19fb67d5f5ab6,
+      objectReference: {fileID: 11400000, guid: a0d7e631f00a0424ba07d711099fad75,
         type: 2}
     - target: {fileID: 8422183853627381211, guid: 56125585993b7a34c93d5782eb915683,
         type: 3}
@@ -2305,6 +2305,60 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 688657104}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &701753239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701753241}
+  - component: {fileID: 701753240}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &701753240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701753239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01b3276386b7354198844ccd75d2c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 11400000, guid: 093735e0598757843a4efd9e6e777771, type: 2}
+  playerMAxHealth: {fileID: 11400000, guid: e7043e306f75be1408fb3ea271f4c792, type: 2}
+  playerGold: {fileID: 11400000, guid: d41d29cdb265f754e897fc2b257a7177, type: 2}
+  BeginnerLoadoutSkill: {fileID: 11400000, guid: b65eac3e32b2d7e49b5a2c06ed165b23,
+    type: 2}
+  BeginnerLoadoutRanged: {fileID: 11400000, guid: 0c2325049dcdb2648abf73f87e47be34,
+    type: 2}
+  equippedLoadoutSkill: {fileID: 11400000, guid: 5b4f6cd359119eb49a1ad34923aa581a,
+    type: 2}
+  equippedLoadoutRanged: {fileID: 11400000, guid: 463c60f44c31cb44981792a2fd78907d,
+    type: 2}
+--- !u!4 &701753241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701753239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.29854614, y: -7.3259063, z: 3.9357834}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &723774404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4118,20 +4172,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1354274360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354274351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01b3276386b7354198844ccd75d2c9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 11400000, guid: 093735e0598757843a4efd9e6e777771, type: 2}
-  playerMAxHealth: {fileID: 11400000, guid: e7043e306f75be1408fb3ea271f4c792, type: 2}
 --- !u!1001 &1367418251
 PrefabInstance:
   m_ObjectHideFlags: 0

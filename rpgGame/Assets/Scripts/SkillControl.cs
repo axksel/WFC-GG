@@ -21,7 +21,7 @@ public class SkillControl : MonoBehaviour
     void Start()
     {
         tmpSkill = Instantiate(equippedSkill.list[0].skillPrefab, EquippedPosition.transform.position, EquippedPosition.transform.rotation * Quaternion.Euler(new Vector3(0, 0, 60)), EquippedPosition.transform);
-        attackButton.GetComponentInChildren<Text>().text = "";
+       
         enemiesInRange.list.Clear();
         attack = Instantiate(attack, transform);
         playerControl = GetComponent<PlayerControl>();
