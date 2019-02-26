@@ -7,6 +7,7 @@ using TMPro;
 public class HealthBar : MonoBehaviour
 {
     public intScriptableObject playerHealth;
+    public intScriptableObject playerMaxHealth;
     TextMeshProUGUI healthBarValue;
     float fullHealth;
     float fillamount;
@@ -16,7 +17,7 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        fullHealth = playerHealth.value;
+        fullHealth = playerMaxHealth.value;
         healthBar = healthBarImage.GetComponent<Image>();
         healthBarValue = healthBarText.GetComponent<TextMeshProUGUI>();
     }
