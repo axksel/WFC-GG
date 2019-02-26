@@ -21,10 +21,19 @@ public class Joystick : MonoBehaviour
     private int screenWidth;
     private int screenHeight;
     int id;
+    float spellTimer;
+    float spellFirerate = 2f;
+    public GameObject spellCooldown;
+    float spellCooldownFill;
+    float i = 0f;
+    float rate;
 
     void Start()
     {
-        radius = joystickInner.GetComponentInParent<Canvas>().scaleFactor * 40;     
+        radius = joystickInner.GetComponentInParent<Canvas>().scaleFactor * 40;
+
+        spellCooldownFill = spellCooldown.GetComponent<Image>().fillAmount;
+        spellTimer = -100;
     }
 
     void Update()
@@ -37,9 +46,17 @@ public class Joystick : MonoBehaviour
             joystickInner.GetComponent<Image>().color = curColor;
         }
 
+        if (i < 1.0f)
+        {
+            i += Time.deltaTime / spellFirerate;
+        }
+
+        spellCooldownFill = Mathf.Lerp(1, 0f, i);
+        spellCooldown.GetComponent<Image>().fillAmount = spellCooldownFill;
+
 #if UNITY_EDITOR
 
-        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
+            if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
         {
             direction = Input.mousePosition - joystickOuter.transform.position;
             joystickPressed = true;
@@ -113,7 +130,15 @@ public class Joystick : MonoBehaviour
 
     public void FadeOut()
     {
-        weaponFired.Invoke(this.direction);
+        if(spellTimer + spellFirerate < Time.time)
+        {
+            spellTimer = Time.time;
+            i = 0f;
+            spellCooldownFill = 1;
+            spellCooldown.GetComponent<Image>().fillAmount = spellCooldownFill;
+
+            weaponFired.Invoke(this.direction);
+        }
         this.targetAlpha = 0.0f;
     }
 
