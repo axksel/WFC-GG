@@ -9,15 +9,22 @@ public class PistonScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        Debug.Log("lol");
+      
         if (other.gameObject.tag == "PlayerDmgCollider")
         {
             
             PlayerHealth.value -= 50;
 
         }
+         if (other.gameObject.tag == "enemy")
+        {
+            Debug.Log(other.gameObject);
+           
+            other.gameObject.GetComponent<enemyScript>().TakeDamage(50);
 
-       
+        }
+
+
 
 
     }
