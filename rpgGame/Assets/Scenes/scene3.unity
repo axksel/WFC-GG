@@ -4269,6 +4269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameobjectList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
+  clear: 1
 --- !u!1001 &1367418251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4724,22 +4725,22 @@ PrefabInstance:
     - target: {fileID: 2827444536067484999, guid: 59f14a7861c663949bdd78656874322e,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2827444536067484999, guid: 59f14a7861c663949bdd78656874322e,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2943154442272168425, guid: 59f14a7861c663949bdd78656874322e,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2943154442272168425, guid: 59f14a7861c663949bdd78656874322e,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2024586956, guid: 59f14a7861c663949bdd78656874322e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4748,12 +4749,12 @@ PrefabInstance:
     - target: {fileID: 76967748562944591, guid: 59f14a7861c663949bdd78656874322e,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 76967748562944591, guid: 59f14a7861c663949bdd78656874322e,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f14a7861c663949bdd78656874322e, type: 3}

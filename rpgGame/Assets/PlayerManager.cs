@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
         equippedLoadoutSkill.list.Clear();
         equippedLoadoutRanged.list.Add( BeginnerLoadoutRanged.list[0]);
         equippedLoadoutSkill.list.Add( BeginnerLoadoutSkill.list[0]);
-        playerList.list.Clear();
+        
 
 
     }
