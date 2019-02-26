@@ -6,7 +6,7 @@ public class DoorwayScript : MonoBehaviour,IsInteracable
 {
 
    
-    public EnemyList inventory;
+    public GameObjectList inventory;
    public string ReturnName()
     {
         return "Unlock door with key";

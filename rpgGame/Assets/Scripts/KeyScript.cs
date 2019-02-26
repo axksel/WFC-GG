@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyScript : MonoBehaviour,IsInteracable
 {
-    public EnemyList inventory;
+    public GameObjectList inventory;
     public string ReturnName()
     {
 

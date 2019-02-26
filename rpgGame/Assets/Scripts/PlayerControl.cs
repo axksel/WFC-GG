@@ -15,7 +15,7 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public Animator anim;
     Vector2 smoothDeltaPosition = Vector2.zero;
-    public EnemyList enemiesInRange;
+    public GameObjectList enemiesInRange;
 
     RaycastHit hitInfo = new RaycastHit();
 

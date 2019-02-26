@@ -11,7 +11,7 @@ public class SkillControl : MonoBehaviour
     public GameObject attackButton;
     public GameObject spellIcon;
     public float count=0;
-    public EnemyList enemiesInRange;
+    public GameObjectList enemiesInRange;
     public GameObject enemu;
     public static GameObject tmpSkill;
     public ParticleSystem attack;

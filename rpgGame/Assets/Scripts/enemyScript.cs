@@ -8,7 +8,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
 {
 
     public int health;
-    public EnemyList enemiesInRange;
+    public GameObjectList enemiesInRange;
     public GameObject loot;
     public GameObject player;
     public float alertDistance = 10f;
