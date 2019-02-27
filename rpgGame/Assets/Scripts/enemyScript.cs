@@ -51,7 +51,6 @@ public class enemyScript : MonoBehaviour,EnemyIO
 
         if (Vector3.Distance(transform.position, player.transform.position)<alertDistance)
         {
-            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
             enemyAgent.destination = player.transform.position;
             anim.SetBool("Walk", true);
             anim.SetBool("Idle", false);
