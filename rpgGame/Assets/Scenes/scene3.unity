@@ -71,7 +71,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 0
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000000, guid: 4ee8a4cc24ac0cb488c01d34522376b2,
+  m_LightingDataAsset: {fileID: 112000004, guid: f748ce050ec78144e987a490e43e3a8f,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -98,15 +98,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.1
-    agentHeight: 2
+    agentRadius: 0.2
+    agentHeight: 1
     agentSlope: 15
-    agentClimb: 0.19
+    agentClimb: 0.2
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
-    manualCellSize: 0
-    cellSize: 0.033333335
+    manualCellSize: 1
+    cellSize: 0.1
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -2201,6 +2201,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1987484099555270474, guid: 65ec716bdf1b6ab4181665bbf8f083a1,
         type: 3}
+    - target: {fileID: 1494796098656406168, guid: 549bd423957032a4495ec62e27b8a183,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1308433156, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -2223,11 +2228,6 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1991048261, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494796098656406168, guid: 549bd423957032a4495ec62e27b8a183,
-        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -4414,7 +4414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c42b789e05dfb74439fe63fe9a127896, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c42b789e05dfb74439fe63fe9a127896, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5230,8 +5230,8 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.2
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!114 &2029188072

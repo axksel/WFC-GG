@@ -11,6 +11,7 @@ TagManager:
   - PlayerDmgCollider
   - Key
   - Projectile
+  - joystickAttack
   layers:
   - Default
   - TransparentFX

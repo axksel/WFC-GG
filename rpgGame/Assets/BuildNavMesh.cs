@@ -13,7 +13,6 @@ public class BuildNavMesh : MonoBehaviour
     {
         navmesh = GetComponent<NavMeshSurface>();
 
-
         navmesh.BuildNavMesh();
         
         
