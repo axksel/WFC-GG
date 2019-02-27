@@ -17,6 +17,7 @@ public class Joystick : MonoBehaviour
     public Vector2Event weaponFired;
     public bool attackJoystick;
     GameObject player;
+    PlayerControl playerControl;
 
     private float targetAlpha;
     public float FadeRate;
@@ -38,6 +39,7 @@ public class Joystick : MonoBehaviour
         spellCooldownFill = spellCooldown.GetComponent<Image>().fillAmount;
         spellTimer = -100;
         player = GameObject.FindGameObjectWithTag("Player");
+        playerControl = player.GetComponent<PlayerControl>();
     }
 
     void Update()
@@ -72,7 +74,7 @@ public class Joystick : MonoBehaviour
 
 //#if UNITY_EDITOR
 
-//            if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
+//        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
 //        {
 //            direction = Input.mousePosition - joystickOuter.transform.position;
 //            joystickPressed = true;
@@ -127,8 +129,7 @@ public class Joystick : MonoBehaviour
                             joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(this.direction, radius);
                             joystickInner.transform.eulerAngles = new Vector3(0, 0,Vector2.SignedAngle(Vector2.right, this.direction));
                             if (attackJoystick)
-                            {
-                                
+                            { 
                                 aimArrow.transform.eulerAngles = new Vector3(90, Vector2.SignedAngle(this.direction, Vector2.up), 0);
                             }
                         }
@@ -151,13 +152,13 @@ public class Joystick : MonoBehaviour
 
     public void FadeOut()
     {
-        if(spellTimer + spellFirerate < Time.time)
+        if(spellTimer + spellFirerate < Time.time && attackJoystick)
         {
             spellTimer = Time.time;
             i = 0f;
             spellCooldownFill = 1;
             spellCooldown.GetComponent<Image>().fillAmount = spellCooldownFill;
-
+            playerControl.anim.SetBool("castSpell", true);
             weaponFired.Invoke(this.direction);
         }
         this.targetAlpha = 0.0f;

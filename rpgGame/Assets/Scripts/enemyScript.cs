@@ -83,9 +83,8 @@ public class enemyScript : MonoBehaviour,EnemyIO
 
     public int TakeDamage(int amount)
     {
-        Debug.Log("det viurker");
         health = health - amount;
-        Instantiate(bloodSplatter,new Vector3(transform.position.x,0, transform.position.z) +bloodSplatter.transform.position,bloodSplatter.transform.rotation);
+        Instantiate(bloodSplatter,new Vector3(transform.position.x,0, transform.position.z) + bloodSplatter.transform.position, bloodSplatter.transform.rotation);
         if (health <= 0)
         {
             anim.SetBool("Dead", true);

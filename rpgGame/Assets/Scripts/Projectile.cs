@@ -7,6 +7,10 @@ public class Projectile : MonoBehaviour
     
     public int attackDamage = 5;
 
+    private void Start()
+    {
+        Destroy(gameObject, 10);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

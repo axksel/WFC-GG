@@ -44,6 +44,10 @@ public class PlayerControl : MonoBehaviour
         {
             anim.SetBool("swordSlash", false);
         }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("castSpell"))
+        {
+            anim.SetBool("castSpell", false);
+        }
 
         dir = joystick.GetComponent<Joystick>().direction;
 
