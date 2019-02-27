@@ -20,13 +20,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        playerHealth.value = playerMAxHealth.value;
-        playerGold.value = 100;
-        equippedLoadoutRanged.list.Clear();
-        equippedLoadoutSkill.list.Clear();
-        equippedLoadoutRanged.list.Add( BeginnerLoadoutRanged.list[0]);
-        equippedLoadoutSkill.list.Add( BeginnerLoadoutSkill.list[0]);
-        
+
+        RestartResources();
 
 
     }
@@ -38,16 +33,27 @@ public class PlayerManager : MonoBehaviour
             GameOver();
 
         }
-        count += 7 * Time.deltaTime;
-        if (count > 100)
-        {
-            Instantiate(enemy, transform.position, Quaternion.identity);
-            count = 0;
-        }
+        //count += 7 * Time.deltaTime;
+        //if (count > 100)
+        //{
+        //    Instantiate(enemy, transform.position, Quaternion.identity);
+        //    count = 0;
+        //}
     }
 
     public void GameOver()
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void RestartResources()
+    {
+        playerHealth.value = playerMAxHealth.value;
+        playerGold.value = 100;
+        equippedLoadoutRanged.list.Clear();
+        equippedLoadoutSkill.list.Clear();
+        equippedLoadoutRanged.list.Add(BeginnerLoadoutRanged.list[0]);
+        equippedLoadoutSkill.list.Add(BeginnerLoadoutSkill.list[0]);
     }
 }
