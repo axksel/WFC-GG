@@ -49,17 +49,9 @@ public class PlayerControl : MonoBehaviour
         {
             agent.speed = Mathf.Clamp(dir.magnitude, 0, 30) / 8;
             agent.destination = transform.position + new Vector3(dir.x, 0, dir.y).normalized / 5;
-            Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
-
-            float dx = Vector3.Dot(transform.right, worldDeltaPosition);
-            float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
-            Vector2 deltaPosition = new Vector2(dx, dy);
-
-            float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
-            smoothDeltaPosition = Vector2.Lerp(smoothDeltaPosition, deltaPosition, smooth);
-
-            if (Time.deltaTime > 1e-5f)
-                velocity = smoothDeltaPosition / Time.deltaTime;
+ 
+            velocity = RotateVector(dir, Vector2.SignedAngle( new Vector3(transform.forward.x, transform.forward.z), new Vector3(Vector3.forward.x, Vector3.forward.z)));
+            velocity.Normalize();
         }
         dir = joystick.GetComponent<Joystick>().direction;
 
@@ -77,6 +69,7 @@ public class PlayerControl : MonoBehaviour
         anim.SetFloat("velY", velocity.y);
 
         GetComponent<LookAt>().lookAtTargetPosition = agent.steeringTarget + transform.forward;
+        
     }
 
     void LateUpdate()
