@@ -6,25 +6,21 @@ using TMPro;
 
 public class PlayerControl : MonoBehaviour
 {
-
     private GameObject joystick;
+    private GameObject joystickAttack;
     private Vector2 dir;
-   
-
+    private Vector2 tempDir;
+    private Transform chest;
     UnityEngine.AI.NavMeshAgent agent;
 
     [HideInInspector]
     public Animator anim;
     Vector2 smoothDeltaPosition = Vector2.zero;
     public GameObjectList enemiesInRange;
-
     RaycastHit hitInfo = new RaycastHit();
-
     Vector2 velocity = Vector2.zero;
     bool shouldMove;
     Button interactButton;
-    
-
 
     void Start()
     {
@@ -32,57 +28,50 @@ public class PlayerControl : MonoBehaviour
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         anim = GetComponent<Animator>();
         agent.updatePosition = false;
-
         joystick = GameObject.FindGameObjectWithTag("Joystick");
-
+        joystickAttack = GameObject.FindGameObjectWithTag("joystickAttack");
+        chest = anim.GetBoneTransform(HumanBodyBones.Chest);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("swordSlash"))
         {
             anim.SetBool("swordSlash", false);
         }
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("castSpell"))
         {
+            shouldMove = false;
+            anim.SetBool("shouldMove", shouldMove);
             anim.SetBool("castSpell", false);
         }
+        if (shouldMove)
+        {
+            agent.speed = Mathf.Clamp(dir.magnitude, 0, 30) / 8;
+            agent.destination = transform.position + new Vector3(dir.x, 0, dir.y).normalized / 5;
+            Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
 
+            float dx = Vector3.Dot(transform.right, worldDeltaPosition);
+            float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
+            Vector2 deltaPosition = new Vector2(dx, dy);
+
+            float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
+            smoothDeltaPosition = Vector2.Lerp(smoothDeltaPosition, deltaPosition, smooth);
+
+            if (Time.deltaTime > 1e-5f)
+                velocity = smoothDeltaPosition / Time.deltaTime;
+        }
         dir = joystick.GetComponent<Joystick>().direction;
-
-        agent.speed = Mathf.Clamp(dir.magnitude, 0, 30) / 8;
-        agent.destination = transform.position + new Vector3(dir.x, 0, dir.y).normalized / 5;
-        Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
-
-        // Map 'worldDeltaPosition' to local space
-        float dx = Vector3.Dot(transform.right, worldDeltaPosition);
-        float dy = Vector3.Dot(transform.forward, worldDeltaPosition);
-        Vector2 deltaPosition = new Vector2(dx, dy);
-
-        // Low-pass filter the deltaMove
-        float smooth = Mathf.Min(1.0f, Time.deltaTime / 0.15f);
-        smoothDeltaPosition = Vector2.Lerp(smoothDeltaPosition, deltaPosition, smooth);
-
-        // Update velocity if time advances
-        if (Time.deltaTime > 1e-5f)
-            velocity = smoothDeltaPosition / Time.deltaTime;
 
         if (dir == Vector2.zero)
         {
-            //anim.SetLayerWeight(1, 0);
-            //anim.SetLayerWeight(2, 1);
             shouldMove = false;
         }
         else
         {
             shouldMove = true;
-            //anim.SetLayerWeight(2, 0);
-            //anim.SetLayerWeight(1, 0.5f);
         }
 
-
-        // Update animation parameters
         anim.SetBool("shouldMove", shouldMove);
         anim.SetFloat("velX", velocity.x);
         anim.SetFloat("velY", velocity.y);
@@ -90,16 +79,23 @@ public class PlayerControl : MonoBehaviour
         GetComponent<LookAt>().lookAtTargetPosition = agent.steeringTarget + transform.forward;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-
-        
+        if(joystickAttack.GetComponent<Joystick>().direction.x != 0)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(joystickAttack.GetComponent<Joystick>().direction.x, -10f, joystickAttack.GetComponent<Joystick>().direction.y));
+            chest.rotation = targetRotation;
+            tempDir = joystickAttack.GetComponent<Joystick>().direction;
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("castSpell"))
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(tempDir.x, -45f, tempDir.y));
+            chest.rotation = targetRotation;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
-
         if (other.gameObject.tag == "Interactable")
         {
             interactButton.interactable = true;
@@ -112,28 +108,20 @@ public class PlayerControl : MonoBehaviour
         {
             enemiesInRange.list.Add(other.gameObject);
         }
-
-
     }
 
     private void OnTriggerExit(Collider other)
     {
-
-
         if (other.gameObject.tag == "Interactable")
         {
             interactButton.interactable = false;
             interactButton.GetComponentInChildren<TextMeshProUGUI>().text = "";
             interactButton.onClick.RemoveAllListeners();
-            
-
         }
         if (other.gameObject.tag == "enemy")
         {
-            enemiesInRange.list.Remove(other.gameObject);
-            
+            enemiesInRange.list.Remove(other.gameObject); 
         }
-
     }
 
     public Vector2 RotateVector(Vector2 v, float angle)
@@ -146,7 +134,6 @@ public class PlayerControl : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        // Update position to agent position
         transform.position = agent.nextPosition;
         anim.ApplyBuiltinRootMotion();
     }
