@@ -9,8 +9,7 @@ public class LoadSceneFromInteract : MonoBehaviour,IsInteracable
 
     public void Interact()
     {
-        SceneManager.LoadScene("scene3", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("hub");
+        gameManager.list[0].GetComponent<PlayerManager>().ChangeScene();
 
     }
 

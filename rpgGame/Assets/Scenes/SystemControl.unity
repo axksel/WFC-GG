@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 4f9692002b33fa84889fb0f9a70e3d7c, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &347900229 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1188832320, guid: 59f14a7861c663949bdd78656874322e,
@@ -169,6 +169,7 @@ MonoBehaviour:
   playerList: {fileID: 0}
   count: 0
   enemy: {fileID: 1510699295, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
+  surfaces: []
 --- !u!4 &701753241
 Transform:
   m_ObjectHideFlags: 0
@@ -961,7 +962,7 @@ PrefabInstance:
         type: 3}
       propertyPath: aimArrow
       value: 
-      objectReference: {fileID: 2076479978}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2193929e53a73584897dc33a368066a5, type: 3}
 --- !u!1001 &1774310477

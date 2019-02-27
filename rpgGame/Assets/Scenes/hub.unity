@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b505900af87744998ab5274303404f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 11400000, guid: 58129841b8d122346bf65b064c1958d5, type: 2}
 --- !u!65 &2067356349
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -72,30 +72,30 @@ public class Joystick : MonoBehaviour
         spellCooldownFill = Mathf.Lerp(1, 0f, i);
         spellCooldown.GetComponent<Image>().fillAmount = spellCooldownFill;
 
-//#if UNITY_EDITOR
+#if UNITY_EDITOR
 
-//        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
-//        {
-//            direction = Input.mousePosition - joystickOuter.transform.position;
-//            joystickPressed = true;
-//            FadeIn();
-//        }
+        if (Input.GetMouseButtonDown(0) && Vector2.Distance(Input.mousePosition, joystickOuter.transform.position) < 50)
+        {
+            direction = Input.mousePosition - joystickOuter.transform.position;
+            joystickPressed = true;
+            FadeIn();
+        }
 
-//        if (Input.GetMouseButton(0) && joystickPressed)
-//        {
-//            direction = Input.mousePosition - joystickOuter.transform.position;
-//            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
-//            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
-//        }
+        if (Input.GetMouseButton(0) && joystickPressed)
+        {
+            direction = Input.mousePosition - joystickOuter.transform.position;
+            joystickInner.transform.position = joystickOuter.transform.position + Vector3.ClampMagnitude(direction, radius);
+            joystickInner.transform.eulerAngles = new Vector3(0, 0, Vector2.SignedAngle(Vector2.right, direction));
+        }
 
-//        if (Input.GetMouseButtonUp(0) && joystickPressed)
-//        {
-//            joystickPressed = false;
-//            FadeOut();
-//            direction = Vector2.zero;
-//        }
+        if (Input.GetMouseButtonUp(0) && joystickPressed)
+        {
+            joystickPressed = false;
+            FadeOut();
+            direction = Vector2.zero;
+        }
 
-//#endif
+#endif
 
 
 

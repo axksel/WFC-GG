@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
+
 
 public class PlayerManager : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class PlayerManager : MonoBehaviour
     public GameObjectList playerList;
     public float count;
     public GameObject enemy;
-
+    public GameObjectList navmeshObjects;
+    public List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
 
     private void Start()
@@ -55,5 +58,25 @@ public class PlayerManager : MonoBehaviour
         equippedLoadoutSkill.list.Clear();
         equippedLoadoutRanged.list.Add(BeginnerLoadoutRanged.list[0]);
         equippedLoadoutSkill.list.Add(BeginnerLoadoutSkill.list[0]);
+    }
+
+    public void ChangeScene()
+    {
+
+        SceneManager.LoadScene("scene3", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("hub");
+
+        
+        //for (int i = 0; i < navmeshObjects.list.Count; i++)
+        //{
+        //    surfaces.Add(navmeshObjects.list[i].GetComponent<NavMeshSurface>());
+        //}
+        
+
+
+        //for (int i = 0; i < surfaces.Count; i++)
+        //{
+        //    surfaces[i].BuildNavMesh();
+        //}
     }
 }
