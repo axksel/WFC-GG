@@ -46,8 +46,10 @@ public class PlayerManager : MonoBehaviour
 
     public void GameOver()
     {
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("hub", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("scene3");
+        RestartResources();
+        
     }
 
     public void RestartResources()
