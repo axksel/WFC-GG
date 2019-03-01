@@ -12,12 +12,13 @@ public class Modulescript : MonoBehaviour
 
 
     public int[] neighbours = new int[6];
+    public bool[] flipped = new bool[6];
+    public bool[] symmetrical = new bool[6];
 
-
-    public List<GameObject> neighbourWest = new List<GameObject>();
+    public List<GameObject> neighbourNorth = new List<GameObject>();
     public List<GameObject> neighbourEast = new List<GameObject>();
     public List<GameObject> neighbourSouth = new List<GameObject>();
-    public List<GameObject> neighbourNorth = new List<GameObject>();
+    public List<GameObject> neighbourWest = new List<GameObject>();
     public List<GameObject> neighbourUp = new List<GameObject>();
     public List<GameObject> neighbourDown = new List<GameObject>();
 
@@ -26,7 +27,66 @@ public class Modulescript : MonoBehaviour
     public ScriptableObjectList moduleSO;
     private Modulescript target;
 
-    public void UpdateNeighbours()
+
+    public void UpdateNeigboursInANewWay()
+    {
+       
+
+        Undo.RecordObject(gameObject.GetComponent<Modulescript>(), "Update Neighbours");
+
+        for (int k = 0; k < moduleSO.list.Count; k++)
+        {
+
+            if (CheckNeighbour(neighbours[0], moduleSO.list[k].GetComponent<Modulescript>().neighbours[2],symmetrical[0],flipped[0], moduleSO.list[k].GetComponent<Modulescript>().flipped[2]))
+            {  
+                    neighbourNorth.Add(moduleSO.list[k]);
+            }
+            if (CheckNeighbour(neighbours[1], moduleSO.list[k].GetComponent<Modulescript>().neighbours[3],symmetrical[1],flipped[1], moduleSO.list[k].GetComponent<Modulescript>().flipped[3]))
+            {
+                neighbourEast.Add(moduleSO.list[k]);
+            }
+            if (CheckNeighbour(neighbours[2], moduleSO.list[k].GetComponent<Modulescript>().neighbours[0], symmetrical[2], flipped[2], moduleSO.list[k].GetComponent<Modulescript>().flipped[0]))
+            {
+                neighbourSouth.Add(moduleSO.list[k]);
+            }
+            if (CheckNeighbour(neighbours[3], moduleSO.list[k].GetComponent<Modulescript>().neighbours[1], symmetrical[3], flipped[3], moduleSO.list[k].GetComponent<Modulescript>().flipped[1]))
+            {
+                neighbourWest.Add(moduleSO.list[k]);
+            }
+            if (CheckNeighbour(neighbours[4], moduleSO.list[k].GetComponent<Modulescript>().neighbours[5], symmetrical[4], flipped[4], moduleSO.list[k].GetComponent<Modulescript>().flipped[5]))
+            {
+                neighbourUp.Add(modules[k]);
+            }
+            if (CheckNeighbour(neighbours[5], moduleSO.list[k].GetComponent<Modulescript>().neighbours[4], symmetrical[5], flipped[5], moduleSO.list[k].GetComponent<Modulescript>().flipped[4]))
+            {
+                neighbourDown.Add(modules[k]);
+            }
+        }
+        PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject.GetComponent<Modulescript>());
+    }
+
+
+
+
+public bool CheckNeighbour(int value1, int value2, bool sym,bool flipped1,bool flipped2)
+{
+
+    if (value1 == value2)
+    {
+            if (sym)
+            {
+                if(flipped1 != flipped2)
+                {
+                    return true;
+                }
+                return false;
+            }
+        return true;
+    }
+    return false;
+}
+
+public void UpdateNeighbours()
     {
         neighbourWest.Clear();
         neighbourEast.Clear();

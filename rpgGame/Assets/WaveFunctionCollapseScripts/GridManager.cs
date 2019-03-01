@@ -174,6 +174,15 @@ public class GridManager : MonoBehaviour
     }
 
 
+    public void FindNewNeighbours()
+    {
+        for (int i = 0; i < moduleSO.list.Count; i++)
+        {
+            moduleSO.list[i].GetComponent<Modulescript>().UpdateNeigboursInANewWay();
+        }
+
+    }
+
 
     public void IterateAndCollapse()
     {

@@ -24,5 +24,10 @@ public class ObjectBuilderEditor : Editor
         {
             myScript.IterateAndCollapse();
         }
+
+        if (GUILayout.Button("New neighbourhood calc"))
+        {
+            myScript.FindNewNeighbours();
+        }
     }
 }

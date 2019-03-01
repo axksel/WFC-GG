@@ -24,5 +24,12 @@ public class BuilderEditor : Editor
         }
 
 
+        if (GUILayout.Button("Add new neighbours"))
+        {
+            myScript.UpdateNeigboursInANewWay();
+
+        }
+
+
     }
 }
