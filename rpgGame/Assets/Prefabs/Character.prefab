@@ -385,10 +385,9 @@ MonoBehaviour:
   EquippedPosition: {fileID: 2429023858024435525}
   attackButton: {fileID: 0}
   spellIcon: {fileID: 0}
-  count: 0
   enemiesInRange: {fileID: 0}
-  enemu: {fileID: 0}
   attack: {fileID: 0}
+  hit: {fileID: 5674598522575168829, guid: ae9bf8f1b5693e6439b5529e722c0b06, type: 3}
   equippedAimed: {fileID: 0}
 --- !u!1 &2406945281193815668
 GameObject:

@@ -12,5 +12,6 @@ public class SkillScriptableObject : ScriptableObject
     public int price;
     public Sprite icon;
     public bool isRanged =false;
+    public Color hitProjectileColor;
 
 }

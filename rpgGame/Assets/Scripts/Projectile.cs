@@ -5,6 +5,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {  
     public int attackDamage = 5;
+    public ParticleSystem hit;
+    [HideInInspector]
+    public SkillControl skillcontrol;
+    
 
     private void Start()
     {
@@ -16,11 +20,21 @@ public class Projectile : MonoBehaviour
         if (other.tag == "enemy")
         {
             other.gameObject.GetComponent<enemyScript>().TakeDamage(attackDamage);
-            Destroy(gameObject);
+            if (!skillcontrol.hit.isPlaying)
+            {
+                skillcontrol.hit.transform.position = other.transform.position + new Vector3(0, 0.4f, 0);
+                skillcontrol.hit.Play();
+            }
+                Destroy(gameObject);
         }
         else if(other.tag != "Player" && other.tag != "Interactable")
         {
-            Destroy(gameObject);
+            if (!skillcontrol.hit.isPlaying)
+            {
+                skillcontrol.hit.transform.position = other.transform.position;
+                skillcontrol.hit.Play();
+            }
+                Destroy(gameObject);
         }
     }
 }
