@@ -100,7 +100,7 @@ public class GridManager : MonoBehaviour
 
                     try
                     {
-                        Handles.Label(new Vector3(i*2, k*2, j *2), grid[i, k, j].posibilitySpace.Count.ToString());
+                        Handles.Label(new Vector3(i, k, j) , grid[i, k, j].posibilitySpace.Count.ToString());
                         index++;
                     }
                     catch (System.NullReferenceException) { }
@@ -122,7 +122,7 @@ public class GridManager : MonoBehaviour
 
                     if (grid[i, k,j].posibilitySpace.Count == 1 && grid[i, k, j].collapsed != true)
                     {
-                        Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation);
+                        Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i, k, j), grid[i, k, j].posibilitySpace[0].transform.rotation);
                         grid[i, k, j].collapsed = true;
                     }
                 }
