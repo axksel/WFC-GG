@@ -663,6 +663,41 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00805424
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.10365779
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0009271585
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99458
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.929
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 11.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.010000001
+      objectReference: {fileID: 0}
     - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
         type: 3}
       propertyPath: button
@@ -713,6 +748,17 @@ PrefabInstance:
       propertyPath: attackButton
       value: 
       objectReference: {fileID: 929876728}
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971095289483193415, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: hit
+      value: 
+      objectReference: {fileID: 5674598522575168829, guid: ae9bf8f1b5693e6439b5529e722c0b06,
+        type: 3}
     - target: {fileID: 554972154678666011, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -795,41 +841,6 @@ PrefabInstance:
       propertyPath: head
       value: 
       objectReference: {fileID: 1154831654}
-    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.00805424
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.10365779
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.0009271585
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99458
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.929
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 11.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836852716750719450, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.010000001
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e, type: 3}
 --- !u!1 &1576694572 stripped
