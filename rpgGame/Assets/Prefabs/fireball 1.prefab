@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 5
+  Player: {fileID: 2317675039806208350, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e, type: 3}
 --- !u!1001 &4891554857701404515
 PrefabInstance:
   m_ObjectHideFlags: 0

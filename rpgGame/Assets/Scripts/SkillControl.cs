@@ -13,6 +13,7 @@ public class SkillControl : MonoBehaviour
     public GameObjectList enemiesInRange;
     public static GameObject tmpSkill;
     public ParticleSystem attack;
+    public ParticleSystem hit;
     public SkillListScriptableObject equippedAimed;
     PlayerControl playerControl;
 
@@ -25,6 +26,7 @@ public class SkillControl : MonoBehaviour
         playerControl = GetComponent<PlayerControl>();
         attackButton.GetComponent<Image>().sprite = equippedSkill.list[0].icon;
         spellIcon.GetComponent<Image>().sprite = equippedAimed.list[0].icon;
+        hit = Instantiate(hit, gameObject.transform);
     }
 
 
@@ -65,6 +67,8 @@ public class SkillControl : MonoBehaviour
     {
         attackDir.Normalize();
         GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position + new Vector3(attackDir.x/2, 0.4f, attackDir.y/2), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
+        hit.startColor = equippedAimed.list[0].hitProjectileColor;
+        proj.GetComponent<Projectile>().skillcontrol = this;
         proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
         proj.GetComponent<Projectile>().attackDamage = equippedAimed.list[0].dmg;
     }
