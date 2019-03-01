@@ -82,7 +82,7 @@ public class GridManager : MonoBehaviour
         }
 
 
-        grid[5, 0 ,5].collapse(0);
+        grid[0, 0 ,0].collapse(3);
         Build();
     }
 

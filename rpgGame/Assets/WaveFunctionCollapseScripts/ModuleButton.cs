@@ -17,6 +17,12 @@ public class BuilderEditor : Editor
             
         }
 
-      
+        if (GUILayout.Button("RotateClockwise"))
+        {
+            myScript.RotateClockWise();
+
+        }
+
+
     }
 }
