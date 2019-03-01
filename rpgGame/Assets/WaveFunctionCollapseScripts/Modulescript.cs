@@ -39,7 +39,7 @@ public class Modulescript : MonoBehaviour
 
             if (CheckNeighbour(neighbours[0], moduleSO.list[k].GetComponent<Modulescript>().neighbours[2],symmetrical[0],flipped[0], moduleSO.list[k].GetComponent<Modulescript>().flipped[2]))
             {  
-                    neighbourNorth.Add(moduleSO.list[k]);
+                neighbourNorth.Add(moduleSO.list[k]);
             }
             if (CheckNeighbour(neighbours[1], moduleSO.list[k].GetComponent<Modulescript>().neighbours[3],symmetrical[1],flipped[1], moduleSO.list[k].GetComponent<Modulescript>().flipped[3]))
             {

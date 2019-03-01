@@ -33,10 +33,10 @@ public class slot
             {
                 for (int k = 0; k < neighbours[i].posibilitySpace.Count; k++)
                 {
-                    if (i == 0) neighbour0Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourEast);
+                    if (i == 0) neighbour0Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourSouth);
                     if (i == 1) neighbour1Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourWest);
                     if (i == 2) neighbour2Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourNorth);
-                    if (i == 3) neighbour3Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourSouth);
+                    if (i == 3) neighbour3Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourEast);
                     if (i == 4) neighbour4Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourUp);
                     if (i == 5) neighbour5Pos.AddRange(neighbours[i].posibilitySpace[k].GetComponent<Modulescript>().neighbourDown);
                 }
