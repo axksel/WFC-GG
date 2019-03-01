@@ -94,7 +94,6 @@ public class PlayerControl : MonoBehaviour
             interactButton.interactable = true;
             interactButton.GetComponentInChildren<TextMeshProUGUI>().text = other.gameObject.GetComponent<IsInteracable>().ReturnName();
             interactButton.onClick.AddListener(other.gameObject.GetComponent<IsInteracable>().Interact);
-
         }
 
         if (other.gameObject.tag == "enemy")

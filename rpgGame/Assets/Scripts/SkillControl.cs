@@ -10,9 +10,7 @@ public class SkillControl : MonoBehaviour
     public GameObject EquippedPosition;
     public GameObject attackButton;
     public GameObject spellIcon;
-    public float count=0;
     public GameObjectList enemiesInRange;
-    public GameObject enemu;
     public static GameObject tmpSkill;
     public ParticleSystem attack;
     public SkillListScriptableObject equippedAimed;
@@ -35,13 +33,11 @@ public class SkillControl : MonoBehaviour
         if (!attack.isPlaying)
         {
             attack.Play();
-
             playerControl.anim.SetBool("swordSlash", true);
 
             foreach (var item in enemiesInRange.list)
             {
                 item.GetComponent<EnemyIO>().TakeDamage(equippedSkill.list[0].dmg);
-
             }
         }
     }
@@ -67,12 +63,9 @@ public class SkillControl : MonoBehaviour
 
     public void RangedAttack(Vector2 attackDir )
     {
-        //Debug.Log(attackDir);
         attackDir.Normalize();
         GameObject proj = Instantiate(equippedAimed.list[0].skillPrefab, transform.position + new Vector3(attackDir.x/2, 0.4f, attackDir.y/2), Quaternion.Euler(0, Vector2.SignedAngle( attackDir, Vector2.up), 0));
         proj.GetComponent<Rigidbody>().AddForce(new Vector3(attackDir.x,0,attackDir.y) * 100);
         proj.GetComponent<Projectile>().attackDamage = equippedAimed.list[0].dmg;
     }
-    
-   
-}
+ }
