@@ -55,11 +55,11 @@ public class Modulescript : MonoBehaviour
             }
             if (CheckNeighbour(neighbours[4], moduleSO.list[k].GetComponent<Modulescript>().neighbours[5], symmetrical[4], flipped[4], moduleSO.list[k].GetComponent<Modulescript>().flipped[5]))
             {
-                neighbourUp.Add(modules[k]);
+                neighbourUp.Add(moduleSO.list[k]);
             }
             if (CheckNeighbour(neighbours[5], moduleSO.list[k].GetComponent<Modulescript>().neighbours[4], symmetrical[5], flipped[5], moduleSO.list[k].GetComponent<Modulescript>().flipped[4]))
             {
-                neighbourDown.Add(modules[k]);
+                neighbourDown.Add(moduleSO.list[k]);
             }
         }
         PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject.GetComponent<Modulescript>());

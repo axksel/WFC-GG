@@ -43,21 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4cb6cb275c7b64ab04714bdbed0997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighbourWest:
-  - {fileID: 8587041743614604716}
-  neighbourEast:
-  - {fileID: 8587041743614604716}
-  neighbourSouth:
-  - {fileID: 8587041743614604716}
-  neighbourNorth:
-  - {fileID: 8587041743614604716}
-  neighbourUp:
-  - {fileID: 8587041743614604716}
-  neighbourDown:
-  - {fileID: 8587041743614604716}
-  - {fileID: 7312140872029389501, guid: 2d973d8e8718df94fbd18c494115fa10, type: 3}
-  - {fileID: 3362144224263960530, guid: 8c0793a1e48d0b44e81d822e048aa4ff, type: 3}
-  - {fileID: 2201115364489835502, guid: c39d287244df14a4f8bd29c3812a1b42, type: 3}
+  neighbours: 000000000000000000000000000000000000000000000000
+  flipped: 000000000000
+  symmetrical: 000000000000
+  neighbourNorth: []
+  neighbourEast: []
+  neighbourSouth: []
+  neighbourWest: []
+  neighbourUp: []
+  neighbourDown: []
   modules:
   - {fileID: 8587041743614604716}
   - {fileID: 7312140872029389501, guid: 2d973d8e8718df94fbd18c494115fa10, type: 3}

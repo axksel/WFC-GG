@@ -49,32 +49,32 @@ public class GridManager : MonoBehaviour
 
                     try
                     {
-                        grid[i, k,j].neighbours[0] = grid[i + 1, k,j];
+                        grid[i, k,j].neighbours[0] = grid[i , k, j + 1];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k,j].neighbours[1] = grid[i - 1, k,j];
+                        grid[i, k,j].neighbours[1] = grid[i + 1, k,j];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k,j].neighbours[2] = grid[i, k ,j + 1];
+                        grid[i, k,j].neighbours[2] = grid[i, k ,j - 1];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k,j].neighbours[3] = grid[i, k , j - 1];
+                        grid[i, k,j].neighbours[3] = grid[i - 1, k , j];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k, j].neighbours[4] = grid[i, k - 1 , j];
+                        grid[i, k, j].neighbours[4] = grid[i, k + 1 , j];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k, j].neighbours[5] = grid[i, k + 1, j];
+                        grid[i, k, j].neighbours[5] = grid[i, k - 1, j];
                     }
                     catch (System.IndexOutOfRangeException) { }
                 }
@@ -82,7 +82,7 @@ public class GridManager : MonoBehaviour
         }
 
 
-        grid[0, 0 ,0].collapse(3);
+        grid[5, 0 ,3].collapse(5);
         Build();
     }
 
