@@ -11,31 +11,28 @@ public class Joystick : MonoBehaviour
     public GameObject joystickOuter;
     public GameObject joystickInner;
     public GameObject aimArrow;
-    public Vector2 direction;
-    private float radius;
-    bool joystickPressed = false;
-    public Vector2Event weaponFired;
+    public GameObject spellCooldown;
     public bool attackJoystick;
+    public Vector2Event weaponFired;
+    public Vector2 direction;
+
+    private float radius;
+    private float targetAlpha;
+    private float FadeRate = 5;
+
+    bool joystickPressed = false;
+    int id;
     GameObject player;
     PlayerControl playerControl;
 
-    private float targetAlpha;
-    public float FadeRate;
-
-    private int screenWidth;
-    private int screenHeight;
-    int id;
     float spellTimer;
     float spellFirerate = 2f;
-    public GameObject spellCooldown;
     float spellCooldownFill;
     float i = 0f;
-    float rate;
 
     void Start()
     {
         radius = joystickInner.GetComponentInParent<Canvas>().scaleFactor * 40;
-
         spellCooldownFill = spellCooldown.GetComponent<Image>().fillAmount;
         spellTimer = -100;
         player = GameObject.FindGameObjectWithTag("Player");

@@ -47,8 +47,6 @@ public class enemyScript : MonoBehaviour,EnemyIO
         }
         healthBar.fillAmount = fillamount;
 
-
-
         if (Vector3.Distance(transform.position, player.transform.position)<alertDistance)
         {
             enemyAgent.destination = player.transform.position;
@@ -88,27 +86,19 @@ public class enemyScript : MonoBehaviour,EnemyIO
         {
             anim.SetBool("Dead", true);
             enemiesInRange.list.Remove(this.gameObject);
-            //Destroy(gameObject, 1);
             GameObject loottmp = Instantiate(loot.list[Random.Range(0, loot.list.Count)], new Vector3(transform.position.x,0.22f,transform.position.z), Quaternion.identity);
             this.enabled = false;
             Collider box = GetComponent<BoxCollider>();
             box.enabled = false;
             enemyAgent.enabled = false;
             healthBar.enabled = false;
-            
         }
-
-
-        return health - amount;
-        
+        return health - amount;       
     }
-
 
     public void Attack()
     {
         time = Time.time;
         playerHealth.value -= attackDamage;
-        /*GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
-        proj.GetComponent<Rigidbody>().AddForce(proj.transform.forward * 100);*/
     }
 }
