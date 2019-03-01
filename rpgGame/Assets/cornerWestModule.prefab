@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3362144224263960530
+--- !u!1 &7029675182119578381
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8862160083420275342}
-  - component: {fileID: 668855928376650480}
-  - component: {fileID: 5733987062219526324}
-  - component: {fileID: 3297676923117131410}
+  - component: {fileID: 4937148701153729654}
+  - component: {fileID: 8499040262709633062}
+  - component: {fileID: 2943849529049801165}
+  - component: {fileID: 5432571117074123327}
   m_Layer: 0
-  m_Name: floorpillarModule
+  m_Name: cornerWestModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8862160083420275342
+--- !u!4 &4937148701153729654
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3362144224263960530}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 7029675182119578381}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &668855928376650480
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!33 &8499040262709633062
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3362144224263960530}
-  m_Mesh: {fileID: 4300000, guid: 3ca43b3a3b96fa84897314404edb78ce, type: 3}
---- !u!23 &5733987062219526324
+  m_GameObject: {fileID: 7029675182119578381}
+  m_Mesh: {fileID: 4300000, guid: 080be88a3d2f4084aaa63544e0fcb10e, type: 3}
+--- !u!23 &2943849529049801165
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3362144224263960530}
+  m_GameObject: {fileID: 7029675182119578381}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3ca43b3a3b96fa84897314404edb78ce, type: 3}
+  - {fileID: 2100000, guid: 080be88a3d2f4084aaa63544e0fcb10e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,13 +78,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3297676923117131410
+--- !u!114 &5432571117074123327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3362144224263960530}
+  m_GameObject: {fileID: 7029675182119578381}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af4cb6cb275c7b64ab04714bdbed0997, type: 3}
@@ -93,16 +93,13 @@ MonoBehaviour:
   neighbourWest:
   - {fileID: 7312140872029389501, guid: 2d973d8e8718df94fbd18c494115fa10, type: 3}
   neighbourEast:
-  - {fileID: 7312140872029389501, guid: 2d973d8e8718df94fbd18c494115fa10, type: 3}
+  - {fileID: 3249212448866480537, guid: 5d8d3bbabec12374d90fbea730ad7c39, type: 3}
   neighbourSouth:
-  - {fileID: 7312140872029389501, guid: 2d973d8e8718df94fbd18c494115fa10, type: 3}
   - {fileID: 2201115364489835502, guid: c39d287244df14a4f8bd29c3812a1b42, type: 3}
   neighbourNorth:
   - {fileID: 7312140872029389501, guid: 2d973d8e8718df94fbd18c494115fa10, type: 3}
   neighbourUp:
   - {fileID: 8587041743614604716, guid: 446921e5a4d066943869f3d04cbba88b, type: 3}
   neighbourDown: []
-  modules:
-  - {fileID: 8587041743614604716, guid: 446921e5a4d066943869f3d04cbba88b, type: 3}
-  - {fileID: 7312140872029389501, guid: 2d973d8e8718df94fbd18c494115fa10, type: 3}
-  moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
+  modules: []
+  moduleSO: {fileID: 0}

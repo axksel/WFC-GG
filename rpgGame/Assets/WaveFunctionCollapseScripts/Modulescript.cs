@@ -10,6 +10,10 @@ public class Modulescript : MonoBehaviour
 {
     public enum direction {North= 0, East=1,South=2,West=3};
 
+
+    public int[] neighbours = new int[6];
+
+
     public List<GameObject> neighbourWest = new List<GameObject>();
     public List<GameObject> neighbourEast = new List<GameObject>();
     public List<GameObject> neighbourSouth = new List<GameObject>();
@@ -59,6 +63,29 @@ public class Modulescript : MonoBehaviour
                 }
             }
 
+    }
+
+
+    public void RotateClockWise()
+    {
+
+        Undo.RecordObject(gameObject.GetComponent<Modulescript>(), "Update Neighbours");
+
+        List<GameObject> tmpWest = new List<GameObject>();
+        List<GameObject> tmpEast = new List<GameObject>();
+        List<GameObject> tmpSouth = new List<GameObject>();
+        List<GameObject> tmpNorth = new List<GameObject>();
+
+        tmpWest = neighbourWest;
+        tmpEast = neighbourEast;
+        tmpSouth = neighbourSouth;
+        tmpNorth =neighbourNorth;
+
+        neighbourWest = tmpSouth;
+        neighbourEast = tmpNorth;
+        neighbourSouth = tmpEast;
+        neighbourNorth = tmpWest;
+        PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject.GetComponent<Modulescript>());
     }
 
 }
