@@ -18,5 +18,10 @@ public class BuildNavMesh : MonoBehaviour
         
     }
 
+    public void BuildNavMeshButton()
+    {
+        navmesh.BuildNavMesh();
+    }
+
   
 }
