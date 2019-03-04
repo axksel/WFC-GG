@@ -65,20 +65,20 @@ public class PlayerManager : MonoBehaviour
     public void ChangeScene()
     {
 
-        SceneManager.LoadScene("scene3", LoadSceneMode.Additive);
+        SceneManager.LoadScene("WaveFunctionCollapse", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync("hub");
-
-        
-        //for (int i = 0; i < navmeshObjects.list.Count; i++)
-        //{
-        //    surfaces.Add(navmeshObjects.list[i].GetComponent<NavMeshSurface>());
-        //}
-        
+        // playerList.list[0].gameObject.GetComponent<NavMeshAgent>().updatePosition = false;
+         Invoke("InvokeNewScene", 0.4f);
+       //playerList.list[0].gameObject.GetComponent<NavMeshAgent>().destination = new Vector3(10, 0.5f, 0); 
+        playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
 
-        //for (int i = 0; i < surfaces.Count; i++)
-        //{
-        //    surfaces[i].BuildNavMesh();
-        //}
+
+    }
+
+    public void InvokeNewScene()
+    {
+        playerList.list[0].gameObject.transform.position = new Vector3(10, 0.5f, 0);
+        playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
 }

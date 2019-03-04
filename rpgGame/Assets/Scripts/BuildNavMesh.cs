@@ -9,11 +9,11 @@ public class BuildNavMesh : MonoBehaviour
 
     public NavMeshSurface navmesh;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         navmesh = GetComponent<NavMeshSurface>();
 
-        navmesh.BuildNavMesh();
+        //navmesh.BuildNavMesh();
         
         
     }

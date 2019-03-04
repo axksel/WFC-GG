@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
         interactButton = GameObject.FindGameObjectWithTag("interactButton").GetComponent<Button>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         anim = GetComponent<Animator>();
-        agent.updatePosition = false;
+        
         joystick = GameObject.FindGameObjectWithTag("Joystick");
         joystickAttack = GameObject.FindGameObjectWithTag("joystickAttack");
         chest = anim.GetBoneTransform(HumanBodyBones.Chest);

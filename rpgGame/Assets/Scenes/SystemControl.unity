@@ -166,7 +166,7 @@ MonoBehaviour:
     type: 2}
   equippedLoadoutRanged: {fileID: 11400000, guid: 463c60f44c31cb44981792a2fd78907d,
     type: 2}
-  playerList: {fileID: 0}
+  playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
   count: 0
   enemy: {fileID: 1510699295, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
   navmeshObjects: {fileID: 0}
@@ -841,6 +841,11 @@ PrefabInstance:
       propertyPath: head
       value: 
       objectReference: {fileID: 1154831654}
+    - target: {fileID: 8643984699783951604, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e, type: 3}
 --- !u!1 &1576694572 stripped

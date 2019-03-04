@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/scene3.unity
     guid: e608bfc83909079469c01e38f38bb69d
+  - enabled: 1
+    path: Assets/Scenes/hub.unity
+    guid: 0b429ebc6b8e6bb48ad5f38395ede47d
+  - enabled: 1
+    path: Assets/Scenes/SystemControl.unity
+    guid: 5f591a600c3cb3447af90b42e6335c4e
+  - enabled: 1
+    path: Assets/Scenes/WaveFunctionCollapse.unity
+    guid: 31e600730126d024f82a6db2ed57e48e
   m_configObjects: {}
