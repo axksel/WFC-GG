@@ -13,11 +13,12 @@ public class GridManager : MonoBehaviour
     public ScriptableObjectList moduleSO;
 
     public slot[,,] grid;
-
+    int size;
 
 
     void Start()
     {
+        size = gridX * gridY * gridZ;
         modules = moduleSO.list;
         grid = new slot[gridX, gridY,gridZ];
         //initialze grid
@@ -122,6 +123,8 @@ public class GridManager : MonoBehaviour
 
                     if (grid[i, k,j].posibilitySpace.Count == 1 && grid[i, k, j].collapsed != true)
                     {
+                        size--;
+                        Debug.Log(size);
                         Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i, k, j), grid[i, k, j].posibilitySpace[0].transform.rotation);
                         grid[i, k, j].collapsed = true;
                     }
@@ -215,6 +218,8 @@ public class GridManager : MonoBehaviour
         {
             Collapse();
             Build();
+            if(size > 0)
+            IterateAndCollapse();
         }
 
     }
