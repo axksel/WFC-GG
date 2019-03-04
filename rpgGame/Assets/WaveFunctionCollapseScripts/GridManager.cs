@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
 
     public List<GameObject> modules = new List<GameObject>();
     public ScriptableObjectList moduleSO;
+    public BuildNavMesh bnm;
 
     public slot[,,] grid;
     int size;
@@ -18,6 +19,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
+        bnm = GetComponent<BuildNavMesh>();
         size = gridX * gridY * gridZ;
         modules = moduleSO.list;
         grid = new slot[gridX, gridY,gridZ];
@@ -85,6 +87,7 @@ public class GridManager : MonoBehaviour
 
         grid[Random.Range(0, gridX), 0, 0].collapse(15);
         Build();
+        IterateAndCollapse();
     }
 
     void OnDrawGizmos()
@@ -125,7 +128,7 @@ public class GridManager : MonoBehaviour
                     {
                         size--;
                         Debug.Log(size);
-                        Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i, k, j), grid[i, k, j].posibilitySpace[0].transform.rotation);
+                        Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i, k, j), grid[i, k, j].posibilitySpace[0].transform.rotation,transform);
                         grid[i, k, j].collapsed = true;
                     }
                 }
@@ -218,8 +221,14 @@ public class GridManager : MonoBehaviour
         {
             Collapse();
             Build();
-            if(size > 0)
-            IterateAndCollapse();
+            if (size > 0)
+            {
+                IterateAndCollapse();
+            }
+            else
+            {
+                bnm.BuildNavMeshButton();
+            }
         }
 
     }
