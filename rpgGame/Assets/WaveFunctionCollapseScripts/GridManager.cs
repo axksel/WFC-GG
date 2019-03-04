@@ -127,7 +127,6 @@ public class GridManager : MonoBehaviour
                     if (grid[i, k,j].posibilitySpace.Count == 1 && grid[i, k, j].collapsed != true)
                     {
                         size--;
-                        Debug.Log(size);
                         Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i, k, j), grid[i, k, j].posibilitySpace[0].transform.rotation,transform);
                         grid[i, k, j].collapsed = true;
                     }
