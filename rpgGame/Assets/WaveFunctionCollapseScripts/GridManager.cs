@@ -83,7 +83,7 @@ public class GridManager : MonoBehaviour
         }
 
 
-        grid[5, 0 ,3].collapse(5);
+        grid[Random.Range(0, gridX), 0, 0].collapse(15);
         Build();
     }
 
