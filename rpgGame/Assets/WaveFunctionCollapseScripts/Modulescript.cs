@@ -25,6 +25,7 @@ public class Modulescript : MonoBehaviour
     public List<GameObject> modules = new List<GameObject>();
 
     public ScriptableObjectList moduleSO;
+    public float weight = 5;
     private Modulescript target;
 
 

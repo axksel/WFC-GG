@@ -85,12 +85,12 @@ public class GridManager : MonoBehaviour
         }
 
 
-        grid[5, 0, 0].collapse(15);
+        grid[5, 0, 0].collapse();
         Build();
         IterateAndCollapse();
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         int index = 0;
 
@@ -112,7 +112,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-    }
+    }*/
 
     void Build()
     {

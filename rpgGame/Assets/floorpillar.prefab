@@ -149,3 +149,4 @@ MonoBehaviour:
   - {fileID: 5225446557080183971, guid: 89d2e9ec7cbdf75489cbb9573c595c9d, type: 3}
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
+  weight: 10

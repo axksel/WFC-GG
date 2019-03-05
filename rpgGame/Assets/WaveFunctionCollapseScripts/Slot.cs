@@ -70,8 +70,26 @@ public class slot
 
     public void collapse()
     {
-        int random = Random.Range(0, posibilitySpace.Count);
-        GameObject tmpModule = posibilitySpace[random];
+        float weightSum = 0;
+        int moduleToCollapse = 0;
+        for (int i = 0; i < posibilitySpace.Count; i++)
+        {
+            weightSum += posibilitySpace[i].GetComponent<Modulescript>().weight;
+        }
+
+        float random = Random.Range(0, weightSum);
+
+        for (int i = 0; i < posibilitySpace.Count; i++)
+        {
+            if (random < posibilitySpace[i].GetComponent<Modulescript>().weight)
+            {
+                moduleToCollapse = i;
+                break;
+            }
+            random -= posibilitySpace[i].GetComponent<Modulescript>().weight;
+        }
+
+        GameObject tmpModule = posibilitySpace[moduleToCollapse];
         posibilitySpace.Clear();
         posibilitySpace.Add(tmpModule);       
     }
