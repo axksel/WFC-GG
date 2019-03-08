@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -15,14 +16,29 @@ public class GridManager : MonoBehaviour
 
     public slot[,,] grid;
     int size;
-
+    public GameObjectList progressBar;
+    bool buildOnce = true;
 
     void Start()
+    {
+
+    }
+
+    private void Update()
+    {
+        if (buildOnce)
+        {
+            StartCoroutine(startBuilding());
+            buildOnce = false;
+        }
+    }
+
+    public IEnumerator startBuilding()
     {
         bnm = GetComponent<BuildNavMesh>();
         size = gridX * gridY * gridZ;
         modules = moduleSO.list;
-        grid = new slot[gridX, gridY,gridZ];
+        grid = new slot[gridX, gridY, gridZ];
         //initialze grid
         int index = 0;
         for (int i = 0; i < gridX; i++)
@@ -33,10 +49,10 @@ public class GridManager : MonoBehaviour
                 {
 
 
-                    grid[i, k,j] = new slot();
-                    grid[i, k,j].posibilitySpace.AddRange(modules);
+                    grid[i, k, j] = new slot();
+                    grid[i, k, j].posibilitySpace.AddRange(modules);
 
-                    grid[i, k,j].index = index;
+                    grid[i, k, j].index = index;
                     index++;
                 }
             }
@@ -52,27 +68,27 @@ public class GridManager : MonoBehaviour
 
                     try
                     {
-                        grid[i, k,j].neighbours[0] = grid[i , k, j + 1];
+                        grid[i, k, j].neighbours[0] = grid[i, k, j + 1];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k,j].neighbours[1] = grid[i + 1, k,j];
+                        grid[i, k, j].neighbours[1] = grid[i + 1, k, j];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k,j].neighbours[2] = grid[i, k ,j - 1];
+                        grid[i, k, j].neighbours[2] = grid[i, k, j - 1];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k,j].neighbours[3] = grid[i - 1, k , j];
+                        grid[i, k, j].neighbours[3] = grid[i - 1, k, j];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
                     {
-                        grid[i, k, j].neighbours[4] = grid[i, k + 1 , j];
+                        grid[i, k, j].neighbours[4] = grid[i, k + 1, j];
                     }
                     catch (System.IndexOutOfRangeException) { }
                     try
@@ -86,8 +102,9 @@ public class GridManager : MonoBehaviour
 
 
         grid[5, 0, 0].collapse(14);
-        Build();
-        IterateAndCollapse();
+        StartCoroutine(Build());
+        StartCoroutine(IterateAndCollapse());
+        yield return null;
     }
 
     /*void OnDrawGizmos()
@@ -114,7 +131,7 @@ public class GridManager : MonoBehaviour
 
     }*/
 
-    void Build()
+    public IEnumerator Build()
     {
         for (int i = 0; i < gridX; i++)
         {
@@ -126,6 +143,7 @@ public class GridManager : MonoBehaviour
 
                     if (grid[i, k,j].posibilitySpace.Count == 1 && grid[i, k, j].collapsed != true)
                     {
+                        StartCoroutine(Progress(size));
                         size--;
                         Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i*2, k*2, j*2), grid[i, k, j].posibilitySpace[0].transform.rotation,transform);
                         grid[i, k, j].collapsed = true;
@@ -133,9 +151,10 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        yield return null;
     }
 
-    public void Collapse()
+    public IEnumerator Collapse()
     {
 
         int iTmp = 0;
@@ -160,10 +179,11 @@ public class GridManager : MonoBehaviour
             }
         }
         grid[iTmp, kTmp,jTmp].collapse();
-        Build();
+        StartCoroutine(Build());
+        yield return null;
     }
 
-    public void Iterate()
+    public IEnumerator Iterate()
     {
         for (int i = 0; i < gridX; i++)
         {
@@ -175,7 +195,8 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        Build();
+        StartCoroutine(Build());
+        yield return null;
     }
 
 #if UNITY_EDITOR
@@ -190,8 +211,9 @@ public class GridManager : MonoBehaviour
 #endif
 
 
-    public void IterateAndCollapse()
+    public IEnumerator IterateAndCollapse()
     {
+        
         int gridTmp = 0;
         bool shouldIterate = false;
 
@@ -215,23 +237,38 @@ public class GridManager : MonoBehaviour
         if (shouldIterate)
         {
 
-            IterateAndCollapse();
+            yield return null;
+            StartCoroutine(IterateAndCollapse());
+
         }
         else
         {
-            Collapse();
-            Build();
+            StartCoroutine(Collapse());
+            StartCoroutine(Build());
             if (size > 0)
             {
-                IterateAndCollapse();
+                StartCoroutine(IterateAndCollapse());
+                yield return null;
             }
             else
             {
                 bnm.BuildNavMeshButton();
+                yield return null;
             }
         }
 
     }
+    IEnumerator Progress(int progress)
+    {
+        progressBar.list[0].GetComponent<Image>().fillAmount = map(progress, (gridX * gridZ), 0, 0, 1);
+        Canvas.ForceUpdateCanvases();
+        yield return null;
+        
+    }
 
+    float map(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
 
 }
