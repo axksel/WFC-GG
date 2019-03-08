@@ -261,6 +261,7 @@ MonoBehaviour:
   currentLVL: 0
   enemy: {fileID: 1510699295, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
   navmeshObjects: {fileID: 0}
+  enemyList: {fileID: 11400000, guid: a492976ee3fb16c4f9acd65cb5bff6c3, type: 2}
   surfaces: []
 --- !u!4 &701753241
 Transform:
@@ -956,6 +957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643984699783951604, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e,
+        type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de40bb6c1d6ac5c4c9256b8ad7f0448e, type: 3}

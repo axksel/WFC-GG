@@ -17,20 +17,12 @@ public class GridManager : MonoBehaviour
     public slot[,,] grid;
     int size;
     public GameObjectList progressBar;
-    bool buildOnce = true;
+    private OnLevelCreated onLevelCreated;
 
     void Start()
     {
-
-    }
-
-    private void Update()
-    {
-        if (buildOnce)
-        {
-            StartCoroutine(startBuilding());
-            buildOnce = false;
-        }
+        onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
+        StartCoroutine(startBuilding());
     }
 
     public IEnumerator startBuilding()
@@ -102,7 +94,6 @@ public class GridManager : MonoBehaviour
 
 
         grid[5, 0, 0].collapse(14);
-        StartCoroutine(Build());
         StartCoroutine(IterateAndCollapse());
         yield return null;
     }
@@ -145,7 +136,7 @@ public class GridManager : MonoBehaviour
                     {
                         StartCoroutine(Progress(size));
                         size--;
-                        Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i*2, k*2, j*2), grid[i, k, j].posibilitySpace[0].transform.rotation,transform);
+                        Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, transform);
                         grid[i, k, j].collapsed = true;
                     }
                 }
@@ -199,17 +190,6 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-#if UNITY_EDITOR
-    public void FindNewNeighbours()
-    {
-        for (int i = 0; i < moduleSO.list.Count; i++)
-        {
-            moduleSO.list[i].GetComponent<Modulescript>().UpdateNeigboursInANewWay();
-        }
-
-    }
-#endif
-
 
     public IEnumerator IterateAndCollapse()
     {
@@ -244,7 +224,6 @@ public class GridManager : MonoBehaviour
         else
         {
             StartCoroutine(Collapse());
-            StartCoroutine(Build());
             if (size > 0)
             {
                 StartCoroutine(IterateAndCollapse());
@@ -252,18 +231,20 @@ public class GridManager : MonoBehaviour
             }
             else
             {
+                onLevelCreated.DeactivateEnemies();
                 bnm.BuildNavMeshButton();
+                onLevelCreated.ActivateEnemies();
+                onLevelCreated.ActivatePlayer();
                 yield return null;
             }
         }
-
     }
+
     IEnumerator Progress(int progress)
     {
         progressBar.list[0].GetComponent<Image>().fillAmount = map(progress, (gridX * gridZ), 0, 0, 1);
         Canvas.ForceUpdateCanvases();
-        yield return null;
-        
+        yield return null;    
     }
 
     float map(float s, float a1, float a2, float b1, float b2)
@@ -271,4 +252,14 @@ public class GridManager : MonoBehaviour
         return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
 
+    #if UNITY_EDITOR
+    public void FindNewNeighbours()
+    {
+        for (int i = 0; i < moduleSO.list.Count; i++)
+        {
+            moduleSO.list[i].GetComponent<Modulescript>().UpdateNeigboursInANewWay();
+        }
+
+    }
+#endif
 }

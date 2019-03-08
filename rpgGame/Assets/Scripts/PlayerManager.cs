@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
     public int currentLVL =0;
     public GameObject enemy;
     public GameObjectList navmeshObjects;
+    public GameObjectList enemyList;
     public List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
     private void Start()
@@ -66,24 +67,17 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeScene(int sceneIndex)
     {
-
+        enemyList.list.Clear();
         //SceneManager.LoadSceneAsync("WaveFunctionCollapse", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(currentLVL);
         StartCoroutine(LoadAsynchonously(sceneIndex));
         
         // playerList.list[0].gameObject.GetComponent<NavMeshAgent>().updatePosition = false;
-         Invoke("InvokeNewScene", 0.4f);
        //playerList.list[0].gameObject.GetComponent<NavMeshAgent>().destination = new Vector3(10, 0.5f, 0); 
         playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = false;
 
 
 
-    }
-
-    public void InvokeNewScene()
-    {
-        playerList.list[0].gameObject.transform.position = new Vector3(10, 0.5f, 0);
-        playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
 
     IEnumerator LoadAsynchonously (int sceneIndex)

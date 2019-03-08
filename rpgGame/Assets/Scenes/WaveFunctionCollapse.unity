@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 1213997709}
   - component: {fileID: 1213997711}
   - component: {fileID: 1213997712}
+  - component: {fileID: 1213997713}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -258,8 +259,8 @@ MonoBehaviour:
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.01
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!114 &1213997712
@@ -275,3 +276,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navmesh: {fileID: 0}
+--- !u!114 &1213997713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213997708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ed6717e0e0f9743a6a6a2a5d19561e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList: {fileID: 11400000, guid: a492976ee3fb16c4f9acd65cb5bff6c3, type: 2}
+  playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
