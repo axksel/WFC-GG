@@ -241,9 +241,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4827311696642377962}
   - component: {fileID: 5368539890327527966}
+  - component: {fileID: 2486208641470350682}
+  - component: {fileID: 3293256667214026805}
   m_Layer: 0
   m_Name: doorOut2
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,6 +352,32 @@ MonoBehaviour:
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   weight: 1
+--- !u!114 &2486208641470350682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726778290906494065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10e344dcb9373e34dbdff586f4ab7ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 11400000, guid: 58129841b8d122346bf65b064c1958d5, type: 2}
+--- !u!65 &3293256667214026805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726778290906494065}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.42, z: 0}
 --- !u!1 &7785344902647163571
 GameObject:
   m_ObjectHideFlags: 0
