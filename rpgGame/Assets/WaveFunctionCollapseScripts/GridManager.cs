@@ -85,7 +85,7 @@ public class GridManager : MonoBehaviour
         }
 
 
-        grid[5, 0, 0].collapse();
+        grid[5, 0, 0].collapse(14);
         Build();
         IterateAndCollapse();
     }

@@ -31,8 +31,12 @@ public class Modulescript : MonoBehaviour
 
     public void UpdateNeigboursInANewWay()
     {
-       
-
+        neighbourNorth.Clear();
+        neighbourEast.Clear();
+        neighbourSouth.Clear();
+        neighbourWest.Clear();
+        neighbourUp.Clear();
+        neighbourDown.Clear();
         Undo.RecordObject(gameObject.GetComponent<Modulescript>(), "Update Neighbours");
 
         for (int k = 0; k < moduleSO.list.Count; k++)
