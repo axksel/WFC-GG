@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/scene3.unity
     guid: e608bfc83909079469c01e38f38bb69d
   - enabled: 1

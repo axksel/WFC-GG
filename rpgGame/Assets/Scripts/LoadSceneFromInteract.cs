@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class LoadSceneFromInteract : MonoBehaviour,IsInteracable
 {
     public GameObjectList gameManager;
+    void Start()
+    {
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+    }
 
     public void Interact()
     {

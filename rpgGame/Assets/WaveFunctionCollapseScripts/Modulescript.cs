@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [ExecuteInEditMode]
 public class Modulescript : MonoBehaviour
@@ -28,7 +25,7 @@ public class Modulescript : MonoBehaviour
     public float weight = 5;
     private Modulescript target;
 
-
+#if UNITY_EDITOR
     public void UpdateNeigboursInANewWay()
     {
         neighbourNorth.Clear();
@@ -152,5 +149,7 @@ public void UpdateNeighbours()
         neighbourNorth = tmpWest;
         PrefabUtility.RecordPrefabInstancePropertyModifications(gameObject.GetComponent<Modulescript>());
     }
+#endif
 
 }
+

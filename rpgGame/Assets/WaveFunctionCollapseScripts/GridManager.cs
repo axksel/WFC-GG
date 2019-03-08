@@ -178,7 +178,7 @@ public class GridManager : MonoBehaviour
         Build();
     }
 
-
+#if UNITY_EDITOR
     public void FindNewNeighbours()
     {
         for (int i = 0; i < moduleSO.list.Count; i++)
@@ -187,6 +187,7 @@ public class GridManager : MonoBehaviour
         }
 
     }
+#endif
 
 
     public void IterateAndCollapse()
