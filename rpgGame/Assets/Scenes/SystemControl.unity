@@ -256,6 +256,7 @@ MonoBehaviour:
   equippedLoadoutRanged: {fileID: 11400000, guid: 463c60f44c31cb44981792a2fd78907d,
     type: 2}
   playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
+  EnemylistList: {fileID: 11400000, guid: b57a3e8e473da814ba2246ecef0e8236, type: 2}
   count: 0
   currentLVL: 0
   enemy: {fileID: 1510699295, guid: 549bd423957032a4495ec62e27b8a183, type: 3}

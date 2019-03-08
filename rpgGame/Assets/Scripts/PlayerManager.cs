@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     public SkillListScriptableObject equippedLoadoutSkill;
     public SkillListScriptableObject equippedLoadoutRanged;
     public GameObjectList playerList;
+    public GameObjectList EnemylistList;
     public float count;
     public int currentLVL =0;
     public GameObject enemy;
@@ -48,7 +49,9 @@ public class PlayerManager : MonoBehaviour
     {
         ChangeScene(0);
         RestartResources();
-        
+        EnemylistList.list.Clear();
+
+
     }
 
     public void RestartResources()
