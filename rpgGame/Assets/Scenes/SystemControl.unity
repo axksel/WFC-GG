@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4f9692002b33fa84889fb0f9a70e3d7c, type: 2}
 --- !u!1 &249539248
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +257,7 @@ MonoBehaviour:
     type: 2}
   playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
   count: 0
+  currentLVL: 0
   enemy: {fileID: 1510699295, guid: 549bd423957032a4495ec62e27b8a183, type: 3}
   navmeshObjects: {fileID: 0}
   surfaces: []

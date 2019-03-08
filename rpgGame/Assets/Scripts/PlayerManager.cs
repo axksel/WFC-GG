@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public SkillListScriptableObject equippedLoadoutRanged;
     public GameObjectList playerList;
     public float count;
+    public int currentLVL =0;
     public GameObject enemy;
     public GameObjectList navmeshObjects;
     public List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
@@ -45,8 +46,7 @@ public class PlayerManager : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadScene("hub", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("scene3");
+        ChangeScene(0);
         RestartResources();
         
     }
@@ -61,12 +61,13 @@ public class PlayerManager : MonoBehaviour
         equippedLoadoutSkill.list.Add(BeginnerLoadoutSkill.list[0]);
     }
 
-    public void ChangeScene()
+    public void ChangeScene(int sceneIndex)
     {
 
         //SceneManager.LoadSceneAsync("WaveFunctionCollapse", LoadSceneMode.Additive);
-        StartCoroutine(LoadAsynchonously(2));
-        SceneManager.UnloadSceneAsync("hub");
+        SceneManager.UnloadSceneAsync(currentLVL);
+        StartCoroutine(LoadAsynchonously(sceneIndex));
+        
         // playerList.list[0].gameObject.GetComponent<NavMeshAgent>().updatePosition = false;
          Invoke("InvokeNewScene", 0.4f);
        //playerList.list[0].gameObject.GetComponent<NavMeshAgent>().destination = new Vector3(10, 0.5f, 0); 
@@ -84,8 +85,8 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator LoadAsynchonously (int sceneIndex)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync("WaveFunctionCollapse", LoadSceneMode.Additive);
-
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+        currentLVL = sceneIndex;
         while (!operation.isDone)
         {
             Debug.Log(operation.progress);
