@@ -150,7 +150,7 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_NormalBias: 0
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
@@ -219,6 +219,7 @@ MonoBehaviour:
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   bnm: {fileID: 0}
+  loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
   progressBar: {fileID: 11400000, guid: 8c72052eaec8e3b439c2e410c611dc58, type: 2}
 --- !u!4 &1213997710
 Transform:
@@ -290,3 +291,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyList: {fileID: 11400000, guid: a492976ee3fb16c4f9acd65cb5bff6c3, type: 2}
   playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
+  loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}

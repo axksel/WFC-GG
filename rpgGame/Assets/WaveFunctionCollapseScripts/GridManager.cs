@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
+using TMPro;
 
 public class GridManager : MonoBehaviour
 {
@@ -16,13 +17,19 @@ public class GridManager : MonoBehaviour
 
     public slot[,,] grid;
     int size;
+    public GameObjectList loadScreen;
     public GameObjectList progressBar;
     private OnLevelCreated onLevelCreated;
 
     void Start()
     {
-        onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
+        onLevelCreated = gameObject.GetComponent<OnLevelCreated>();     
         StartCoroutine(startBuilding());
+
+        for (int i = 0; i < loadScreen.list[0].transform.childCount; i++)
+        {
+            loadScreen.list[0].transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     public IEnumerator startBuilding()
@@ -235,6 +242,7 @@ public class GridManager : MonoBehaviour
                 bnm.BuildNavMeshButton();
                 onLevelCreated.ActivateEnemies();
                 onLevelCreated.ActivatePlayer();
+                onLevelCreated.DeactiveLoadScreen();
                 yield return null;
             }
         }
@@ -242,8 +250,9 @@ public class GridManager : MonoBehaviour
 
     IEnumerator Progress(int progress)
     {
-        progressBar.list[0].GetComponent<Image>().fillAmount = map(progress, (gridX * gridZ), 0, 0, 1);
-        Canvas.ForceUpdateCanvases();
+        float pct = map(progress, (gridX * gridZ), 0, 0, 1);
+        loadScreen.list[0].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt((pct* 100)).ToString() + " %";
+        progressBar.list[0].GetComponent<Image>().fillAmount = pct;
         yield return null;    
     }
 
