@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
-
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -19,7 +19,6 @@ public class PlayerManager : MonoBehaviour
     public GameObject enemy;
     public GameObjectList navmeshObjects;
     public List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
-
 
     private void Start()
     {
@@ -65,7 +64,8 @@ public class PlayerManager : MonoBehaviour
     public void ChangeScene()
     {
 
-        SceneManager.LoadScene("WaveFunctionCollapse", LoadSceneMode.Additive);
+        //SceneManager.LoadSceneAsync("WaveFunctionCollapse", LoadSceneMode.Additive);
+        StartCoroutine(LoadAsynchonously(2));
         SceneManager.UnloadSceneAsync("hub");
         // playerList.list[0].gameObject.GetComponent<NavMeshAgent>().updatePosition = false;
          Invoke("InvokeNewScene", 0.4f);
@@ -80,5 +80,16 @@ public class PlayerManager : MonoBehaviour
     {
         playerList.list[0].gameObject.transform.position = new Vector3(10, 0.5f, 0);
         playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    IEnumerator LoadAsynchonously (int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync("WaveFunctionCollapse", LoadSceneMode.Additive);
+
+        while (!operation.isDone)
+        {
+            Debug.Log(operation.progress);
+            yield return null;
+        }
     }
 }
