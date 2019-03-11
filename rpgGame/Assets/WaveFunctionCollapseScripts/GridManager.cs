@@ -32,6 +32,8 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 3;
+
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();     
         StartCoroutine(startBuilding());
@@ -239,7 +241,7 @@ public class GridManager : MonoBehaviour
 
             yield return null;
             StartCoroutine(IterateAndCollapse());
-
+            
         }
         else
         {
@@ -256,19 +258,23 @@ public class GridManager : MonoBehaviour
             }
             else if (isImproved)
             {
-               
+
                 UnCollapse();
                 size = size + 4;
                 Debug.Log("interate");
-                StartCoroutine(IterateAndCollapse());        
+                StartCoroutine(IterateAndCollapse());
+                yield return null;
             }
             else
             {
+
+                yield return null;
                 Revert();
                 size = size + 4;
                 isTried = true;
                 Debug.Log("revert");
                 StartCoroutine(IterateAndCollapse());
+               
             }
 
         }
@@ -283,47 +289,56 @@ public class GridManager : MonoBehaviour
 
         savedMiniGrid[0, 0, 0].posibilitySpace.Clear();
         savedMiniGrid[0, 0, 0].posibilitySpace.Add(grid[xRandom, yRandom, zRandom].posibilitySpace[0]);
+        grid[xRandom, yRandom, zRandom].posibilitySpace.Clear();
         grid[xRandom, yRandom,zRandom].posibilitySpace.AddRange(modules);
         Destroy( grid[xRandom, yRandom, zRandom].instantiatedModule);
         grid[xRandom, yRandom, zRandom].collapsed = false;
 
         savedMiniGrid[1, 0, 0].posibilitySpace.Clear();
         savedMiniGrid[1, 0, 0].posibilitySpace.Add(grid[xRandom+1, yRandom, zRandom].posibilitySpace[0]);
+        grid[xRandom+1, yRandom, zRandom ].posibilitySpace.Clear();
         grid[xRandom+1, yRandom, zRandom].posibilitySpace.AddRange(modules);
         Destroy(grid[xRandom+1, yRandom, zRandom].instantiatedModule);
         grid[xRandom+1, yRandom, zRandom].collapsed = false;
 
         savedMiniGrid[0, 0, 1].posibilitySpace.Clear();
         savedMiniGrid[0, 0, 1].posibilitySpace.Add( grid[xRandom, yRandom, zRandom+1].posibilitySpace[0]);
+        grid[xRandom , yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom, yRandom, zRandom+1].posibilitySpace.AddRange(modules);
         Destroy(grid[xRandom, yRandom, zRandom+1].instantiatedModule);
         grid[xRandom, yRandom, zRandom+1].collapsed = false;
 
         savedMiniGrid[1, 0, 1].posibilitySpace.Clear();
         savedMiniGrid[1, 0, 1].posibilitySpace.Add( grid[xRandom+1, yRandom, zRandom+1].posibilitySpace[0]);
+        grid[xRandom + 1, yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom+1, yRandom, zRandom+1].posibilitySpace.AddRange(modules);
         Destroy(grid[xRandom+1, yRandom, zRandom+1].instantiatedModule);
         grid[xRandom+1, yRandom, zRandom+1].collapsed = false;
-
+        
     }
 
     public void Revert()
     {
+        grid[xRandom, yRandom, zRandom].posibilitySpace.Clear();
         grid[xRandom, yRandom, zRandom].posibilitySpace.Add(savedMiniGrid[0, 0, 0].posibilitySpace[0]);
         grid[xRandom, yRandom, zRandom].collapsed = false;
         Destroy(grid[xRandom, yRandom, zRandom].instantiatedModule);
 
+        grid[xRandom+1, yRandom, zRandom].posibilitySpace.Clear();
         grid[xRandom + 1, yRandom, zRandom].posibilitySpace.Add(savedMiniGrid[1, 0, 0].posibilitySpace[0]);
         grid[xRandom+1, yRandom, zRandom].collapsed = false;
         Destroy(grid[xRandom + 1, yRandom, zRandom].instantiatedModule);
 
+        grid[xRandom, yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom, yRandom, zRandom + 1].posibilitySpace.Add(savedMiniGrid[0, 0, 1].posibilitySpace[0]);
         grid[xRandom, yRandom, zRandom+1].collapsed = false;
         Destroy(grid[xRandom, yRandom, zRandom + 1].instantiatedModule);
 
+        grid[xRandom+1, yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace.Add(savedMiniGrid[1, 0, 1].posibilitySpace[0]);
         grid[xRandom+1, yRandom, zRandom+1].collapsed = false;
         Destroy(grid[xRandom + 1, yRandom, zRandom + 1].instantiatedModule);
+       
     }
 
     private void LevelGenerationDone()
@@ -355,11 +370,11 @@ public class GridManager : MonoBehaviour
         }
        
         isImproved =  fitness.IsImproved(FitnessCount);
-        //if (isTried)
-        //{
-        //    isImproved = true;
-        //    isTried = false;
-        //}
+        if (isTried)
+        {
+            isImproved = true;
+            isTried = false;
+        }
         return fitness.CalculateDoorFitness(FitnessCount); 
     }
 
