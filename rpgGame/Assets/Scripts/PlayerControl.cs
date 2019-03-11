@@ -50,7 +50,7 @@ public class PlayerControl : MonoBehaviour
             agent.speed = Mathf.Clamp(dir.magnitude, 0, 30) / 8;
             agent.destination = transform.position + new Vector3(dir.x, 0, dir.y).normalized / 5;
  
-            velocity = RotateVector(dir, Vector2.SignedAngle( new Vector3(transform.forward.x, transform.forward.z), new Vector3(Vector3.forward.x, Vector3.forward.z)));
+            velocity = MathFunctions.RotateVector(dir, Vector2.SignedAngle( new Vector3(transform.forward.x, transform.forward.z), new Vector3(Vector3.forward.x, Vector3.forward.z)));
             velocity.Normalize();
         }
         dir = joystick.GetComponent<Joystick>().direction;
@@ -116,13 +116,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public Vector2 RotateVector(Vector2 v, float angle)
-    {
-        float radian = angle * Mathf.Deg2Rad;
-        float _x = v.x * Mathf.Cos(radian) - v.y * Mathf.Sin(radian);
-        float _y = v.x * Mathf.Sin(radian) + v.y * Mathf.Cos(radian);
-        return new Vector2(_x, _y);
-    }
+    
 
     void OnAnimatorMove()
     {

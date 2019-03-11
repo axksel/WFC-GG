@@ -8,7 +8,7 @@ public class slot
     public slot[] neighbours = new slot[6];
     public List<GameObject> posibilitySpace = new List<GameObject>();
     public List<GameObject> tmpPosibilitySpace = new List<GameObject>();
-
+    public GameObject instantiatedModule;
     public List<GameObject> neighbour0Pos = new List<GameObject>();
     public List<GameObject> neighbour1Pos = new List<GameObject>();
     public List<GameObject> neighbour2Pos = new List<GameObject>();

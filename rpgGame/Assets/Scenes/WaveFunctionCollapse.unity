@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 1213997711}
   - component: {fileID: 1213997712}
   - component: {fileID: 1213997713}
+  - component: {fileID: 1213997714}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -213,9 +214,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70edaa0b64503548a5f3fd95af95e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridX: 20
+  gridX: 10
   gridY: 1
-  gridZ: 20
+  gridZ: 10
+  xRandom: 0
+  yRandom: 0
+  zRandom: 0
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   bnm: {fileID: 0}
@@ -292,3 +296,16 @@ MonoBehaviour:
   enemyList: {fileID: 11400000, guid: a492976ee3fb16c4f9acd65cb5bff6c3, type: 2}
   playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
   loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
+--- !u!114 &1213997714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213997708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169330c70cab10c4692c54cbfd2b1182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Doorfitness: 1

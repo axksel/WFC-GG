@@ -11,10 +11,7 @@ public class ObjectBuilderEditor : Editor
         DrawDefaultInspector();
 
         GridManager myScript = (GridManager)target;
-        if (GUILayout.Button("Iterate"))
-        {
-            myScript.Iterate();
-        }
+      
 
         if (GUILayout.Button("Collapse Random"))
         {
@@ -26,10 +23,7 @@ public class ObjectBuilderEditor : Editor
             myScript.IterateAndCollapse();
         }
 
-        if (GUILayout.Button("New neighbourhood calc"))
-        {
-            myScript.FindNewNeighbours();
-        }
+     
     }
 }
 #endif
