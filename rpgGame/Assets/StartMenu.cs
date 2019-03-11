@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
@@ -10,6 +12,16 @@ public class StartMenu : MonoBehaviour
     bool inCredits;
     public GameObject settings;
     bool inSettings;
+    public GameObject resumeGame;
+    bool inMainMenu;
+
+    private void Start()
+    {
+        if (SceneManager.sceneCount < 2)
+        {
+            resumeGame.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0.5f,0.5f,0.5f);
+        }
+    }
 
     private void Update()
     {
@@ -17,6 +29,11 @@ public class StartMenu : MonoBehaviour
         {
             Back();
         }
+    }
+
+    public void ResumeGame()
+    {
+        SceneManager.UnloadSceneAsync(0);
     }
 
     public void StartGame()
@@ -65,6 +82,10 @@ public class StartMenu : MonoBehaviour
             {
                 credits.transform.GetChild(i).gameObject.SetActive(false);
             }
+        }
+        if (inMainMenu)
+        {
+            ResumeGame();
         }
 
     }
