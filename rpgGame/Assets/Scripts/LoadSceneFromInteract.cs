@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 public class LoadSceneFromInteract : MonoBehaviour,IsInteracable
 {
     public GameObjectList gameManager;
-  
+
+    void Start()
+    {
+
+    }
 
     public void Interact()
     {
         
-        gameManager.list[0].GetComponent<PlayerManager>().ChangeScene(2);
+        gameManager.list[0].GetComponent<PlayerManager>().ChangeScene(3);
 
     }
 

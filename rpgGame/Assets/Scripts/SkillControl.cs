@@ -16,6 +16,7 @@ public class SkillControl : MonoBehaviour
     public ParticleSystem hit;
     public SkillListScriptableObject equippedAimed;
     PlayerControl playerControl;
+    Quaternion fixedRotation;
 
     void Start()
     {
@@ -29,6 +30,9 @@ public class SkillControl : MonoBehaviour
         hit = Instantiate(hit, gameObject.transform);
     }
 
+    private void LateUpdate()
+    {
+    }
 
     public void Attack()
     {

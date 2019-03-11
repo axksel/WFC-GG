@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
     public GameObjectList playerList;
     public GameObjectList EnemylistList;
     public float count;
-    public int currentLVL =0;
+    public int currentLVL = 1;
     public GameObject enemy;
     public GameObjectList navmeshObjects;
     public GameObjectList enemyList;
@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
     {
 
         RestartResources();
-
+        currentLVL = 1;
 
     }
     // Update is called once per frame
@@ -75,9 +75,6 @@ public class PlayerManager : MonoBehaviour
         // playerList.list[0].gameObject.GetComponent<NavMeshAgent>().updatePosition = false;
        //playerList.list[0].gameObject.GetComponent<NavMeshAgent>().destination = new Vector3(10, 0.5f, 0); 
         playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = false;
-
-
-
     }
 
     IEnumerator LoadAsynchonously (int sceneIndex)
@@ -86,7 +83,6 @@ public class PlayerManager : MonoBehaviour
         currentLVL = sceneIndex;
         while (!operation.isDone)
         {
-            Debug.Log(operation.progress);
             yield return null;
         }
     }
