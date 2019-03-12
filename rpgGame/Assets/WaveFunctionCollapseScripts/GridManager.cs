@@ -374,6 +374,7 @@ public class GridManager : MonoBehaviour
         onLevelCreated.ActivateEnemies();
         onLevelCreated.ActivatePlayer();
         onLevelCreated.DeactiveLoadScreen();
+        GetComponent<AudioSource>().Play();
 
         for (int i = 0; i < moduleParents.Length; i++)
         {
