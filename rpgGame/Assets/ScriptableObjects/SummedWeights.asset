@@ -10,25 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bff35e73cf36582418fa960ddb72a94c, type: 3}
-  m_Name: Weights
+  m_Name: SummedWeights
   m_EditorClassIdentifier: 
   list:
-  - 4
+  - 3.4375
+  - 3.0625
+  - 3.3125
+  - 0.125
+  - 9.5
+  - 19
   - 2
-  - 3
-  - 4
-  - 18
-  - 37
-  - 0
-  - 4
-  - 2
-  - 4
-  - 6
-  - 4
-  - 6
-  - 2
-  - 3
-  - 1
-  - 0
-  - 0
-  - 0

@@ -32,30 +32,23 @@ public class GridManager : MonoBehaviour
     FitnessFunction fitness;
     GameObject[] moduleParents;
     public FloatList weights;
-    public float[] tmpWeights;
+    public FloatList summedWeights;
 
 
     void Start()
     {
         
         moduleParents = new GameObject[moduleSO.list.Count];
-       tmpWeights = new float[System.Enum.GetValues(typeof(Modulescript.ModuleType)).Length];
-
         for (int i = 0; i < moduleSO.list.Count; i++)
         {
-            //weights.list.Add(moduleSO.list[i].GetComponent<Modulescript>().weight);
-
-
-            tmpWeights[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType] += weights.list[i];
-            //moduleSO.list[i].GetComponent<Modulescript>().weight = weights.list[i]; 
             moduleParents[i] = Instantiate(new GameObject(moduleSO.list[i].name), transform.position, Quaternion.identity, gameObject.transform);
             moduleSO.list[i].GetComponent<Modulescript>().moduleIndex = i;
         }
-
-        for (int i = 0; i < moduleSO.list.Count; i++)
+        /*for (int i = 0; i < System.Enum.GetValues(typeof(Modulescript.ModuleType)).Length; i++)
         {
-            moduleSO.list[i].GetComponent<Modulescript>().weight = tmpWeights[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType];
-        }
+            summedWeights.list.Add(1);
+        }*/
+
 
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
@@ -382,16 +375,22 @@ public class GridManager : MonoBehaviour
         onLevelCreated.ActivatePlayer();
         onLevelCreated.DeactiveLoadScreen();
 
-
         for (int i = 0; i < moduleParents.Length; i++)
         {
-
-            moduleSO.list[i].GetComponent<Modulescript>().weight = moduleParents[i].transform.childCount;
+            //moduleSO.list[i].GetComponent<Modulescript>().weight = moduleParents[i].transform.childCount;
             weights.list[i] = moduleParents[i].transform.childCount;
-            Debug.Log("Count: " + moduleParents[i].name + ": " + moduleParents[i].transform.childCount);
-
+            //Debug.Log("Count: " + moduleParents[i].name + ": " + moduleParents[i].transform.childCount);
         }
 
+        for (int i = 0; i < moduleSO.list.Count; i++)
+        {
+            summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType] = (0.5f * summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType]) + (0.5f * weights.list[i]);
+        }
+
+        for (int i = 0; i < moduleSO.list.Count; i++)
+        {
+            moduleSO.list[i].GetComponent<Modulescript>().weight = summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType];
+        }
     }
 
     public bool CheckNumberOfSpecificModules()

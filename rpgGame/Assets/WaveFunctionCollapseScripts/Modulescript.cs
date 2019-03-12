@@ -22,7 +22,9 @@ public class Modulescript : MonoBehaviour
     public List<GameObject> modules = new List<GameObject>();
 
     public ScriptableObjectList moduleSO;
-    public float weight = 5;
+
+    [HideInInspector]
+    public float weight;
     private Modulescript target;
     public int moduleIndex;
 
