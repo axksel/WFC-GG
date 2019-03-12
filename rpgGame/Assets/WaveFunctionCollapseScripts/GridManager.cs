@@ -16,6 +16,7 @@ public class GridManager : MonoBehaviour
     public int zRandom;
 
     public List<GameObject> modules = new List<GameObject>();
+    public List<int> randomPool = new List<int>();
     public ScriptableObjectList moduleSO;
     public BuildNavMesh bnm;
    public  bool isImproved = true;
@@ -32,7 +33,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        Application.targetFrameRate = 3;
+        
 
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();     
@@ -67,7 +68,7 @@ public class GridManager : MonoBehaviour
 
 
                     //initialze grid
-                    int index = 0;
+        int index = 0;
         for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
@@ -78,7 +79,7 @@ public class GridManager : MonoBehaviour
 
                     grid[i, k, j] = new slot();
                     grid[i, k, j].posibilitySpace.AddRange(modules);
-
+                    randomPool.Add(index);
                     grid[i, k, j].index = index;
                     index++;
                 }
@@ -167,13 +168,13 @@ public class GridManager : MonoBehaviour
                 {
 
 
-                    if (grid[i, k,j].posibilitySpace.Count == 1 && grid[i, k, j].collapsed != true)
+                    if (grid[i, k,j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
                     {
                         StartCoroutine(Progress(size));
                         size--;
                       GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
-                        grid[i, k, j].collapsed = true;
+                        grid[i, k, j].IsInstantiated = true;
                     }
                 }
             }
@@ -282,38 +283,42 @@ public class GridManager : MonoBehaviour
 
     public void UnCollapse()
     {
+        int indexRandom = Random.Range(0, randomPool.Count); 
 
-         xRandom = Random.Range(0, gridX-1);
-         yRandom = Random.Range(0, gridY);
-         zRandom = Random.Range(0, gridZ-1);
+         xRandom = Mathf.Clamp( randomPool[indexRandom]%gridZ,0,gridX-2);
+         yRandom = 0;
+         zRandom = Mathf.Clamp(randomPool[indexRandom] / gridX, 0, gridZ-2);
+       // Debug.Log(xRandom + " , " + zRandom);
+        Debug.Log(randomPool.Count);
+        randomPool.RemoveAt(indexRandom);
 
         savedMiniGrid[0, 0, 0].posibilitySpace.Clear();
         savedMiniGrid[0, 0, 0].posibilitySpace.Add(grid[xRandom, yRandom, zRandom].posibilitySpace[0]);
         grid[xRandom, yRandom, zRandom].posibilitySpace.Clear();
         grid[xRandom, yRandom,zRandom].posibilitySpace.AddRange(modules);
         Destroy( grid[xRandom, yRandom, zRandom].instantiatedModule);
-        grid[xRandom, yRandom, zRandom].collapsed = false;
+        grid[xRandom, yRandom, zRandom].IsInstantiated = false;
 
         savedMiniGrid[1, 0, 0].posibilitySpace.Clear();
         savedMiniGrid[1, 0, 0].posibilitySpace.Add(grid[xRandom+1, yRandom, zRandom].posibilitySpace[0]);
         grid[xRandom+1, yRandom, zRandom ].posibilitySpace.Clear();
         grid[xRandom+1, yRandom, zRandom].posibilitySpace.AddRange(modules);
         Destroy(grid[xRandom+1, yRandom, zRandom].instantiatedModule);
-        grid[xRandom+1, yRandom, zRandom].collapsed = false;
+        grid[xRandom+1, yRandom, zRandom].IsInstantiated = false;
 
         savedMiniGrid[0, 0, 1].posibilitySpace.Clear();
         savedMiniGrid[0, 0, 1].posibilitySpace.Add( grid[xRandom, yRandom, zRandom+1].posibilitySpace[0]);
         grid[xRandom , yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom, yRandom, zRandom+1].posibilitySpace.AddRange(modules);
         Destroy(grid[xRandom, yRandom, zRandom+1].instantiatedModule);
-        grid[xRandom, yRandom, zRandom+1].collapsed = false;
+        grid[xRandom, yRandom, zRandom+1].IsInstantiated = false;
 
         savedMiniGrid[1, 0, 1].posibilitySpace.Clear();
         savedMiniGrid[1, 0, 1].posibilitySpace.Add( grid[xRandom+1, yRandom, zRandom+1].posibilitySpace[0]);
         grid[xRandom + 1, yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom+1, yRandom, zRandom+1].posibilitySpace.AddRange(modules);
         Destroy(grid[xRandom+1, yRandom, zRandom+1].instantiatedModule);
-        grid[xRandom+1, yRandom, zRandom+1].collapsed = false;
+        grid[xRandom+1, yRandom, zRandom+1].IsInstantiated = false;
         
     }
 
@@ -321,22 +326,22 @@ public class GridManager : MonoBehaviour
     {
         grid[xRandom, yRandom, zRandom].posibilitySpace.Clear();
         grid[xRandom, yRandom, zRandom].posibilitySpace.Add(savedMiniGrid[0, 0, 0].posibilitySpace[0]);
-        grid[xRandom, yRandom, zRandom].collapsed = false;
+        grid[xRandom, yRandom, zRandom].IsInstantiated = false;
         Destroy(grid[xRandom, yRandom, zRandom].instantiatedModule);
 
         grid[xRandom+1, yRandom, zRandom].posibilitySpace.Clear();
         grid[xRandom + 1, yRandom, zRandom].posibilitySpace.Add(savedMiniGrid[1, 0, 0].posibilitySpace[0]);
-        grid[xRandom+1, yRandom, zRandom].collapsed = false;
+        grid[xRandom+1, yRandom, zRandom].IsInstantiated = false;
         Destroy(grid[xRandom + 1, yRandom, zRandom].instantiatedModule);
 
         grid[xRandom, yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom, yRandom, zRandom + 1].posibilitySpace.Add(savedMiniGrid[0, 0, 1].posibilitySpace[0]);
-        grid[xRandom, yRandom, zRandom+1].collapsed = false;
+        grid[xRandom, yRandom, zRandom+1].IsInstantiated = false;
         Destroy(grid[xRandom, yRandom, zRandom + 1].instantiatedModule);
 
         grid[xRandom+1, yRandom, zRandom+1].posibilitySpace.Clear();
         grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace.Add(savedMiniGrid[1, 0, 1].posibilitySpace[0]);
-        grid[xRandom+1, yRandom, zRandom+1].collapsed = false;
+        grid[xRandom+1, yRandom, zRandom+1].IsInstantiated = false;
         Destroy(grid[xRandom + 1, yRandom, zRandom + 1].instantiatedModule);
        
     }

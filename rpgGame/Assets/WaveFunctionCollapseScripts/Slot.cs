@@ -16,7 +16,7 @@ public class slot
     public List<GameObject> neighbour4Pos = new List<GameObject>();
     public List<GameObject> neighbour5Pos = new List<GameObject>();
 
-    public bool collapsed = false;
+    public bool IsInstantiated = false;
     
     public void Iterate()
     {
