@@ -24,6 +24,7 @@ public class Modulescript : MonoBehaviour
     public ScriptableObjectList moduleSO;
     public float weight = 5;
     private Modulescript target;
+    public int moduleIndex;
 
 #if UNITY_EDITOR
     public void UpdateNeigboursInANewWay()
