@@ -17,6 +17,9 @@ public class FitnessFunction : MonoBehaviour
         {
 
             return true;
+        }else if(index < Doorfitness)
+        {
+            return true;
         }
         return false;
     }
