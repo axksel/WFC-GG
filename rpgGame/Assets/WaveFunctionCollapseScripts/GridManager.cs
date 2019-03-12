@@ -44,6 +44,12 @@ public class GridManager : MonoBehaviour
             moduleParents[i] = Instantiate(new GameObject(moduleSO.list[i].name), transform.position, Quaternion.identity, gameObject.transform);
             moduleSO.list[i].GetComponent<Modulescript>().moduleIndex = i;
         }
+
+        for (int i = 0; i < moduleSO.list.Count; i++)
+        {
+            moduleSO.list[i].GetComponent<Modulescript>().weight = summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType];
+        }
+
         /*for (int i = 0; i < System.Enum.GetValues(typeof(Modulescript.ModuleType)).Length; i++)
         {
             summedWeights.list.Add(1);
@@ -386,11 +392,6 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < moduleSO.list.Count; i++)
         {
             summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType] = (0.5f * summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType]) + (0.5f * weights.list[i]);
-        }
-
-        for (int i = 0; i < moduleSO.list.Count; i++)
-        {
-            moduleSO.list[i].GetComponent<Modulescript>().weight = summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType];
         }
     }
 
