@@ -32,17 +32,29 @@ public class GridManager : MonoBehaviour
     FitnessFunction fitness;
     GameObject[] moduleParents;
     public FloatList weights;
+    public float[] tmpWeights;
 
 
     void Start()
     {
+        
         moduleParents = new GameObject[moduleSO.list.Count];
+       tmpWeights = new float[System.Enum.GetValues(typeof(Modulescript.ModuleType)).Length];
+
         for (int i = 0; i < moduleSO.list.Count; i++)
         {
             //weights.list.Add(moduleSO.list[i].GetComponent<Modulescript>().weight);
-            moduleSO.list[i].GetComponent<Modulescript>().weight = weights.list[i]; 
+
+
+            tmpWeights[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType] += weights.list[i];
+            //moduleSO.list[i].GetComponent<Modulescript>().weight = weights.list[i]; 
             moduleParents[i] = Instantiate(new GameObject(moduleSO.list[i].name), transform.position, Quaternion.identity, gameObject.transform);
             moduleSO.list[i].GetComponent<Modulescript>().moduleIndex = i;
+        }
+
+        for (int i = 0; i < moduleSO.list.Count; i++)
+        {
+            moduleSO.list[i].GetComponent<Modulescript>().weight = tmpWeights[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType];
         }
 
         fitness = GetComponent<FitnessFunction>();

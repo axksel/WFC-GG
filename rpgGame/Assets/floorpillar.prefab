@@ -174,3 +174,5 @@ MonoBehaviour:
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   weight: 10
+  moduleIndex: 0
+  moduleType: 5

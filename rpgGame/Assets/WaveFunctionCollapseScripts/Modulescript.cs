@@ -26,6 +26,10 @@ public class Modulescript : MonoBehaviour
     private Modulescript target;
     public int moduleIndex;
 
+    public enum ModuleType { Corner, InverseCorner, Wall, Door, Floor, FloorPillar, FloorWithEnemy}
+
+    public ModuleType moduleType;
+
 #if UNITY_EDITOR
     public void UpdateNeigboursInANewWay()
     {
