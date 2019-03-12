@@ -11,19 +11,31 @@ public class OnLevelCreated : MonoBehaviour
 
     public void ActivateEnemies()
     {
-        foreach (var item in enemyList.list)
+
+        for (int i = 0; i < enemyList.list.Count; i++)
         {
-            item.SetActive(true);
-            item.GetComponent<NavMeshAgent>().enabled = true;
-            item.GetComponent<enemyScript>().enabled = true;
+            if (enemyList.list[i] != null)
+            {
+                enemyList.list[i].SetActive(true);
+                enemyList.list[i].GetComponent<NavMeshAgent>().enabled = true;
+                enemyList.list[i].GetComponent<enemyScript>().enabled = true;
+            }
+
         }
     }
 
     public void DeactivateEnemies()
     {
-        foreach (var item in enemyList.list)
+        for (int i = enemyList.list.Count - 1; i > - 1 ; i--)
         {
-            item.SetActive(false);
+            if (enemyList.list[i] != null)
+            {
+                enemyList.list[i].SetActive(false);
+            }
+            else
+            {
+                enemyList.list.RemoveAt(i);
+            }
         }
     }
 
