@@ -16,7 +16,8 @@ public class GridManager : MonoBehaviour
     public int zRandom;
 
     public List<GameObject> modules = new List<GameObject>();
-    public List<int> randomPool = new List<int>();
+     List<int> randomPooltmp = new List<int>();
+     List<int> randomPool = new List<int>();
     public ScriptableObjectList moduleSO;
     public BuildNavMesh bnm;
    public  bool isImproved = true;
@@ -85,6 +86,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        randomPooltmp.AddRange(randomPool);
         //Assign neighbours
         for (int i = 0; i < gridX; i++)
         {
@@ -283,14 +285,18 @@ public class GridManager : MonoBehaviour
 
     public void UnCollapse()
     {
-        int indexRandom = Random.Range(0, randomPool.Count); 
-
-         xRandom = Mathf.Clamp( randomPool[indexRandom]%gridZ,0,gridX-2);
-         yRandom = 0;
-         zRandom = Mathf.Clamp(randomPool[indexRandom] / gridX, 0, gridZ-2);
-       // Debug.Log(xRandom + " , " + zRandom);
+        if (randomPool.Count != 0) { 
+        int indexRandom = Random.Range(0, randomPool.Count);
+        xRandom = Mathf.Clamp(randomPool[indexRandom] % gridZ, 0, gridX - 2);
+        yRandom = 0;
+        zRandom = Mathf.Clamp(randomPool[indexRandom] / gridX, 0, gridZ - 2);
         Debug.Log(randomPool.Count);
         randomPool.RemoveAt(indexRandom);
+        }else{
+            randomPool.AddRange(randomPooltmp);
+
+        }
+
 
         savedMiniGrid[0, 0, 0].posibilitySpace.Clear();
         savedMiniGrid[0, 0, 0].posibilitySpace.Add(grid[xRandom, yRandom, zRandom].posibilitySpace[0]);
