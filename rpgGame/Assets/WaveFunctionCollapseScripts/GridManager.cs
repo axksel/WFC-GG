@@ -37,17 +37,18 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
+        modules.AddRange( moduleSO.list);
         
         moduleParents = new GameObject[moduleSO.list.Count];
-        for (int i = 0; i < moduleSO.list.Count; i++)
+        for (int i = 0; i < modules.Count; i++)
         {
-            moduleParents[i] = Instantiate(new GameObject(moduleSO.list[i].name), transform.position, Quaternion.identity, gameObject.transform);
-            moduleSO.list[i].GetComponent<Modulescript>().moduleIndex = i;
+            moduleParents[i] = Instantiate(new GameObject(modules[i].name), transform.position, Quaternion.identity, gameObject.transform);
+            modules[i].GetComponent<Modulescript>().moduleIndex = i;
         }
 
-        for (int i = 0; i < moduleSO.list.Count; i++)
+        for (int i = 0; i < modules.Count; i++)
         {
-            moduleSO.list[i].GetComponent<Modulescript>().weight = summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType];
+            modules[i].GetComponent<Modulescript>().weight = summedWeights.list[(int)modules[i].GetComponent<Modulescript>().moduleType];
         }
 
         /*for (int i = 0; i < System.Enum.GetValues(typeof(Modulescript.ModuleType)).Length; i++)
@@ -70,7 +71,8 @@ public class GridManager : MonoBehaviour
     {
         bnm = GetComponent<BuildNavMesh>();
         size = gridX * gridY * gridZ;
-        modules = moduleSO.list;
+        
+        
         grid = new slot[gridX, gridY, gridZ];
         savedMiniGrid = new slot[2, 1, 2];
 
@@ -99,7 +101,9 @@ public class GridManager : MonoBehaviour
 
 
                     grid[i, k, j] = new slot();
+                   
                     grid[i, k, j].posibilitySpace.AddRange(modules);
+                   
                     randomPool.Add(index);
                     grid[i, k, j].index = index;
                     index++;
@@ -149,9 +153,20 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        for (int i = 0; i < gridX; i++)
+        {
+            grid[i, 0, 0].collapse(19);
+            grid[i, 0, gridZ - 1].collapse(19);
+        }
+      
+        for (int i = 1; i < gridZ-1; i++)
+        {
+            grid[0, 0, i].collapse(19);
+            grid[gridX-1, 0, i].collapse(19);
+        }
 
-
-        grid[5, 0, 0].collapse(14);
+        grid[gridX / 2, 0, 1].collapse(15);
+        grid[gridX / 2, 0, gridZ - 2].collapse(17);
         StartCoroutine(IterateAndCollapse());
         yield return null;
     }
