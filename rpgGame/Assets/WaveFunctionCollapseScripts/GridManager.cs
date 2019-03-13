@@ -171,7 +171,7 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    /*void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         int index = 0;
 
@@ -193,7 +193,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-    }*/
+    }
 
     public IEnumerator Build()
     {
@@ -278,7 +278,7 @@ public class GridManager : MonoBehaviour
         {
 
             yield return null;
-            StartCoroutine(IterateAndCollapse());
+            //StartCoroutine(IterateAndCollapse());
 
         }
         else
@@ -286,7 +286,7 @@ public class GridManager : MonoBehaviour
             StartCoroutine(Collapse());
             if (size > 0)
             {
-                StartCoroutine(IterateAndCollapse());
+                //StartCoroutine(IterateAndCollapse());
                 yield return null;
             }
             else if (!CheckNumberOfSpecificModules())
@@ -299,7 +299,7 @@ public class GridManager : MonoBehaviour
 
                 UnCollapse();
                 size = size + 4;
-                StartCoroutine(IterateAndCollapse());
+                //StartCoroutine(IterateAndCollapse());
                 yield return null;
             }
             else
@@ -309,7 +309,7 @@ public class GridManager : MonoBehaviour
                 Revert();
                 size = size + 4;
                 isTried = true;
-                StartCoroutine(IterateAndCollapse());
+                //StartCoroutine(IterateAndCollapse());
 
             }
 

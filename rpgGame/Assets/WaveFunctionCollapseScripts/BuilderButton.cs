@@ -1,11 +1,14 @@
-﻿using UnityEngine;
-using System.Collections;
-#if UNITY_EDITOR
+﻿
+
 using UnityEditor;
+using UnityEngine;
+using System.Collections;
+using System;
 
 [CustomEditor(typeof(GridManager))]
 public class ObjectBuilderEditor : Editor
 {
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -20,10 +23,10 @@ public class ObjectBuilderEditor : Editor
 
         if (GUILayout.Button("Iterate and Collapse"))
         {
-            myScript.IterateAndCollapse();
+            myScript.StartCoroutine(myScript.IterateAndCollapse());
         }
 
      
     }
+
 }
-#endif
