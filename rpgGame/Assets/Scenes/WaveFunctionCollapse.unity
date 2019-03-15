@@ -228,6 +228,7 @@ MonoBehaviour:
   loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
   progressBar: {fileID: 11400000, guid: 8c72052eaec8e3b439c2e410c611dc58, type: 2}
   mL: {fileID: 0}
+  floor: {fileID: 2100000, guid: cd9d8388a4ed1834f8179b4c40df104e, type: 2}
 --- !u!4 &1213997710
 Transform:
   m_ObjectHideFlags: 0

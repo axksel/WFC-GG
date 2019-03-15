@@ -24,6 +24,7 @@ public class GridManager : MonoBehaviour
     public GameObjectList progressBar;
     private OnLevelCreated onLevelCreated;
     public MachineLearning mL;
+    public Material floor;
 
     FitnessFunction fitness;
     Weights weights;
@@ -275,6 +276,15 @@ public class GridManager : MonoBehaviour
         onLevelCreated.DeactiveLoadScreen();
         GetComponent<AudioSource>().Play();
         weights.CalculateWeights();
+        for (int j = 20; j < 27; j++)
+        {
+            for (int i = 0; i < weights.moduleParents[j].transform.childCount; i++)
+            {
+                weights.moduleParents[j].transform.GetChild(i).GetComponent<Renderer>().material = floor;
+            }
+
+        }
+
     }
 
     public bool CheckNumberOfSpecificModules()
