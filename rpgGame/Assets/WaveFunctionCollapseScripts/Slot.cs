@@ -17,9 +17,29 @@ public class slot
     public List<GameObject> neighbour5Pos = new List<GameObject>();
 
     public bool IsInstantiated = false;
-    
+
+    public void RemoveZeroWeightModules()
+    {
+
+        for (int i = posibilitySpace.Count - 1; i > 0; i--)
+        {
+            
+            if (posibilitySpace[i].GetComponent<Modulescript>().weight == 0)
+            {
+
+                posibilitySpace.RemoveAt(i);
+                Debug.Log(i);
+            }
+        }
+
+    }
+
+   
+
     public void Iterate()
     {
+       
+
      neighbour0Pos.Clear();
      neighbour1Pos.Clear();
      neighbour2Pos.Clear();
@@ -49,6 +69,7 @@ public class slot
             if (neighbours[3] != null) compareNeighbours(neighbour3Pos);
             if (neighbours[4] != null) compareNeighbours(neighbour4Pos);
             if (neighbours[5] != null) compareNeighbours(neighbour5Pos);
+ 
     }
 
     public void compareNeighbours(List<GameObject> neighbour)
@@ -64,35 +85,31 @@ public class slot
                 }
             }
         }
-        posibilitySpace = new List<GameObject>(tmpPosibilitySpace);
+
+
+        // for (int i = tmpPosibilitySpace.Count - 1; i > 0; i--)
+        // {
+        //     if (tmpPosibilitySpace[i].GetComponent<Modulescript>().weight == 0)
+        //     {
+
+        //         tmpPosibilitySpace.RemoveAt(i);
+
+        //     }
+        // }
+        posibilitySpace.Clear();
+        posibilitySpace.AddRange(tmpPosibilitySpace);
         tmpPosibilitySpace.Clear();
     }
 
     public void collapse()
     {
-        //float weightSum = 0;
-        //int moduleToCollapse = 0;
-        //for (int i = 0; i < posibilitySpace.Count; i++)
-        //{
-        //    weightSum += posibilitySpace[i].GetComponent<Modulescript>().weight;
-        //}
-
-        //float random = Random.Range(0, weightSum);
-
-        //for (int i = 0; i < posibilitySpace.Count; i++)
-        //{
-        //    if (random < posibilitySpace[i].GetComponent<Modulescript>().weight)
-        //    {
-        //        moduleToCollapse = i;
-        //        break;
-        //    }
-        //    random -= posibilitySpace[i].GetComponent<Modulescript>().weight;
-        //}
+        
         int random2 = Random.Range(0, posibilitySpace.Count);
 
-        GameObject tmpModule = posibilitySpace[random2];
-        posibilitySpace.Clear();
-        posibilitySpace.Add(tmpModule);       
+        posibilitySpace.RemoveAt(random2);
+        //GameObject tmpModule = posibilitySpace[random2];
+        //posibilitySpace.Clear();
+        //posibilitySpace.Add(tmpModule);
     }
 
     public void collapse(int k)
@@ -101,6 +118,16 @@ public class slot
         GameObject tmpModule = posibilitySpace[k];
         posibilitySpace.Clear();
         posibilitySpace.Add(tmpModule);        
+    }
+
+    public bool Contradiction()
+    {
+
+        if (posibilitySpace.Count == 0)
+        {
+            return true;
+        }
+        return false;
     }
 
 }
