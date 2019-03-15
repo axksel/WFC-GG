@@ -105,13 +105,19 @@ public class MachineLearning : MonoBehaviour
             {
                 for (int j = 0; j < sizeZ; j++)
                 {
-                    if (grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace.Count != 0)
-                    {
-                        if (grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace[0].GetComponent<Modulescript>().weight == 0)
-                        {
-                            continue;
-                        }
+                    if(posX - (int)(sizeX / 2) + i<=0 || posZ - (int)(sizeZ / 2) + j<=0|| posX - (int)(sizeX / 2) + i >= gridX-1 || posZ - (int)(sizeZ / 2) + j >= gridZ-1){
+                        continue;
                     }
+                  
+
+                        if (grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace.Count != 0)
+                        {
+                            if (grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace[0].GetComponent<Modulescript>().weight == 0)
+                            {
+                                continue;
+                            }
+                        }
+                    
                         grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace.Clear();
                         grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace.AddRange(modules);
                         Destroy(grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].instantiatedModule);

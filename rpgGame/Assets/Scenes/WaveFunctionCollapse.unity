@@ -217,13 +217,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70edaa0b64503548a5f3fd95af95e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridX: 15
+  gridX: 20
   gridY: 1
-  gridZ: 15
+  gridZ: 20
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   bnm: {fileID: 0}
   isImproved: 1
+  size: 0
   loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
   progressBar: {fileID: 11400000, guid: 8c72052eaec8e3b439c2e410c611dc58, type: 2}
   mL: {fileID: 0}

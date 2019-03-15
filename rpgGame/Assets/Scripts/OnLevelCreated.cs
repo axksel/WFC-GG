@@ -39,9 +39,9 @@ public class OnLevelCreated : MonoBehaviour
         }
     }
 
-    public void ActivatePlayer()
+    public void ActivatePlayer(float posX, float posY, float posZ)
     {
-        playerList.list[0].gameObject.transform.position = new Vector3(10, 0.5f, 0);
+        playerList.list[0].gameObject.transform.position = new Vector3(posX, posY, posZ);
         playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
 

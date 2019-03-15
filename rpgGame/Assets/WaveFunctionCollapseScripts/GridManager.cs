@@ -244,7 +244,8 @@ public class GridManager : MonoBehaviour
                 StartCoroutine(IterateAndCollapse());
                 yield return null;
             }
-            else if (!CheckNumberOfSpecificModules())
+           // else if (!CheckNumberOfSpecificModules())
+                  else if (true)
             {
                 LevelGenerationDone();
                 yield return null;
@@ -274,7 +275,7 @@ public class GridManager : MonoBehaviour
         onLevelCreated.DeactivateEnemies();
         bnm.BuildNavMeshButton();
         onLevelCreated.ActivateEnemies();
-        onLevelCreated.ActivatePlayer();
+        onLevelCreated.ActivatePlayer(20,0.5f,4);
         onLevelCreated.DeactiveLoadScreen();
         GetComponent<AudioSource>().Play();
         weights.CalculateWeights();
