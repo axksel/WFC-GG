@@ -11,7 +11,6 @@ public class OnLevelCreated : MonoBehaviour
 
     public void ActivateEnemies()
     {
-
         for (int i = 0; i < enemyList.list.Count; i++)
         {
             if (enemyList.list[i] != null)
@@ -20,7 +19,6 @@ public class OnLevelCreated : MonoBehaviour
                 enemyList.list[i].GetComponent<NavMeshAgent>().enabled = true;
                 enemyList.list[i].GetComponent<enemyScript>().enabled = true;
             }
-
         }
     }
 

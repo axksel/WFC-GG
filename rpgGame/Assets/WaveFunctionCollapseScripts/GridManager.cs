@@ -30,32 +30,13 @@ public class GridManager : MonoBehaviour
     public GameObjectList progressBar;
     private OnLevelCreated onLevelCreated;
     FitnessFunction fitness;
-    GameObject[] moduleParents;
-    public FloatList weights;
-    public FloatList summedWeights;
-
+    Weights weights;
 
     void Start()
     {
-        modules.AddRange( moduleSO.list);
-        
-        moduleParents = new GameObject[moduleSO.list.Count];
-        for (int i = 0; i < modules.Count; i++)
-        {
-            moduleParents[i] = Instantiate(new GameObject(modules[i].name), transform.position, Quaternion.identity, gameObject.transform);
-            modules[i].GetComponent<Modulescript>().moduleIndex = i;
-        }
-
-        for (int i = 0; i < modules.Count; i++)
-        {
-            modules[i].GetComponent<Modulescript>().weight = summedWeights.list[(int)modules[i].GetComponent<Modulescript>().moduleType];
-        }
-
-        /*for (int i = 0; i < System.Enum.GetValues(typeof(Modulescript.ModuleType)).Length; i++)
-        {
-            summedWeights.list.Add(1);
-        }*/
-
+        modules.AddRange(moduleSO.list);
+        weights = GetComponent<Weights>();
+        weights.AssignWeights(modules);
 
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
@@ -71,8 +52,7 @@ public class GridManager : MonoBehaviour
     {
         bnm = GetComponent<BuildNavMesh>();
         size = gridX * gridY * gridZ;
-        
-        
+
         grid = new slot[gridX, gridY, gridZ];
         savedMiniGrid = new slot[2, 1, 2];
 
@@ -83,12 +63,9 @@ public class GridManager : MonoBehaviour
                 for (int j = 0; j < 2; j++)
                 {
                     savedMiniGrid[i, k, j] = new slot();
-
-
                 }
             }
         }
-
 
         //initialze grid
         int index = 0;
@@ -98,12 +75,10 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-
-
                     grid[i, k, j] = new slot();
-                   
+
                     grid[i, k, j].posibilitySpace.AddRange(modules);
-                   
+
                     randomPool.Add(index);
                     grid[i, k, j].index = index;
                     index++;
@@ -118,8 +93,6 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-
-
                     try
                     {
                         grid[i, k, j].neighbours[0] = grid[i, k, j + 1];
@@ -158,11 +131,11 @@ public class GridManager : MonoBehaviour
             grid[i, 0, 0].collapse(19);
             grid[i, 0, gridZ - 1].collapse(19);
         }
-      
-        for (int i = 1; i < gridZ-1; i++)
+
+        for (int i = 1; i < gridZ - 1; i++)
         {
             grid[0, 0, i].collapse(19);
-            grid[gridX-1, 0, i].collapse(19);
+            grid[gridX - 1, 0, i].collapse(19);
         }
 
         grid[gridX / 2, 0, 1].collapse(15);
@@ -181,18 +154,15 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-
-
                     try
                     {
-                        Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
+                        Handles.Label(new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace.Count.ToString());
                         index++;
                     }
                     catch (System.NullReferenceException) { }
                 }
             }
         }
-
     }
 
     public IEnumerator Build()
@@ -203,13 +173,11 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-
-
                     if (grid[i, k, j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
                     {
                         StartCoroutine(Progress(size));
                         size--;
-                        GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
+                        GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
                     }
@@ -221,7 +189,6 @@ public class GridManager : MonoBehaviour
 
     public IEnumerator Collapse()
     {
-
         int iTmp = 0;
         int kTmp = 0;
         int jTmp = 0;
@@ -248,9 +215,6 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-
-
-
     public IEnumerator IterateAndCollapse()
     {
 
@@ -276,10 +240,8 @@ public class GridManager : MonoBehaviour
 
         if (shouldIterate)
         {
-
             yield return null;
             //StartCoroutine(IterateAndCollapse());
-
         }
         else
         {
@@ -296,7 +258,6 @@ public class GridManager : MonoBehaviour
             }
             else if (isImproved)
             {
-
                 UnCollapse();
                 size = size + 4;
                 //StartCoroutine(IterateAndCollapse());
@@ -304,15 +265,12 @@ public class GridManager : MonoBehaviour
             }
             else
             {
-
                 yield return null;
                 Revert();
                 size = size + 4;
                 isTried = true;
                 //StartCoroutine(IterateAndCollapse());
-
             }
-
         }
     }
 
@@ -329,9 +287,7 @@ public class GridManager : MonoBehaviour
         else
         {
             randomPool.AddRange(randomPooltmp);
-
         }
-
 
         savedMiniGrid[0, 0, 0].posibilitySpace.Clear();
         savedMiniGrid[0, 0, 0].posibilitySpace.Add(grid[xRandom, yRandom, zRandom].posibilitySpace[0]);
@@ -384,30 +340,17 @@ public class GridManager : MonoBehaviour
         grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace.Add(savedMiniGrid[1, 0, 1].posibilitySpace[0]);
         grid[xRandom + 1, yRandom, zRandom + 1].IsInstantiated = false;
         Destroy(grid[xRandom + 1, yRandom, zRandom + 1].instantiatedModule);
-
     }
 
     private void LevelGenerationDone()
     {
-
         onLevelCreated.DeactivateEnemies();
         bnm.BuildNavMeshButton();
         onLevelCreated.ActivateEnemies();
         onLevelCreated.ActivatePlayer();
         onLevelCreated.DeactiveLoadScreen();
         GetComponent<AudioSource>().Play();
-
-        for (int i = 0; i < moduleParents.Length; i++)
-        {
-            //moduleSO.list[i].GetComponent<Modulescript>().weight = moduleParents[i].transform.childCount;
-            weights.list[i] = moduleParents[i].transform.childCount;
-            //Debug.Log("Count: " + moduleParents[i].name + ": " + moduleParents[i].transform.childCount);
-        }
-
-        for (int i = 0; i < moduleSO.list.Count; i++)
-        {
-            summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType] = (0.5f * summedWeights.list[(int)moduleSO.list[i].GetComponent<Modulescript>().moduleType]) + (0.5f * weights.list[i]);
-        }
+        weights.CalculateWeights();
     }
 
     public bool CheckNumberOfSpecificModules()
@@ -444,8 +387,4 @@ public class GridManager : MonoBehaviour
         progressBar.list[0].GetComponent<Image>().fillAmount = pct;
         yield return null;
     }
-
-
-
-
 }
