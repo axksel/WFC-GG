@@ -379,7 +379,7 @@ MonoBehaviour:
   - {fileID: 7726778290906494065}
   - {fileID: 7726778290906494065, guid: 5532d17eaca8928478bbe09dae0534e0, type: 3}
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
-  weight: 0
+  weight: 1
   moduleIndex: 0
   moduleType: 3
 --- !u!114 &2486208641470350682

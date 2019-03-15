@@ -23,9 +23,9 @@ public class Modulescript : MonoBehaviour
 
     public ScriptableObjectList moduleSO;
 
-    
+    [HideInInspector]
     public float weight;
-    
+    private Modulescript target;
     public int moduleIndex;
 
     public enum ModuleType { Corner, InverseCorner, Wall, Door, Floor, FloorPillar, FloorWithEnemy}
