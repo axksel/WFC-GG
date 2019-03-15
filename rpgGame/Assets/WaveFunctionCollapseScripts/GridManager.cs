@@ -263,6 +263,7 @@ public class GridManager : MonoBehaviour
             }
             else if (isImproved)
             {
+                
                 UnCollapse();
                 size = size + 4;
                 StartCoroutine(IterateAndCollapse());
@@ -360,6 +361,7 @@ public class GridManager : MonoBehaviour
 
     public bool CheckNumberOfSpecificModules()
     {
+        
         int FitnessCount = 0;
         for (int i = 0; i < gridX; i++)
         {
@@ -367,6 +369,7 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
+                   
                     if (grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut0") || grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut1")
                         || grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut2") || grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut3"))
                     {

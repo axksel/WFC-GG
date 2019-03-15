@@ -23,12 +23,12 @@ public class slot
 
         for (int i = posibilitySpace.Count - 1; i > 0; i--)
         {
-            
+
             if (posibilitySpace[i].GetComponent<Modulescript>().weight == 0)
             {
 
                 posibilitySpace.RemoveAt(i);
-                Debug.Log(i);
+
             }
         }
 
@@ -106,7 +106,10 @@ public class slot
         
         int random2 = Random.Range(0, posibilitySpace.Count);
 
-        posibilitySpace.RemoveAt(random2);
+        if (posibilitySpace.Count > 1)
+        {
+            posibilitySpace.RemoveAt(random2);
+        }
         //GameObject tmpModule = posibilitySpace[random2];
         //posibilitySpace.Clear();
         //posibilitySpace.Add(tmpModule);
