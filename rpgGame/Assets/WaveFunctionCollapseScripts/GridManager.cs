@@ -264,7 +264,7 @@ public class GridManager : MonoBehaviour
             else if (isImproved)
             {
                 
-                UnCollapse();
+                UnCollapse(2,1,2);
                 size = size + 4;
                 StartCoroutine(IterateAndCollapse());
                 yield return null;
@@ -272,7 +272,7 @@ public class GridManager : MonoBehaviour
             else
             {
                 yield return null;
-                Revert();
+                Revert(2,1,2);
                 size = size + 4;
                 isTried = true;
                 StartCoroutine(IterateAndCollapse());
@@ -280,7 +280,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void UnCollapse()
+    public void UnCollapse(int sizeX,int sizeY,int sizeZ)
     {
         if (randomPool.Count != 0)
         {
@@ -295,11 +295,11 @@ public class GridManager : MonoBehaviour
             randomPool.AddRange(randomPooltmp);
         }
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < sizeX; i++)
         {
-            for (int k = 0; k < 1; k++)
+            for (int k = 0; k < sizeY; k++)
             {
-                for (int j = 0; j < 2; j++)
+                for (int j = 0; j < sizeZ; j++)
                 {
 
                     savedMiniGrid[i, k, j].posibilitySpace.Clear();
@@ -313,57 +313,25 @@ public class GridManager : MonoBehaviour
             }
         }
 
-
-        //savedMiniGrid[0, 0, 0].posibilitySpace.Clear();
-        //savedMiniGrid[0, 0, 0].posibilitySpace.Add(grid[xRandom, yRandom, zRandom].posibilitySpace[0]);
-        //grid[xRandom, yRandom, zRandom].posibilitySpace.Clear();
-        //grid[xRandom, yRandom, zRandom].posibilitySpace.AddRange(modules);
-        //Destroy(grid[xRandom, yRandom, zRandom].instantiatedModule);
-        //grid[xRandom, yRandom, zRandom].IsInstantiated = false;
-
-        //savedMiniGrid[1, 0, 0].posibilitySpace.Clear();
-        //savedMiniGrid[1, 0, 0].posibilitySpace.Add(grid[xRandom + 1, yRandom, zRandom].posibilitySpace[0]);
-        //grid[xRandom + 1, yRandom, zRandom].posibilitySpace.Clear();
-        //grid[xRandom + 1, yRandom, zRandom].posibilitySpace.AddRange(modules);
-        //Destroy(grid[xRandom + 1, yRandom, zRandom].instantiatedModule);
-        //grid[xRandom + 1, yRandom, zRandom].IsInstantiated = false;
-
-        //savedMiniGrid[0, 0, 1].posibilitySpace.Clear();
-        //savedMiniGrid[0, 0, 1].posibilitySpace.Add(grid[xRandom, yRandom, zRandom + 1].posibilitySpace[0]);
-        //grid[xRandom, yRandom, zRandom + 1].posibilitySpace.Clear();
-        //grid[xRandom, yRandom, zRandom + 1].posibilitySpace.AddRange(modules);
-        //Destroy(grid[xRandom, yRandom, zRandom + 1].instantiatedModule);
-        //grid[xRandom, yRandom, zRandom + 1].IsInstantiated = false;
-
-        //savedMiniGrid[1, 0, 1].posibilitySpace.Clear();
-        //savedMiniGrid[1, 0, 1].posibilitySpace.Add(grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace[0]);
-        //grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace.Clear();
-        //grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace.AddRange(modules);
-        //Destroy(grid[xRandom + 1, yRandom, zRandom + 1].instantiatedModule);
-        //grid[xRandom + 1, yRandom, zRandom + 1].IsInstantiated = false;
     }
 
-    public void Revert()
+    public void Revert(int sizeX, int sizeY, int sizeZ)
     {
-        grid[xRandom, yRandom, zRandom].posibilitySpace.Clear();
-        grid[xRandom, yRandom, zRandom].posibilitySpace.Add(savedMiniGrid[0, 0, 0].posibilitySpace[0]);
-        grid[xRandom, yRandom, zRandom].IsInstantiated = false;
-        Destroy(grid[xRandom, yRandom, zRandom].instantiatedModule);
 
-        grid[xRandom + 1, yRandom, zRandom].posibilitySpace.Clear();
-        grid[xRandom + 1, yRandom, zRandom].posibilitySpace.Add(savedMiniGrid[1, 0, 0].posibilitySpace[0]);
-        grid[xRandom + 1, yRandom, zRandom].IsInstantiated = false;
-        Destroy(grid[xRandom + 1, yRandom, zRandom].instantiatedModule);
 
-        grid[xRandom, yRandom, zRandom + 1].posibilitySpace.Clear();
-        grid[xRandom, yRandom, zRandom + 1].posibilitySpace.Add(savedMiniGrid[0, 0, 1].posibilitySpace[0]);
-        grid[xRandom, yRandom, zRandom + 1].IsInstantiated = false;
-        Destroy(grid[xRandom, yRandom, zRandom + 1].instantiatedModule);
-
-        grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace.Clear();
-        grid[xRandom + 1, yRandom, zRandom + 1].posibilitySpace.Add(savedMiniGrid[1, 0, 1].posibilitySpace[0]);
-        grid[xRandom + 1, yRandom, zRandom + 1].IsInstantiated = false;
-        Destroy(grid[xRandom + 1, yRandom, zRandom + 1].instantiatedModule);
+        for (int i = 0; i < sizeX; i++)
+        {
+            for (int k = 0; k < sizeY; k++)
+            {
+                for (int j = 0; j < sizeZ; j++)
+                {
+                    grid[xRandom + i, yRandom + k, zRandom + j].posibilitySpace.Clear();
+                    grid[xRandom + i, yRandom + k, zRandom + j].posibilitySpace.Add(savedMiniGrid[i, k, j].posibilitySpace[0]);
+                    grid[xRandom + i, yRandom + k, zRandom + j].IsInstantiated = false;
+                    Destroy(grid[xRandom + i, yRandom + k, zRandom + j].instantiatedModule);
+                }
+            }
+        }
     }
 
     private void LevelGenerationDone()
