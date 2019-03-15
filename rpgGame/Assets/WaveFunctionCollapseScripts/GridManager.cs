@@ -152,7 +152,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public IEnumerator Build()
+    public void Build()
     {
         for (int i = 0; i < gridX; i++)
         {
@@ -171,10 +171,9 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        yield return null;
     }
 
-    public IEnumerator Collapse()
+    public void Collapse()
     {
         int iTmp = 0;
         int kTmp = 0;
@@ -198,8 +197,7 @@ public class GridManager : MonoBehaviour
             }
         }
         grid[iTmp, kTmp, jTmp].collapse();
-        StartCoroutine(Build());
-        yield return null;
+        Build();
     }
 
     public IEnumerator IterateAndCollapse()
@@ -232,17 +230,15 @@ public class GridManager : MonoBehaviour
 
         if (shouldIterate)
         {
-            yield return null;
             StartCoroutine(IterateAndCollapse());
         }
         else
         {
-            StartCoroutine(Collapse());
+            Collapse();
             yield return null;
             if (size > 0)
             {
                 StartCoroutine(IterateAndCollapse());
-                yield return null;
             }
            // else if (!CheckNumberOfSpecificModules())
                   else if (true)
