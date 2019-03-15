@@ -19,7 +19,7 @@ public class GridManager : MonoBehaviour
     bool isTried = false;
 
     public slot[,,] grid;
-    int size;
+    public int size;
     public GameObjectList loadScreen;
     public GameObjectList progressBar;
     private OnLevelCreated onLevelCreated;
@@ -219,7 +219,7 @@ public class GridManager : MonoBehaviour
                     
                     if(grid[i, k, j].Contradiction() == true)
                     {
-                        Destroy(this);
+                        mL.UnCollapseWithPosition(6, 1, 6, i, k, j);
                     }
 
                     if (gridTmp != grid[i, k, j].posibilitySpace.Count)

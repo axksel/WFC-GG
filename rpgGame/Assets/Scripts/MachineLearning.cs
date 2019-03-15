@@ -84,6 +84,52 @@ public class MachineLearning : MonoBehaviour
 
     }
 
+    public void UnCollapseWithPosition(int sizeX, int sizeY, int sizeZ,int posX,int posY,int posZ)
+    {
+        if (randomPool.Count != 0)
+        {
+            int indexRandom = Random.Range(0, randomPool.Count);
+            xRandom = Mathf.Clamp(randomPool[indexRandom] % gridZ, 0, gridX - 2);
+            yRandom = 0;
+            zRandom = Mathf.Clamp(randomPool[indexRandom] / gridX, 0, gridZ - 2);
+            randomPool.RemoveAt(indexRandom);
+        }
+        else
+        {
+            randomPool.AddRange(randomPooltmp);
+        }
+
+        for (int i = 0; i < sizeX; i++)
+        {
+            for (int k = 0; k < sizeY; k++)
+            {
+                for (int j = 0; j < sizeZ; j++)
+                {
+                    if (grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace.Count != 0)
+                    {
+                        if (grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace[0].GetComponent<Modulescript>().weight == 0)
+                        {
+                            continue;
+                        }
+                    }
+                        grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace.Clear();
+                        grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].posibilitySpace.AddRange(modules);
+                        Destroy(grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].instantiatedModule);
+                    if(grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].IsInstantiated)
+                    {
+                        gM.size++;
+                        grid[posX - (int)(sizeX / 2) + i, posY - (int)(sizeY / 2) + k, posZ - (int)(sizeZ / 2) + j].IsInstantiated = false;
+                    }
+                    
+                        
+                    
+                }
+            }
+        }
+      
+    }
+
+
     public void Revert(int sizeX, int sizeY, int sizeZ)
     {
 
