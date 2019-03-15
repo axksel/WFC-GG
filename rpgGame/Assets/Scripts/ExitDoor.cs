@@ -11,7 +11,7 @@ public class ExitDoor : MonoBehaviour,IsInteracable
 
     public void Interact()
     {
-        gameManager.list[0].GetComponent<PlayerManager>().ChangeScene(0);
+        gameManager.list[0].GetComponent<PlayerManager>().ChangeScene(1);
         
      
     }

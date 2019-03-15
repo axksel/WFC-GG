@@ -71,10 +71,12 @@ public class PlayerManager : MonoBehaviour
         //SceneManager.LoadSceneAsync("WaveFunctionCollapse", LoadSceneMode.Additive);
         SceneManager.UnloadSceneAsync(currentLVL);
         StartCoroutine(LoadAsynchonously(sceneIndex));
-        
+
         // playerList.list[0].gameObject.GetComponent<NavMeshAgent>().updatePosition = false;
-       //playerList.list[0].gameObject.GetComponent<NavMeshAgent>().destination = new Vector3(10, 0.5f, 0); 
+        //playerList.list[0].gameObject.GetComponent<NavMeshAgent>().destination = new Vector3(10, 0.5f, 0); 
+        
         playerList.list[0].gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        
     }
 
     IEnumerator LoadAsynchonously (int sceneIndex)
