@@ -11,29 +11,26 @@ public class GridManager : MonoBehaviour
     public int gridY = 4;
     public int gridZ = 4;
 
-    public int xRandom;
-    public int yRandom;
-    public int zRandom;
 
     public List<GameObject> modules = new List<GameObject>();
-    List<int> randomPooltmp = new List<int>();
-    List<int> randomPool = new List<int>();
     public ScriptableObjectList moduleSO;
     public BuildNavMesh bnm;
     public bool isImproved = true;
     bool isTried = false;
 
     public slot[,,] grid;
-    public slot[,,] savedMiniGrid;
     int size;
     public GameObjectList loadScreen;
     public GameObjectList progressBar;
     private OnLevelCreated onLevelCreated;
+    public MachineLearning mL;
+
     FitnessFunction fitness;
     Weights weights;
 
     void Start()
     {
+        mL = GetComponent<MachineLearning>();
         weights = GetComponent<Weights>();
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
@@ -54,18 +51,7 @@ public class GridManager : MonoBehaviour
         size = gridX * gridY * gridZ;
                 
         grid = new slot[gridX, gridY, gridZ];
-        savedMiniGrid = new slot[2, 1, 2];
-
-        for (int i = 0; i < 2; i++)
-        {
-            for (int k = 0; k < 1; k++)
-            {
-                for (int j = 0; j < 2; j++)
-                {
-                    savedMiniGrid[i, k, j] = new slot();                  
-                }
-            }
-        }
+      
      
         //initialze grid
         int index = 0;
@@ -77,13 +63,13 @@ public class GridManager : MonoBehaviour
                 {
                     grid[i, k, j] = new slot();                                    
                     grid[i, k, j].posibilitySpace.AddRange(modules);                  
-                    randomPool.Add(index);
+                    mL.randomPool.Add(index);
                     grid[i, k, j].index = index;
                     index++;
                 }
             }
         }
-        randomPooltmp.AddRange(randomPool);
+        mL.randomPooltmp.AddRange(mL.randomPool);
 
         //Assign neighbours
         for (int i = 0; i < gridX; i++)
@@ -139,6 +125,8 @@ public class GridManager : MonoBehaviour
 
         grid[gridX / 2, 0, 1].collapse(15);
         grid[gridX / 2, 0, gridZ - 2].collapse(17);
+
+        mL.grid = grid;
 
         StartCoroutine(IterateAndCollapse());       
     }
@@ -264,7 +252,7 @@ public class GridManager : MonoBehaviour
             else if (isImproved)
             {
                 
-                UnCollapse(2,1,2);
+                mL.UnCollapse(2,1,2);
                 size = size + 4;
                 StartCoroutine(IterateAndCollapse());
                 yield return null;
@@ -272,64 +260,10 @@ public class GridManager : MonoBehaviour
             else
             {
                 yield return null;
-                Revert(2,1,2);
+                mL.Revert(2,1,2);
                 size = size + 4;
                 isTried = true;
                 StartCoroutine(IterateAndCollapse());
-            }
-        }
-    }
-
-    public void UnCollapse(int sizeX,int sizeY,int sizeZ)
-    {
-        if (randomPool.Count != 0)
-        {
-            int indexRandom = Random.Range(0, randomPool.Count);
-            xRandom = Mathf.Clamp(randomPool[indexRandom] % gridZ, 0, gridX - 2);
-            yRandom = 0;
-            zRandom = Mathf.Clamp(randomPool[indexRandom] / gridX, 0, gridZ - 2);
-            randomPool.RemoveAt(indexRandom);
-        }
-        else
-        {
-            randomPool.AddRange(randomPooltmp);
-        }
-
-        for (int i = 0; i < sizeX; i++)
-        {
-            for (int k = 0; k < sizeY; k++)
-            {
-                for (int j = 0; j < sizeZ; j++)
-                {
-
-                    savedMiniGrid[i, k, j].posibilitySpace.Clear();
-                    savedMiniGrid[i, k, j].posibilitySpace.Add(grid[xRandom + i, yRandom + k, zRandom + j].posibilitySpace[0]);
-                    grid[xRandom+i, yRandom+k, zRandom+j].posibilitySpace.Clear();
-                    grid[xRandom + i, yRandom + k, zRandom + j].posibilitySpace.AddRange(modules);
-                    Destroy(grid[xRandom + i, yRandom + k, zRandom + j].instantiatedModule);
-                    grid[xRandom + i, yRandom + k, zRandom + j].IsInstantiated = false;
-
-                }
-            }
-        }
-
-    }
-
-    public void Revert(int sizeX, int sizeY, int sizeZ)
-    {
-
-
-        for (int i = 0; i < sizeX; i++)
-        {
-            for (int k = 0; k < sizeY; k++)
-            {
-                for (int j = 0; j < sizeZ; j++)
-                {
-                    grid[xRandom + i, yRandom + k, zRandom + j].posibilitySpace.Clear();
-                    grid[xRandom + i, yRandom + k, zRandom + j].posibilitySpace.Add(savedMiniGrid[i, k, j].posibilitySpace[0]);
-                    grid[xRandom + i, yRandom + k, zRandom + j].IsInstantiated = false;
-                    Destroy(grid[xRandom + i, yRandom + k, zRandom + j].instantiatedModule);
-                }
             }
         }
     }
@@ -382,8 +316,5 @@ public class GridManager : MonoBehaviour
         progressBar.list[0].GetComponent<Image>().fillAmount = pct;
         yield return null;
     }
-
-
-
 
 }
