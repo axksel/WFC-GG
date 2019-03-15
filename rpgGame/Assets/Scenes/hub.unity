@@ -285,6 +285,8 @@ GameObject:
   - component: {fileID: 838965849}
   - component: {fileID: 838965848}
   - component: {fileID: 838965847}
+  - component: {fileID: 838965851}
+  - component: {fileID: 838965852}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -365,6 +367,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &838965851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838965846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ed6717e0e0f9743a6a6a2a5d19561e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList: {fileID: 11400000, guid: a492976ee3fb16c4f9acd65cb5bff6c3, type: 2}
+  playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
+  loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
+--- !u!114 &838965852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838965846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83e091acdf7aba4ba96592c685c5cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2067356347
 GameObject:
   m_ObjectHideFlags: 0

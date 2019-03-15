@@ -724,11 +724,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b278f114c37af409b3343a034f6eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
+  health: 100
   enemiesInRange: {fileID: 11400000, guid: b57a3e8e473da814ba2246ecef0e8236, type: 2}
   loot: {fileID: 11400000, guid: d7d7327b6b1b2814eacda9c40efa5900, type: 2}
   playerList: {fileID: 11400000, guid: 35fbe730f0c199e4e9ddbef90eca688a, type: 2}
-  alertDistance: 10
+  alertDistance: 4
   projectile: {fileID: 487509448492710838, guid: 032fe450fefb42d4c85ca120168a114d,
     type: 3}
   bloodSplatter: {fileID: 1987484099555270474, guid: 65ec716bdf1b6ab4181665bbf8f083a1,
