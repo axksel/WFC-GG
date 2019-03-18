@@ -134,7 +134,7 @@ public class GridManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        int index = 0;
+    
 
         for (int i = 0; i < gridX; i++)
         {
@@ -145,7 +145,7 @@ public class GridManager : MonoBehaviour
                     try
                     {
                         Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
-                        index++;
+                       
                     }
                     catch (System.NullReferenceException) { }
                 }
@@ -198,6 +198,7 @@ public class GridManager : MonoBehaviour
             }
         }
         grid[iTmp, kTmp, jTmp].collapse();
+        grid[iTmp, kTmp, jTmp].SetNeighboursTrue();
         Build();
     }
 
@@ -212,18 +213,26 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    gridTmp = grid[i, k, j].posibilitySpace.Count;
-                    grid[i, k, j].RemoveZeroWeightModules();
-                    grid[i, k, j].Iterate();
-                    
-                    if(grid[i, k, j].Contradiction() == true)
-                    {
-                        mL.UnCollapseWithPosition(6, 1, 6, i, k, j);
-                    }
+                    if (grid[i, k, j].shouldBeIterated) { 
 
-                    if (gridTmp != grid[i, k, j].posibilitySpace.Count)
-                    {
-                        shouldIterate = true;
+                        gridTmp = grid[i, k, j].posibilitySpace.Count;
+                        grid[i, k, j].RemoveZeroWeightModules();
+                        grid[i, k, j].Iterate();
+
+                        if (grid[i, k, j].Contradiction() == true)
+                        {
+                            mL.UnCollapseWithPosition(6, 1, 6, i, k, j);
+                        }
+
+                        if (gridTmp != grid[i, k, j].posibilitySpace.Count)
+                        {
+                            grid[i, k, j].SetNeighboursTrue();
+                            shouldIterate = true;
+                        }
+                        else
+                        {
+                            grid[i, k, j].shouldBeIterated = false;
+                        }
                     }
                 }
             }
