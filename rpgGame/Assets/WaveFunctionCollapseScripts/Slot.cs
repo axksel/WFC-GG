@@ -5,6 +5,7 @@ using UnityEngine;
 public class slot
 {
     public int index =0;
+    public bool shouldBeIterated = true;
     public slot[] neighbours = new slot[6];
     public List<GameObject> posibilitySpace = new List<GameObject>();
     public List<GameObject> tmpPosibilitySpace = new List<GameObject>();
@@ -17,6 +18,7 @@ public class slot
     public List<GameObject> neighbour5Pos = new List<GameObject>();
 
     public bool IsInstantiated = false;
+
 
     public void RemoveZeroWeightModules()
     {
@@ -38,14 +40,13 @@ public class slot
 
     public void Iterate()
     {
-       
 
-     neighbour0Pos.Clear();
-     neighbour1Pos.Clear();
-     neighbour2Pos.Clear();
-     neighbour3Pos.Clear();
-     neighbour4Pos.Clear();
-     neighbour5Pos.Clear();
+        neighbour0Pos.Clear();
+        neighbour1Pos.Clear();
+        neighbour2Pos.Clear();
+        neighbour3Pos.Clear();
+        neighbour4Pos.Clear();
+        neighbour5Pos.Clear();
 
         for (int i = 0; i < neighbours.Length; i++)
         {
@@ -69,7 +70,21 @@ public class slot
             if (neighbours[3] != null) compareNeighbours(neighbour3Pos);
             if (neighbours[4] != null) compareNeighbours(neighbour4Pos);
             if (neighbours[5] != null) compareNeighbours(neighbour5Pos);
- 
+
+     
+    }
+
+
+    public void SetNeighboursTrue()
+    {
+        shouldBeIterated = true;
+        if (neighbours[0] != null) neighbours[0].shouldBeIterated = true;
+        if (neighbours[1] != null) neighbours[1].shouldBeIterated = true;
+        if (neighbours[2] != null) neighbours[2].shouldBeIterated = true;
+        if (neighbours[3] != null) neighbours[3].shouldBeIterated = true;
+        if (neighbours[4] != null) neighbours[4].shouldBeIterated = true;
+        if (neighbours[5] != null) neighbours[5].shouldBeIterated = true;
+
     }
 
     public void compareNeighbours(List<GameObject> neighbour)
@@ -86,16 +101,6 @@ public class slot
             }
         }
 
-
-        // for (int i = tmpPosibilitySpace.Count - 1; i > 0; i--)
-        // {
-        //     if (tmpPosibilitySpace[i].GetComponent<Modulescript>().weight == 0)
-        //     {
-
-        //         tmpPosibilitySpace.RemoveAt(i);
-
-        //     }
-        // }
         posibilitySpace.Clear();
         posibilitySpace.AddRange(tmpPosibilitySpace);
         tmpPosibilitySpace.Clear();
