@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SummedWeights
   m_EditorClassIdentifier: 
   list:
-  - 1
-  - 1
-  - 1
+  - 62.405342
+  - 22.09523
+  - 19.689682
   - 0
-  - 1
-  - 1
-  - 1
+  - 3.227343
+  - 9.875
+  - 9.5

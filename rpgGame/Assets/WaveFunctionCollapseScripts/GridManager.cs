@@ -28,6 +28,7 @@ public class GridManager : MonoBehaviour
 
     FitnessFunction fitness;
     Weights weights;
+    NoiseMap noiseMap;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class GridManager : MonoBehaviour
         weights = GetComponent<Weights>();
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
+        noiseMap = GetComponent<NoiseMap>();
 
         modules.AddRange(moduleSO.list);
         weights.AssignWeights(modules);
@@ -132,7 +134,7 @@ public class GridManager : MonoBehaviour
         StartCoroutine(IterateAndCollapse());       
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         int index = 0;
 
@@ -151,7 +153,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     public void Build()
     {
@@ -166,6 +168,7 @@ public class GridManager : MonoBehaviour
                         StartCoroutine(Progress(size));
                         size--;
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
+                        tmpGo.GetComponentInChildren<Renderer>().material.color = noiseMap.pixelValues[i, j];
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
                     }
@@ -284,7 +287,6 @@ public class GridManager : MonoBehaviour
             }
 
         }
-
     }
 
     public bool CheckNumberOfSpecificModules()
@@ -321,6 +323,17 @@ public class GridManager : MonoBehaviour
         float pct = MathFunctions.Map(progress, (gridX * gridZ), 0, 0, 1);
         loadScreen.list[0].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt((pct * 100)).ToString() + " %";
         progressBar.list[0].GetComponent<Image>().fillAmount = pct;
+        if (Mathf.RoundToInt((pct * 100)) == 100)
+        {
+            loadScreen.list[0].transform.GetChild(1).gameObject.SetActive(false);
+            loadScreen.list[0].transform.GetChild(2).gameObject.SetActive(false);
+            loadScreen.list[0].transform.GetChild(4).gameObject.SetActive(false);
+            loadScreen.list[0].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Generating NavMesh";
+        }
+        else
+        {
+            loadScreen.list[0].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Generating Level";
+        }
         yield return null;
     }
 
