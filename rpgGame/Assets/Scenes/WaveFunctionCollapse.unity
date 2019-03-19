@@ -218,9 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70edaa0b64503548a5f3fd95af95e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridX: 50
+  gridX: 100
   gridY: 1
-  gridZ: 50
+  gridZ: 100
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   bnm: {fileID: 0}
@@ -454,4 +454,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885f702971fb9414c93f0bb32cf92aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noise: {fileID: 2800000, guid: b04d0067a6334e74c95a31ca946ca0e1, type: 3}
+  noise: {fileID: 2800000, guid: 62748631b8c33434f8556d0238331ccc, type: 3}
+  modules: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
