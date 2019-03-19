@@ -1213,6 +1213,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyHealth
       objectReference: {fileID: 0}
+    - target: {fileID: 856508615236425043, guid: df95b1b1ffadfc942b144b1566f568d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6925598333174793681, guid: df95b1b1ffadfc942b144b1566f568d5,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -25,6 +25,7 @@ public class Modulescript : MonoBehaviour
 
     
     public float weight;
+    public float weightModifier;
     
     public int moduleIndex;
 

@@ -115,7 +115,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        for (int i = 0; i < gridX; i++)
+        /*for (int i = 0; i < gridX; i++)
         {
             grid[i, 0, 0].collapse(19);
             grid[i, 0, gridZ - 1].collapse(19);
@@ -128,7 +128,7 @@ public class GridManager : MonoBehaviour
         }
 
         grid[gridX / 2, 0, 1].collapse(15);
-        grid[gridX / 2, 0, gridZ - 2].collapse(17);
+        grid[gridX / 2, 0, gridZ - 2].collapse(17);*/
 
         mL.grid = grid;
         noiseMap.grid = grid;
@@ -139,8 +139,6 @@ public class GridManager : MonoBehaviour
 
     /*void OnDrawGizmos()
     {
-    
-
         for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
@@ -171,6 +169,7 @@ public class GridManager : MonoBehaviour
                         StartCoroutine(Progress(size));
                         size--;
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
+                        //tmpGo.GetComponentInChildren<Renderer>().material.color = noiseMap.pixelValues[i, j];
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
                     }
@@ -221,7 +220,7 @@ public class GridManager : MonoBehaviour
                     if (grid[i, k, j].shouldBeIterated) { 
 
                         gridTmp = grid[i, k, j].posibilitySpace.Count;
-                        grid[i, k, j].RemoveZeroWeightModules();
+                        //grid[i, k, j].RemoveZeroWeightModules();
                         grid[i, k, j].Iterate();
 
                         if (grid[i, k, j].Contradiction() == true)
@@ -245,6 +244,7 @@ public class GridManager : MonoBehaviour
 
         if (shouldIterate)
         {
+            yield return null;
             StartCoroutine(IterateAndCollapse());
         }
         else

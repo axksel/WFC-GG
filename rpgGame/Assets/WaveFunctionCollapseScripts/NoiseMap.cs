@@ -8,9 +8,20 @@ public class NoiseMap : MonoBehaviour
     public Texture2D noise;
     public Color[,] pixelValues;
     public slot[,,] grid;
+    public ScriptableObjectList modules;
 
     void Awake()
     {
+        for (int i = 0; i < modules.list.Count; i++)
+        {
+            modules.list[i].GetComponent<Modulescript>().weightModifier = 0;
+            for (int j = 0; j < modules.list[i].GetComponent<Modulescript>().neighbours.Length - 2; j++)
+            {
+                if (modules.list[i].GetComponent<Modulescript>().neighbours[j] == 0) modules.list[i].GetComponent<Modulescript>().weightModifier += 0.25f;
+            }
+
+        }
+
         pixelValues = new Color[noise.width, noise.height];
         for (int i = 0; i < noise.width; i++)
         {
