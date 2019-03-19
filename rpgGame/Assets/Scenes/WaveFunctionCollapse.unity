@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 1213997715}
   - component: {fileID: 1213997716}
   - component: {fileID: 1213997717}
+  - component: {fileID: 1213997718}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -217,9 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70edaa0b64503548a5f3fd95af95e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridX: 20
+  gridX: 50
   gridY: 1
-  gridZ: 20
+  gridZ: 50
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   bnm: {fileID: 0}
@@ -257,8 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
   m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 50, y: 7.9, z: 50}
+  m_Center: {x: 22, y: 2, z: 22.21}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 1
-  m_VoxelSize: 0.01
+  m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}
 --- !u!114 &1213997712
@@ -320,7 +321,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213997708}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8b5cbfe9aa851704ab3f994e13e1afce, type: 3}
@@ -441,3 +442,16 @@ MonoBehaviour:
   randomPool: 
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   modules: []
+--- !u!114 &1213997718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213997708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885f702971fb9414c93f0bb32cf92aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noise: {fileID: 2800000, guid: b04d0067a6334e74c95a31ca946ca0e1, type: 3}

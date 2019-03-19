@@ -16,6 +16,7 @@ public class slot
     public List<GameObject> neighbour3Pos = new List<GameObject>();
     public List<GameObject> neighbour4Pos = new List<GameObject>();
     public List<GameObject> neighbour5Pos = new List<GameObject>();
+    public float noiseWeight;
 
     public bool IsInstantiated = false;
 
@@ -108,21 +109,54 @@ public class slot
 
     public void collapse()
     {
-        
-        int random2 = Random.Range(0, posibilitySpace.Count);
+        //Collapse with noiseWeights
+        for (int i = 0; i < posibilitySpace.Count; i++)
+        {
+            if (posibilitySpace[i].GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor)
+            {
+                posibilitySpace[i].GetComponent<Modulescript>().weight = noiseWeight;
+            }
+            else
+            {
+                posibilitySpace[i].GetComponent<Modulescript>().weight = (1 - noiseWeight) / (posibilitySpace.Count - 1);
+            }
+        }
+
+        //Collapse with weights
+        float weightSum = 0;
+        int moduleToCollapse = 0;
+        for (int i = 0; i < posibilitySpace.Count; i++)
+        {
+            weightSum += posibilitySpace[i].GetComponent<Modulescript>().weight;
+        }
+
+        float random = Random.Range(0, weightSum);
+
+        for (int i = 0; i < posibilitySpace.Count; i++)
+        {
+            if (random < posibilitySpace[i].GetComponent<Modulescript>().weight)
+            {
+                moduleToCollapse = i;
+                break;
+            }
+            random -= posibilitySpace[i].GetComponent<Modulescript>().weight;
+        }
+
+        GameObject tmpModule = posibilitySpace[moduleToCollapse];
+        posibilitySpace.Clear();
+        posibilitySpace.Add(tmpModule);
+
+        //Remove from possibilitySpace
+        /*int random2 = Random.Range(0, posibilitySpace.Count);
 
         if (posibilitySpace.Count > 1)
         {
             posibilitySpace.RemoveAt(random2);
-        }
-        //GameObject tmpModule = posibilitySpace[random2];
-        //posibilitySpace.Clear();
-        //posibilitySpace.Add(tmpModule);
+        }*/
     }
 
     public void collapse(int k)
-    {
-        
+    {       
         GameObject tmpModule = posibilitySpace[k];
         posibilitySpace.Clear();
         posibilitySpace.Add(tmpModule);        

@@ -25,6 +25,7 @@ public class GridManager : MonoBehaviour
     private OnLevelCreated onLevelCreated;
     public MachineLearning mL;
     public Material floor;
+    Color[,] noiseValues;
 
     FitnessFunction fitness;
     Weights weights;
@@ -130,6 +131,8 @@ public class GridManager : MonoBehaviour
         grid[gridX / 2, 0, gridZ - 2].collapse(17);
 
         mL.grid = grid;
+        noiseMap.grid = grid;
+        noiseMap.InitNoiseWeights(gridX, gridY, gridZ);
 
         StartCoroutine(IterateAndCollapse());       
     }
@@ -168,7 +171,6 @@ public class GridManager : MonoBehaviour
                         StartCoroutine(Progress(size));
                         size--;
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
-                        tmpGo.GetComponentInChildren<Renderer>().material.color = noiseMap.pixelValues[i, j];
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
                     }
@@ -287,8 +289,8 @@ public class GridManager : MonoBehaviour
         onLevelCreated.ActivatePlayer(20,0.5f,4);
         onLevelCreated.DeactiveLoadScreen();
         GetComponent<AudioSource>().Play();
-        weights.CalculateWeights();
-        for (int j = 20; j < 27; j++)
+        //weights.CalculateWeights();
+        for (int j = 20; j < 26; j++)
         {
             for (int i = 0; i < weights.moduleParents[j].transform.childCount; i++)
             {

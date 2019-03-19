@@ -17,4 +17,11 @@ public static class MathFunctions
         float _y = v.x * Mathf.Sin(radian) + v.y * Mathf.Cos(radian);
         return new Vector2(_x, _y);
     }
+
+    public static float[] ReturnWeights(float index)
+    {
+        float[] weights = new float[7];
+
+        return weights;
+    }
 }
