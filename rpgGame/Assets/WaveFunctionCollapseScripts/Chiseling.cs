@@ -8,8 +8,9 @@ public class Chiseling : MonoBehaviour
     public slot[,,] grid;
     List<slot> fixedPoints = new List<slot>();
     List<slot> allPoints = new List<slot>();
+    int tries = 0;
 
-    private void Start()
+    private void Awake()
     {
         gridManager = GetComponent<GridManager>();
     }
@@ -30,19 +31,17 @@ public class Chiseling : MonoBehaviour
 
         fixedPoints.Add(grid[0, 0, 0]);
         grid[0, 0, 0].isFixed = true;
-        fixedPoints.Add(grid[9, 0, 9]);
-        grid[9, 0, 9].isFixed = true;
-        fixedPoints.Add(grid[0, 0, 9]);
-        grid[0, 0, 9].isFixed = true;
-        fixedPoints.Add(grid[9, 0, 0]);
-        grid[9, 0, 0].isFixed = true;
+        fixedPoints.Add(grid[30, 0, 19]);
+        grid[30, 0, 19].isFixed = true;
+        fixedPoints.Add(grid[0, 0, 45]);
+        grid[0, 0, 45].isFixed = true;
+        fixedPoints.Add(grid[19, 0, 25]);
+        grid[19, 0, 25].isFixed = true;
         StartCoroutine(TryToRemove());
     }
 
     public IEnumerator TryToRemove()
     {
-        Debug.Log(allPoints.Count);
-
         int itemToRemove = Random.Range(0, allPoints.Count);
         if (allPoints[itemToRemove].isFixed)
         {
@@ -53,16 +52,18 @@ public class Chiseling : MonoBehaviour
 
         if (CheckFixedPoints())
         {
+            tries = 0;
             allPoints.RemoveAt(itemToRemove);
         }
         else
         {
+            tries++;
             allPoints[itemToRemove].isPath = true;
         }
 
-        if (fixedPoints.Count == allPoints.Count)
+        if (tries > 100)
         {
-            Debug.Log("Finished");
+            gridManager.startBuilding();
         }
         else
         {
@@ -72,19 +73,21 @@ public class Chiseling : MonoBehaviour
         }
     }
 
+
+
     void Visit(slot slot)
     {
             if (slot.isPath && !slot.isVisited)
             {
                 slot.isVisited = true;
-                if (slot.x < gridManager.gridX - 1 && slot.z < gridManager.gridZ - 1)
-                    Visit(grid[slot.x + 1, slot.y, slot.z + 1]);
-                if (slot.x > 0 && slot.z > 0)
-                    Visit(grid[slot.x - 1, slot.y, slot.z - 1]);
-                if (slot.x < gridManager.gridX - 1 && slot.z > 0)
-                    Visit(grid[slot.x + 1, slot.y, slot.z - 1]);
-                if (slot.x > 0 && slot.z < gridManager.gridZ - 1)
-                    Visit(grid[slot.x - 1, slot.y, slot.z + 1]);
+                if (slot.x < gridManager.gridX - 1)
+                    Visit(grid[slot.x + 1, slot.y, slot.z]);
+                if (slot.x > 0)
+                    Visit(grid[slot.x - 1, slot.y, slot.z]);
+                if (slot.z > 0)
+                    Visit(grid[slot.x, slot.y, slot.z - 1]);
+                if (slot.z < gridManager.gridZ - 1)
+                    Visit(grid[slot.x, slot.y, slot.z + 1]);
             }
     }
 
@@ -104,19 +107,14 @@ public class Chiseling : MonoBehaviour
 
     private bool CheckFixedPoints()
     {
-        foreach (var item in fixedPoints)
+        Visit(fixedPoints[0]);
+        for (int i = 0; i < fixedPoints.Count; i++)
         {
-            Visit(item);
-            foreach (var item2 in fixedPoints)
+            if (!fixedPoints[i].isVisited)
             {
-                if (!item2.isVisited)
-                {
-                    return false;
-                }
+                return false;
             }
-            Reset();
         }
-
         return true;
     }
 }

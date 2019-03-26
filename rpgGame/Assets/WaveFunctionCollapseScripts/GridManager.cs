@@ -88,8 +88,11 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    grid[i, k, j] = new slot();                                    
-                    grid[i, k, j].posibilitySpace.AddRange(modules);                  
+                    grid[i, k, j].posibilitySpace.Clear();
+                    if(grid[i, k, j].isPath)
+                        grid[i, k, j].posibilitySpace.Add(floorGO);
+                    else
+                        grid[i, k, j].posibilitySpace.AddRange(modules);                  
                     mL.randomPool.Add(index);
                     grid[i, k, j].index = index;
                     index++;
@@ -313,14 +316,14 @@ public class GridManager : MonoBehaviour
         onLevelCreated.DeactiveLoadScreen();
         GetComponent<AudioSource>().Play();
         //weights.CalculateWeights();
-        for (int j = 20; j < 26; j++)
+        /*for (int j = 20; j < 26; j++)
         {
             for (int i = 0; i < weights.moduleParents[j].transform.childCount; i++)
             {
                 weights.moduleParents[j].transform.GetChild(i).GetComponent<Renderer>().material = floor;
             }
 
-        }
+        }*/
     }
 
     public bool CheckNumberOfSpecificModules()
