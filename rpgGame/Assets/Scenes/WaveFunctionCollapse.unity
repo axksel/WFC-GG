@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 1213997716}
   - component: {fileID: 1213997717}
   - component: {fileID: 1213997718}
+  - component: {fileID: 1213997719}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -218,11 +219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70edaa0b64503548a5f3fd95af95e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridX: 100
+  gridX: 10
   gridY: 1
-  gridZ: 100
+  gridZ: 10
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
+  floorGO: {fileID: 480407965697156524, guid: 47344057bbd8ebe45ad415603ce86915, type: 3}
   bnm: {fileID: 0}
   isImproved: 1
   size: 0
@@ -456,3 +458,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noise: {fileID: 2800000, guid: 62748631b8c33434f8556d0238331ccc, type: 3}
   modules: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
+--- !u!114 &1213997719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213997708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd06a12484994f24388398ccb3a2de2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
