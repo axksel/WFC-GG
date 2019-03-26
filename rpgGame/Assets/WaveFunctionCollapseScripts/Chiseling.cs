@@ -41,7 +41,7 @@ public class Chiseling : MonoBehaviour
 
     public IEnumerator TryToRemove()
     {
-        //Debug.Log(allPoints.Count);
+        Debug.Log(allPoints.Count);
 
         int itemToRemove = Random.Range(0, allPoints.Count);
         if (allPoints[itemToRemove].isFixed)
@@ -111,13 +111,11 @@ public class Chiseling : MonoBehaviour
             {
                 if (!item2.isVisited)
                 {
-                    Debug.Log("1");
                     return false;
                 }
             }
             Reset();
         }
-        Debug.Log("2");
 
         return true;
     }
