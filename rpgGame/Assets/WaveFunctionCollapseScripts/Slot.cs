@@ -19,6 +19,12 @@ public class slot
     public float noiseWeight;
 
     public bool IsInstantiated = false;
+    public bool isVisited;
+    public bool isPath;
+    public bool isFixed;
+    public int x;
+    public int y;
+    public int z;
 
 
     public void RemoveZeroWeightModules()

@@ -14,6 +14,7 @@ public class GridManager : MonoBehaviour
 
     public List<GameObject> modules = new List<GameObject>();
     public ScriptableObjectList moduleSO;
+    public GameObject floorGO;
     public BuildNavMesh bnm;
     public bool isImproved = true;
     bool isTried = false;
@@ -30,6 +31,7 @@ public class GridManager : MonoBehaviour
     FitnessFunction fitness;
     Weights weights;
     NoiseMap noiseMap;
+    Chiseling chiseling;
 
     void Start()
     {
@@ -38,10 +40,16 @@ public class GridManager : MonoBehaviour
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
         noiseMap = GetComponent<NoiseMap>();
+        chiseling = GetComponent<Chiseling>();
+        bnm = GetComponent<BuildNavMesh>();
+
+        size = gridX * gridY * gridZ;
+        grid = new slot[gridX, gridY, gridZ];
 
         modules.AddRange(moduleSO.list);
         weights.AssignWeights(modules);
-        startBuilding();
+        //startBuilding();
+        Chiseling();
 
         for (int i = 0; i < loadScreen.list[0].transform.childCount; i++)
         {
@@ -49,14 +57,29 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void Chiseling()
+    {
+        for (int i = 0; i < gridX; i++)
+        {
+            for (int k = 0; k < gridY; k++)
+            {
+                for (int j = 0; j < gridZ; j++)
+                {
+                    grid[i, k, j] = new slot();
+                    grid[i, k, j].posibilitySpace.Add(floorGO);
+                    grid[i, k, j].isPath = true;
+                    grid[i, k, j].x = i;
+                    grid[i, k, j].y = k;
+                    grid[i, k, j].z = j;
+                }
+            }
+        }
+        chiseling.grid = grid;
+        chiseling.AssignFixedPoints();
+    }
+
     public void startBuilding()
     {
-        bnm = GetComponent<BuildNavMesh>();
-        size = gridX * gridY * gridZ;
-                
-        grid = new slot[gridX, gridY, gridZ];
-      
-     
         //initialze grid
         int index = 0;
         for (int i = 0; i < gridX; i++)
