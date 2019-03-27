@@ -9,10 +9,13 @@ public class Chiseling : MonoBehaviour
     List<slot> fixedPoints = new List<slot>();
     List<slot> allPoints = new List<slot>();
     int tries = 0;
+    int size = 0;
+    int progress;
 
     private void Awake()
     {
         gridManager = GetComponent<GridManager>();
+        size = gridManager.gridX * gridManager.gridZ;
     }
 
     public void AssignFixedPoints()
@@ -53,7 +56,9 @@ public class Chiseling : MonoBehaviour
         if (CheckFixedPoints())
         {
             tries = 0;
+            progress++;
             allPoints.RemoveAt(itemToRemove);
+            StartCoroutine(gridManager.Progress(size - (int)(0.1f * progress)));
         }
         else
         {
@@ -93,17 +98,11 @@ public class Chiseling : MonoBehaviour
 
     private void Reset()
     {
-            for (int i = 0; i < gridManager.gridX; i++)
-            {
-                for (int k = 0; k < gridManager.gridY; k++)
-                {
-                    for (int j = 0; j < gridManager.gridZ; j++)
-                    {
-                        grid[i, k, j].isVisited = false;
-                    }
-                }
-            }
+        for (int i = 0; i < allPoints.Count; i++)
+        {
+            allPoints[i].isVisited = false;
         }
+    }
 
     private bool CheckFixedPoints()
     {

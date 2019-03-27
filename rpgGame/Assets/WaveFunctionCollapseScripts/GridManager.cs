@@ -49,12 +49,13 @@ public class GridManager : MonoBehaviour
         modules.AddRange(moduleSO.list);
         weights.AssignWeights(modules);
         //startBuilding();
-        Chiseling();
 
         for (int i = 0; i < loadScreen.list[0].transform.childCount; i++)
         {
             loadScreen.list[0].transform.GetChild(i).gameObject.SetActive(true);
         }
+
+        Chiseling();
     }
 
     public void Chiseling()
@@ -355,7 +356,7 @@ public class GridManager : MonoBehaviour
         return fitness.CalculateDoorFitness(FitnessCount);
     }
 
-    IEnumerator Progress(int progress)
+    public IEnumerator Progress(int progress)
     {
         float pct = MathFunctions.Map(progress, (gridX * gridZ), 0, 0, 1);
         loadScreen.list[0].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt((pct * 100)).ToString() + " %";

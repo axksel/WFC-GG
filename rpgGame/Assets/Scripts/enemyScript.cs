@@ -36,6 +36,7 @@ public class enemyScript : MonoBehaviour,EnemyIO
         player = playerList.list[0];
         enemyAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        transform.position += new Vector3(Random.Range(-0.4f, 0.4f), 0, Random.Range(-0.4f, 0.4f));
         startPosition = transform.position;
     }
 

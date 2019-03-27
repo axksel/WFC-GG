@@ -722,6 +722,10 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1952087358, guid: 59f14a7861c663949bdd78656874322e, type: 3}
+      propertyPath: clear
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f14a7861c663949bdd78656874322e, type: 3}
 --- !u!1001 &1576694571
