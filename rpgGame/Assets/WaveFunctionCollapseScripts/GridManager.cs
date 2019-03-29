@@ -69,9 +69,6 @@ public class GridManager : MonoBehaviour
                     grid[i, k, j] = new slot();
                     grid[i, k, j].posibilitySpace.Add(floorGO);
                     grid[i, k, j].isPath = true;
-                    grid[i, k, j].x = i;
-                    grid[i, k, j].y = k;
-                    grid[i, k, j].z = j;
                 }
             }
         }
@@ -144,21 +141,7 @@ public class GridManager : MonoBehaviour
         }
         mL.randomPooltmp.AddRange(mL.randomPool);
 
-        
-        /*for (int i = 0; i < gridX; i++)
-        {
-            grid[i, 0, 0].collapse(19);
-            grid[i, 0, gridZ - 1].collapse(19);
-        }
-      
-        for (int i = 1; i < gridZ-1; i++)
-        {
-            grid[0, 0, i].collapse(19);
-            grid[gridX-1, 0, i].collapse(19);
-        }
 
-        grid[gridX / 2, 0, 1].collapse(15);
-        grid[gridX / 2, 0, gridZ - 2].collapse(17);*/
 
         mL.grid = grid;
         noiseMap.grid = grid;
@@ -176,7 +159,7 @@ public class GridManager : MonoBehaviour
                 for (int j = 0; j < gridZ; j++)
                 {
                     if (grid[i, k, j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
-                    //if(grid[i,k,j].isPath)
+               
                     {
                         size--;
                         StartCoroutine(Progress(size));
@@ -267,27 +250,12 @@ public class GridManager : MonoBehaviour
             {
                 StartCoroutine(IterateAndCollapse());
             }
-           // else if (!CheckNumberOfSpecificModules())
-                  else if (true)
-            {
-                LevelGenerationDone();
-                yield return null;
-            }
-            else if (isImproved)
-            {
-                
-                mL.UnCollapse(2,1,2);
-                size = size + 4;
-                StartCoroutine(IterateAndCollapse());
-                yield return null;
-            }
             else
             {
+
+                LevelGenerationDone();
                 yield return null;
-                mL.Revert(2,1,2);
-                size = size + 4;
-                isTried = true;
-                StartCoroutine(IterateAndCollapse());
+
             }
         }
     }
@@ -310,33 +278,6 @@ public class GridManager : MonoBehaviour
         }*/
     }
 
-    public bool CheckNumberOfSpecificModules()
-    {
-        int FitnessCount = 0;
-        for (int i = 0; i < gridX; i++)
-        {
-            for (int k = 0; k < gridY; k++)
-            {
-                for (int j = 0; j < gridZ; j++)
-                {
-                   
-                    if (grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut0") || grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut1")
-                        || grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut2") || grid[i, k, j].posibilitySpace[0].gameObject.name.Equals("doorOut3"))
-                    {
-                        FitnessCount++;
-                    }
-                }
-            }
-        }
-
-        isImproved = fitness.IsImproved(FitnessCount);
-        if (isTried)
-        {
-            isImproved = true;
-            isTried = false;
-        }
-        return fitness.CalculateDoorFitness(FitnessCount);
-    }
 
     public IEnumerator Progress(int progress)
     {

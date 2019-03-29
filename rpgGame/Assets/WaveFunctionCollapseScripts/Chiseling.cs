@@ -93,14 +93,13 @@ public class Chiseling : MonoBehaviour
                 return;
             }
             slot.isVisited = true;
-            visitedPoints.Add(slot);
-            if (slot.z < gridManager.gridZ - 1)
+            if (slot.neighbours[0]!=null)
                 Visit(slot.neighbours[0]);
-            if (slot.x < gridManager.gridX - 1)
+            if (slot.neighbours[1] != null)
                 Visit(slot.neighbours[1]);
-            if (slot.z > 0)
+            if (slot.neighbours[2] != null)
                 Visit(slot.neighbours[2]);
-            if (slot.x > 0)
+            if (slot.neighbours[3] != null)
                 Visit(slot.neighbours[3]);
         }
     }
