@@ -250,11 +250,13 @@ public class GridManager : MonoBehaviour
             {
                 StartCoroutine(IterateAndCollapse());
             }
-         
+            else
+            {
+
                 LevelGenerationDone();
                 yield return null;
-            
-          
+
+            }
         }
     }
 
