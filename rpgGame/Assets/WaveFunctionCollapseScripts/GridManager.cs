@@ -23,8 +23,6 @@ public class GridManager : MonoBehaviour
     public int size;
     public GameObjectList loadScreen;
     public GameObjectList progressBar;
-    private OnLevelCreated onLevelCreated;
-    public MachineLearning mL;
     public Material floor;
     Color[,] noiseValues;
 
@@ -32,6 +30,8 @@ public class GridManager : MonoBehaviour
     Weights weights;
     NoiseMap noiseMap;
     Chiseling chiseling;
+    OnLevelCreated onLevelCreated;
+    MachineLearning mL;
 
     void Start()
     {
@@ -75,32 +75,6 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        chiseling.grid = grid;
-        chiseling.AssignFixedPoints();
-    }
-
-    public void startBuilding()
-    {
-        //initialze grid
-        int index = 0;
-        for (int i = 0; i < gridX; i++)
-        {
-            for (int k = 0; k < gridY; k++)
-            {
-                for (int j = 0; j < gridZ; j++)
-                {
-                    grid[i, k, j].posibilitySpace.Clear();
-                    if(grid[i, k, j].isPath)
-                        grid[i, k, j].posibilitySpace.Add(floorGO);
-                    else
-                        grid[i, k, j].posibilitySpace.AddRange(modules);                  
-                    mL.randomPool.Add(index);
-                    grid[i, k, j].index = index;
-                    index++;
-                }
-            }
-        }
-        mL.randomPooltmp.AddRange(mL.randomPool);
 
         //Assign neighbours
         for (int i = 0; i < gridX; i++)
@@ -142,6 +116,35 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+
+        chiseling.grid = grid;
+        chiseling.AssignFixedPoints();
+    }
+
+    public void startBuilding()
+    {
+        //initialze grid
+        int index = 0;
+        for (int i = 0; i < gridX; i++)
+        {
+            for (int k = 0; k < gridY; k++)
+            {
+                for (int j = 0; j < gridZ; j++)
+                {
+                    grid[i, k, j].posibilitySpace.Clear();
+                    if(grid[i, k, j].isPath)
+                        grid[i, k, j].posibilitySpace.Add(floorGO);
+                    else
+                        grid[i, k, j].posibilitySpace.AddRange(modules);                  
+                    mL.randomPool.Add(index);
+                    grid[i, k, j].index = index;
+                    index++;
+                }
+            }
+        }
+        mL.randomPooltmp.AddRange(mL.randomPool);
+
+        
         /*for (int i = 0; i < gridX; i++)
         {
             grid[i, 0, 0].collapse(19);
@@ -164,25 +167,6 @@ public class GridManager : MonoBehaviour
         StartCoroutine(IterateAndCollapse());       
     }
 
-    /*void OnDrawGizmos()
-    {
-        for (int i = 0; i < gridX; i++)
-        {
-            for (int k = 0; k < gridY; k++)
-            {
-                for (int j = 0; j < gridZ; j++)
-                {
-                    try
-                    {
-                        Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
-                       
-                    }
-                    catch (System.NullReferenceException) { }
-                }
-            }
-        }
-    }*/
-
     public void Build()
     {
         for (int i = 0; i < gridX; i++)
@@ -192,9 +176,10 @@ public class GridManager : MonoBehaviour
                 for (int j = 0; j < gridZ; j++)
                 {
                     if (grid[i, k, j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
+                    //if(grid[i,k,j].isPath)
                     {
-                        StartCoroutine(Progress(size));
                         size--;
+                        StartCoroutine(Progress(size));
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         //tmpGo.GetComponentInChildren<Renderer>().material.color = noiseMap.pixelValues[i, j];
                         grid[i, k, j].instantiatedModule = tmpGo;
@@ -309,7 +294,6 @@ public class GridManager : MonoBehaviour
 
     private void LevelGenerationDone()
     {
-
         onLevelCreated.DeactivateEnemies();
         bnm.BuildNavMeshButton();
         onLevelCreated.ActivateEnemies();
@@ -323,13 +307,11 @@ public class GridManager : MonoBehaviour
             {
                 weights.moduleParents[j].transform.GetChild(i).GetComponent<Renderer>().material = floor;
             }
-
         }*/
     }
 
     public bool CheckNumberOfSpecificModules()
     {
-        
         int FitnessCount = 0;
         for (int i = 0; i < gridX; i++)
         {
@@ -375,4 +357,22 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
+    /*void OnDrawGizmos()
+{
+    for (int i = 0; i < gridX; i++)
+    {
+        for (int k = 0; k < gridY; k++)
+        {
+            for (int j = 0; j < gridZ; j++)
+            {
+                try
+                {
+                    Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
+
+                }
+                catch (System.NullReferenceException) { }
+            }
+        }
+    }
+}*/
 }

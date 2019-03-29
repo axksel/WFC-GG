@@ -11,6 +11,7 @@ public class Chiseling : MonoBehaviour
     int tries = 0;
     int size = 0;
     int progress;
+    int fixedSlotsVisited;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class Chiseling : MonoBehaviour
         grid[0, 0, 45].isFixed = true;
         fixedPoints.Add(grid[19, 0, 25]);
         grid[19, 0, 25].isFixed = true;
+
         StartCoroutine(TryToRemove());
     }
 
@@ -69,6 +71,7 @@ public class Chiseling : MonoBehaviour
         if (tries > 100)
         {
             gridManager.startBuilding();
+            //gridManager.Build();
         }
         else
         {
@@ -82,18 +85,26 @@ public class Chiseling : MonoBehaviour
 
     void Visit(slot slot)
     {
-            if (slot.isPath && !slot.isVisited)
+        if (slot.isFixed)
+        {
+            fixedSlotsVisited++;
+        }
+        if (fixedSlotsVisited == fixedPoints.Count)
+        {
+            return;
+        }
+        if (slot.isPath && !slot.isVisited)
             {
-                slot.isVisited = true;
-                if (slot.x < gridManager.gridX - 1)
-                    Visit(grid[slot.x + 1, slot.y, slot.z]);
-                if (slot.x > 0)
-                    Visit(grid[slot.x - 1, slot.y, slot.z]);
-                if (slot.z > 0)
-                    Visit(grid[slot.x, slot.y, slot.z - 1]);
-                if (slot.z < gridManager.gridZ - 1)
-                    Visit(grid[slot.x, slot.y, slot.z + 1]);
-            }
+            slot.isVisited = true;
+            if (slot.z < gridManager.gridZ - 1)
+                Visit(slot.neighbours[0]);
+            if (slot.x < gridManager.gridX - 1)
+                Visit(slot.neighbours[1]);
+            if (slot.z > 0)
+                Visit(slot.neighbours[2]);
+            if (slot.x > 0)
+                Visit(slot.neighbours[3]);
+        }
     }
 
     private void Reset()
@@ -106,6 +117,7 @@ public class Chiseling : MonoBehaviour
 
     private bool CheckFixedPoints()
     {
+        fixedSlotsVisited = 0;
         Visit(fixedPoints[0]);
         for (int i = 0; i < fixedPoints.Count; i++)
         {
