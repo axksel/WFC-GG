@@ -93,6 +93,7 @@ public class Chiseling : MonoBehaviour
                 return;
             }
             slot.isVisited = true;
+            visitedPoints.Add(slot);
             if (slot.neighbours[0]!=null)
                 Visit(slot.neighbours[0]);
             if (slot.neighbours[1] != null)
@@ -106,7 +107,7 @@ public class Chiseling : MonoBehaviour
 
     private void Reset()
     {
-        Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
+        //Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
         for (int i = 0; i < visitedPoints.Count; i++)
         {
             visitedPoints[i].isVisited = false;
@@ -125,6 +126,7 @@ public class Chiseling : MonoBehaviour
                 return false;
             }
         }
+        Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
         return true;
     }
 }
