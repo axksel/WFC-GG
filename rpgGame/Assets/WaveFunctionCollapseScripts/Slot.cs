@@ -18,6 +18,9 @@ public class slot
     public List<GameObject> neighbour5Pos = new List<GameObject>();
     public float noiseWeight;
 
+    public float widthMod;
+    public float heightMod;
+
     public bool IsInstantiated = false;
     public bool isVisited;
     public bool isPath;
