@@ -8,6 +8,7 @@ public class Chiseling : MonoBehaviour
     public slot[,,] grid;
     List<slot> fixedPoints = new List<slot>();
     List<slot> allPoints = new List<slot>();
+    List<slot> visitedPoints = new List<slot>();
     int tries = 0;
     int size = 0;
     int progress;
@@ -35,12 +36,8 @@ public class Chiseling : MonoBehaviour
 
         fixedPoints.Add(grid[0, 0, 0]);
         grid[0, 0, 0].isFixed = true;
-        fixedPoints.Add(grid[30, 0, 19]);
-        grid[30, 0, 19].isFixed = true;
-        fixedPoints.Add(grid[0, 0, 45]);
-        grid[0, 0, 45].isFixed = true;
-        fixedPoints.Add(grid[19, 0, 25]);
-        grid[19, 0, 25].isFixed = true;
+        fixedPoints.Add(grid[5, 0, 5]);
+        grid[5, 0, 5].isFixed = true;
 
         StartCoroutine(TryToRemove());
     }
@@ -85,17 +82,18 @@ public class Chiseling : MonoBehaviour
 
     void Visit(slot slot)
     {
-        if (slot.isFixed)
-        {
-            fixedSlotsVisited++;
-        }
-        if (fixedSlotsVisited == fixedPoints.Count)
-        {
-            return;
-        }
         if (slot.isPath && !slot.isVisited)
             {
+            if (slot.isFixed)
+            {
+                fixedSlotsVisited++;
+            }
+            if (fixedSlotsVisited == fixedPoints.Count)
+            {
+                return;
+            }
             slot.isVisited = true;
+            visitedPoints.Add(slot);
             if (slot.z < gridManager.gridZ - 1)
                 Visit(slot.neighbours[0]);
             if (slot.x < gridManager.gridX - 1)
@@ -109,10 +107,12 @@ public class Chiseling : MonoBehaviour
 
     private void Reset()
     {
-        for (int i = 0; i < allPoints.Count; i++)
+        Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
+        for (int i = 0; i < visitedPoints.Count; i++)
         {
-            allPoints[i].isVisited = false;
+            visitedPoints[i].isVisited = false;
         }
+        visitedPoints.Clear();
     }
 
     private bool CheckFixedPoints()
