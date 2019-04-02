@@ -227,7 +227,6 @@ MonoBehaviour:
   neighbourWest:
   - {fileID: 2047766919, guid: 5f29f4fece26c284c88f09ee9a39e86c, type: 3}
   - {fileID: 2067548770, guid: e82ce31bd09939548a71a43aced1dd70, type: 3}
-  - {fileID: 647734533, guid: 5f6600f75b04d5b48bed0e8aacdc3129, type: 3}
   - {fileID: 2113143100, guid: 7b3d3cd6981b59f4f9e9056ab0730225, type: 3}
   neighbourUp:
   - {fileID: 5225446557080183971, guid: 700b4f7498801df458af29f8f8692dd1, type: 3}

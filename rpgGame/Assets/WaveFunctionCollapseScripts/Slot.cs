@@ -26,6 +26,15 @@ public class slot
     public bool isPath;
     public bool isFixed;
 
+    public List<Point> points = new List<Point>();
+
+    public slot(Point point0, Point point1, Point point2, Point point3)
+    {
+        points.Add(point0);
+        points.Add(point1);
+        points.Add(point2);
+        points.Add(point3);
+    }
 
     public void RemoveZeroWeightModules()
     {

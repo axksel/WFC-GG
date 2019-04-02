@@ -33,6 +33,10 @@ public class GridManager : MonoBehaviour
     OnLevelCreated onLevelCreated;
     MachineLearning mL;
 
+    //Point system
+    public List<Point> allPoints = new List<Point>();
+    Vector3 offset = new Vector3(-1,0,-1);
+
     void Start()
     {
         mL = GetComponent<MachineLearning>();
@@ -55,20 +59,36 @@ public class GridManager : MonoBehaviour
             loadScreen.list[0].transform.GetChild(i).gameObject.SetActive(true);
         }
 
+        for (int i = 0; i < gridZ + 1; i++)
+        {
+            for (int k = 0; k < gridX + 1; k++)
+            {
+                Point tmpPoint = new Point(new Vector3(k * 2, 0, i * 2));
+                allPoints.Add(tmpPoint);
+            }
+        }
+
         Chiseling();
     }
 
     public void Chiseling()
     {
+        int index = 0;
         for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    grid[i, k, j] = new slot();
+
+                    slot tmpSlot = new slot(allPoints[i + (gridZ + 1) * j], allPoints[(i + (gridZ + 1) * j) + 1], allPoints[i + (gridX + 1) + (gridZ + 1) * j], allPoints[i + (gridX + 2) + (gridZ + 1) * j]);
+                    grid[i, k, j] = tmpSlot;
+
                     grid[i, k, j].posibilitySpace.Add(floorGO);
                     grid[i, k, j].isPath = true;
+                    grid[i, k, j].index = index;
+                    index++;
+                    mL.randomPool.Add(index);
                 }
             }
         }
@@ -121,7 +141,6 @@ public class GridManager : MonoBehaviour
     public void startBuilding()
     {
         //initialze grid
-        int index = 0;
         for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
@@ -133,9 +152,6 @@ public class GridManager : MonoBehaviour
                         grid[i, k, j].posibilitySpace.Add(floorGO);
                     else
                         grid[i, k, j].posibilitySpace.AddRange(modules);                  
-                    mL.randomPool.Add(index);
-                    grid[i, k, j].index = index;
-                    index++;
                 }
             }
         }
@@ -163,7 +179,7 @@ public class GridManager : MonoBehaviour
                     {
                         size--;
                         StartCoroutine(Progress(size));
-                        GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
+                        GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].points[0].position, grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         //tmpGo.GetComponentInChildren<Renderer>().material.color = noiseMap.pixelValues[i, j];
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
@@ -220,6 +236,7 @@ public class GridManager : MonoBehaviour
 
                         if (grid[i, k, j].Contradiction() == true)
                         {
+                            Debug.Log("GG");
                             mL.UnCollapseWithPosition(6, 1, 6, i, k, j);
                         }
 
@@ -299,21 +316,42 @@ public class GridManager : MonoBehaviour
     }
 
     /*void OnDrawGizmos()
-{
-    for (int i = 0; i < gridX; i++)
     {
-        for (int k = 0; k < gridY; k++)
+        for (int i = 0; i < gridX; i++)
         {
-            for (int j = 0; j < gridZ; j++)
+            for (int k = 0; k < gridY; k++)
             {
-                try
+                for (int j = 0; j < gridZ; j++)
                 {
-                    Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
+                    try
+                    {
+                        Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
 
+                    }
+                    catch (System.NullReferenceException) { }
                 }
-                catch (System.NullReferenceException) { }
             }
         }
-    }
-}*/
+        Gizmos.color = Color.blue;
+
+        Gizmos.color = Color.red;
+        for (int i = 0; i < allPoints.Count; i++)
+        {
+            Gizmos.DrawSphere(allPoints[i].position + offset, 0.1f);
+        }
+
+        for (int i = 0; i < gridX; i++)
+        {
+            for (int k = 0; k < gridY; k++)
+            {
+                for (int j = 0; j < gridZ; j++)
+                {
+                    Gizmos.DrawLine(grid[i, k, j].points[0].position + offset, grid[i, k, j].points[1].position + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[1].position + offset, grid[i, k, j].points[3].position + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[2].position + offset, grid[i, k, j].points[3].position + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[2].position + offset, grid[i, k, j].points[0].position + offset);
+                }
+            }   
+        }
+    }*/
 }

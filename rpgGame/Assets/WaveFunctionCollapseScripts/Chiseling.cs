@@ -11,7 +11,7 @@ public class Chiseling : MonoBehaviour
     List<slot> visitedPoints = new List<slot>();
     int tries = 0;
     int size = 0;
-    int progress;
+    public int progress;
     int fixedSlotsVisited;
 
     private void Awake()
@@ -36,8 +36,9 @@ public class Chiseling : MonoBehaviour
 
         fixedPoints.Add(grid[0, 0, 0]);
         grid[0, 0, 0].isFixed = true;
-        fixedPoints.Add(grid[5, 0, 5]);
-        grid[5, 0, 5].isFixed = true;
+        fixedPoints.Add(grid[gridManager.gridX - 1, 0, gridManager.gridZ - 1]);
+        grid[gridManager.gridX - 1, 0, gridManager.gridZ - 1].isFixed = true;
+
 
         StartCoroutine(TryToRemove());
     }
@@ -45,11 +46,7 @@ public class Chiseling : MonoBehaviour
     public IEnumerator TryToRemove()
     {
         int itemToRemove = Random.Range(0, allPoints.Count);
-        if (allPoints[itemToRemove].isFixed)
-        {
-            yield return null;
-            StartCoroutine(TryToRemove());
-        }
+
         allPoints[itemToRemove].isPath = false;
 
         if (CheckFixedPoints())
@@ -80,34 +77,42 @@ public class Chiseling : MonoBehaviour
 
 
 
-    void Visit(slot slot)
+    public IEnumerator Visit(slot slot)
     {
-        if (slot.isPath && !slot.isVisited)
-            {
-            if (slot.isFixed)
-            {
-                fixedSlotsVisited++;
-            }
-            if (fixedSlotsVisited == fixedPoints.Count)
-            {
-                return;
-            }
-            slot.isVisited = true;
-            visitedPoints.Add(slot);
-            if (slot.neighbours[0]!=null)
-                Visit(slot.neighbours[0]);
-            if (slot.neighbours[1] != null)
-                Visit(slot.neighbours[1]);
-            if (slot.neighbours[2] != null)
-                Visit(slot.neighbours[2]);
-            if (slot.neighbours[3] != null)
-                Visit(slot.neighbours[3]);
+        if (fixedSlotsVisited == fixedPoints.Count)
+        {
+            yield return null;
         }
+        else
+        {
+            if (slot.isPath && !slot.isVisited)
+            {
+                slot.isVisited = true;
+                visitedPoints.Add(slot);
+
+                if (slot.isFixed)
+                {
+                    fixedSlotsVisited++;
+                }
+
+                if (slot.neighbours[0] != null)
+                    StartCoroutine(Visit(slot.neighbours[0]));
+                if (slot.neighbours[1] != null)
+                    StartCoroutine(Visit(slot.neighbours[1]));
+                if (slot.neighbours[2] != null)
+                    StartCoroutine(Visit(slot.neighbours[2]));
+                if (slot.neighbours[3] != null)
+                    StartCoroutine(Visit(slot.neighbours[3]));
+            }
+        }
+
+
     }
 
     private void Reset()
     {
         //Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
+
         for (int i = 0; i < visitedPoints.Count; i++)
         {
             visitedPoints[i].isVisited = false;
@@ -118,7 +123,7 @@ public class Chiseling : MonoBehaviour
     private bool CheckFixedPoints()
     {
         fixedSlotsVisited = 0;
-        Visit(fixedPoints[0]);
+        StartCoroutine(Visit(fixedPoints[0]));
         for (int i = 0; i < fixedPoints.Count; i++)
         {
             if (!fixedPoints[i].isVisited)
@@ -126,7 +131,7 @@ public class Chiseling : MonoBehaviour
                 return false;
             }
         }
-        Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
+        //Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
         return true;
     }
 }

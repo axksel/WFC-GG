@@ -40,7 +40,7 @@ public class MachineLearning : MonoBehaviour
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    savedMiniGrid[i, k, j] = new slot();
+                    //savedMiniGrid[i, k, j] = new slot();
                 }
             }
         }
