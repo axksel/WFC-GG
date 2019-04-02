@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GridManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GridManager : MonoBehaviour
     public BuildNavMesh bnm;
     public bool isImproved = true;
     bool isTried = false;
+    public bool enableChiseling;
 
     public slot[,,] grid;
     public int size;
@@ -35,7 +37,7 @@ public class GridManager : MonoBehaviour
 
     //Point system
     public List<Point> allPoints = new List<Point>();
-    Vector3 offset = new Vector3(-1,0,-1);
+    Vector3 offset = new Vector3(0,0,0);
 
     void Start()
     {
@@ -63,7 +65,7 @@ public class GridManager : MonoBehaviour
         {
             for (int k = 0; k < gridX + 1; k++)
             {
-                Point tmpPoint = new Point(new Vector3(k * 2, 0, i * 2));
+                Point tmpPoint = new Point(new Vector3(k * 2, 0, i * 2), UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(-0.5f, 0.5f));
                 allPoints.Add(tmpPoint);
             }
         }
@@ -80,12 +82,9 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-
                     slot tmpSlot = new slot(allPoints[i + (gridZ + 1) * j], allPoints[(i + (gridZ + 1) * j) + 1], allPoints[i + (gridX + 1) + (gridZ + 1) * j], allPoints[i + (gridX + 2) + (gridZ + 1) * j]);
                     grid[i, k, j] = tmpSlot;
-
-                    grid[i, k, j].posibilitySpace.Add(floorGO);
-                    grid[i, k, j].isPath = true;
+                    if (enableChiseling) grid[i, k, j].isPath = true;
                     grid[i, k, j].index = index;
                     index++;
                     mL.randomPool.Add(index);
@@ -134,8 +133,15 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        chiseling.grid = grid;
-        chiseling.AssignFixedPoints();
+        if (enableChiseling)
+        {
+            chiseling.grid = grid;
+            chiseling.AssignFixedPoints();
+        }
+        else
+        {
+            startBuilding();
+        }
     }
 
     public void startBuilding()
@@ -174,15 +180,25 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    if (grid[i, k, j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
-               
+                   // if (grid[i, k, j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
+                    if(grid[i, k, j].isPath && grid[i, k, j].IsInstantiated != true)
                     {
                         size--;
                         StartCoroutine(Progress(size));
-                        GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], grid[i, k, j].points[0].position, grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
-                        //tmpGo.GetComponentInChildren<Renderer>().material.color = noiseMap.pixelValues[i, j];
+                        GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
+                        if(grid[i, k, j].isPath)
+                        {
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * -50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * -50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[1].offsetX) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[1].offsetZ) * -50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[2].offsetX) * -50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[2].offsetZ) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * 50);
+                        }
                     }
                 }
             }
@@ -236,7 +252,6 @@ public class GridManager : MonoBehaviour
 
                         if (grid[i, k, j].Contradiction() == true)
                         {
-                            Debug.Log("GG");
                             mL.UnCollapseWithPosition(6, 1, 6, i, k, j);
                         }
 
@@ -315,7 +330,7 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    /*void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         for (int i = 0; i < gridX; i++)
         {
@@ -337,7 +352,9 @@ public class GridManager : MonoBehaviour
         Gizmos.color = Color.red;
         for (int i = 0; i < allPoints.Count; i++)
         {
-            Gizmos.DrawSphere(allPoints[i].position + offset, 0.1f);
+            //Gizmos.DrawSphere(allPoints[i].position + offset, 0.1f);
+            Handles.Label(allPoints[i].position + offset, Math.Round(allPoints[i].offsetX, 2).ToString() + " and " + Math.Round(allPoints[i].offsetZ, 2).ToString());
+
         }
 
         for (int i = 0; i < gridX; i++)
@@ -353,5 +370,5 @@ public class GridManager : MonoBehaviour
                 }
             }   
         }
-    }*/
+    }
 }

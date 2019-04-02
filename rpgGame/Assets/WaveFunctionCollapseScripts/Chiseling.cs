@@ -9,9 +9,10 @@ public class Chiseling : MonoBehaviour
     List<slot> fixedPoints = new List<slot>();
     List<slot> allPoints = new List<slot>();
     List<slot> visitedPoints = new List<slot>();
+    public List<Vector2> fixedPointsPositions = new List<Vector2>();
     int tries = 0;
     int size = 0;
-    public int progress;
+    int progress;
     int fixedSlotsVisited;
 
     private void Awake()
@@ -34,11 +35,11 @@ public class Chiseling : MonoBehaviour
             }
         }
 
-        fixedPoints.Add(grid[0, 0, 0]);
-        grid[0, 0, 0].isFixed = true;
-        fixedPoints.Add(grid[gridManager.gridX - 1, 0, gridManager.gridZ - 1]);
-        grid[gridManager.gridX - 1, 0, gridManager.gridZ - 1].isFixed = true;
-
+        for (int i = 0; i < fixedPointsPositions.Count; i++)
+        {
+            fixedPoints.Add(grid[(int)fixedPointsPositions[i].x, 0, (int)fixedPointsPositions[i].y]);
+            grid[(int)fixedPointsPositions[i].x, 0, (int)fixedPointsPositions[i].y].isFixed = true;
+        }
 
         StartCoroutine(TryToRemove());
     }
@@ -112,7 +113,6 @@ public class Chiseling : MonoBehaviour
     private void Reset()
     {
         //Debug.Log(visitedPoints.Count + " and " + fixedSlotsVisited + " and " + fixedPoints.Count);
-
         for (int i = 0; i < visitedPoints.Count; i++)
         {
             visitedPoints[i].isVisited = false;

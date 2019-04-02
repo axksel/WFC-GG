@@ -227,6 +227,7 @@ MonoBehaviour:
   floorGO: {fileID: 480407965697156524, guid: 47344057bbd8ebe45ad415603ce86915, type: 3}
   bnm: {fileID: 0}
   isImproved: 1
+  enableChiseling: 1
   size: 0
   loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
   progressBar: {fileID: 11400000, guid: 8c72052eaec8e3b439c2e410c611dc58, type: 2}
@@ -469,3 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd06a12484994f24388398ccb3a2de2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fixedPointsPositions:
+  - {x: 0, y: 0}
+  - {x: 15, y: 15}
