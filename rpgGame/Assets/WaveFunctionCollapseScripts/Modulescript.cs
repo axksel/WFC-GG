@@ -5,9 +5,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Modulescript : MonoBehaviour
 {
-    public enum direction {North= 0, East=1,South=2,West=3};
 
-
+   
     public int[] neighbours = new int[6];
     public bool[] flipped = new bool[6];
     public bool[] symmetrical = new bool[6];

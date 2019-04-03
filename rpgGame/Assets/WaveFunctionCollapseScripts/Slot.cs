@@ -17,6 +17,7 @@ public class slot
     public List<GameObject> neighbour4Pos = new List<GameObject>();
     public List<GameObject> neighbour5Pos = new List<GameObject>();
     public float noiseWeight;
+ 
 
     public float widthMod;
     public float heightMod;

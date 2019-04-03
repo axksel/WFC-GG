@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour
 
     //Point system
     public List<Point> allPoints = new List<Point>();
-    Vector3 offset = new Vector3(0,0,0);
+    Vector3 offset = new Vector3(-1,0,-1);
 
     void Start()
     {
@@ -190,14 +190,14 @@ public class GridManager : MonoBehaviour
                         grid[i, k, j].IsInstantiated = true;
                         if(grid[i, k, j].isPath)
                         {
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * -50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * -50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[1].offsetX) * 50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[1].offsetZ) * -50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[2].offsetX) * -50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[2].offsetZ) * 50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * 50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[1].offsetX) * -50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[1].offsetZ) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[2].offsetX) * 50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[2].offsetZ) * -50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * -50);
+                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * -50);
                         }
                     }
                 }
@@ -341,6 +341,7 @@ public class GridManager : MonoBehaviour
                     try
                     {
                         Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
+                       
 
                     }
                     catch (System.NullReferenceException) { }
