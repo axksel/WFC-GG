@@ -180,25 +180,19 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                   // if (grid[i, k, j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
-                    if(grid[i, k, j].isPath && grid[i, k, j].IsInstantiated != true)
+                    if (grid[i, k, j].posibilitySpace.Count == 1 && grid[i, k, j].IsInstantiated != true)
+                    //if(grid[i, k, j].isPath && grid[i, k, j].IsInstantiated != true)
                     {
                         size--;
                         StartCoroutine(Progress(size));
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
-                        if(grid[i, k, j].isPath)
+                        if(grid[i, k, j].isPath || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Wall || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.FloorWithEnemy || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Corner || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.InverseCorner)
                         {
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * 50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * 50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[1].offsetX) * -50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[1].offsetZ) * 50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[2].offsetX) * 50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[2].offsetZ) * -50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * -50);
-                            tmpGo.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * -50);
+                            SetBlendWeights(tmpGo, i, k, j);
                         }
+
                     }
                 }
             }
@@ -310,6 +304,55 @@ public class GridManager : MonoBehaviour
         }*/
     }
 
+    void SetBlendWeights(GameObject module, int i, int k, int j)
+    {
+        if(module.transform.rotation.eulerAngles.y == 0)
+        {
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[1].offsetX) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[1].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[2].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[2].offsetZ) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * -50);
+        }
+        else if (module.transform.rotation.eulerAngles.y == 90)
+        {
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[0].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[0].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[1].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[1].offsetX) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[2].offsetZ) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[2].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[3].offsetZ) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[3].offsetX) * -50);
+        }
+        else if (module.transform.rotation.eulerAngles.y == 180)
+        {
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[0].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[0].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[1].offsetX) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[1].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[2].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[2].offsetZ) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[3].offsetX) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[3].offsetZ) * -50);
+        }
+        else if (module.transform.rotation.eulerAngles.y == 270)
+        {
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[0].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[0].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[1].offsetZ) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[1].offsetX) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[2].offsetZ) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[2].offsetX) * 50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[3].offsetZ) * -50);
+            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[3].offsetX) * -50);
+        }
+
+    }
+
 
     public IEnumerator Progress(int progress)
     {
@@ -330,7 +373,7 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         for (int i = 0; i < gridX; i++)
         {
@@ -354,7 +397,7 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < allPoints.Count; i++)
         {
             //Gizmos.DrawSphere(allPoints[i].position + offset, 0.1f);
-            Handles.Label(allPoints[i].position + offset, Math.Round(allPoints[i].offsetX, 2).ToString() + " and " + Math.Round(allPoints[i].offsetZ, 2).ToString());
+            //Handles.Label(allPoints[i].position + offset, Math.Round(allPoints[i].offsetX, 2).ToString() + " and " + Math.Round(allPoints[i].offsetZ, 2).ToString());
 
         }
 
@@ -371,5 +414,5 @@ public class GridManager : MonoBehaviour
                 }
             }   
         }
-    }
+    }*/
 }

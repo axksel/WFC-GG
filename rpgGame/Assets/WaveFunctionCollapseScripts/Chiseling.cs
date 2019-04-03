@@ -40,7 +40,6 @@ public class Chiseling : MonoBehaviour
             fixedPoints.Add(grid[(int)fixedPointsPositions[i].x, 0, (int)fixedPointsPositions[i].y]);
             grid[(int)fixedPointsPositions[i].x, 0, (int)fixedPointsPositions[i].y].isFixed = true;
         }
-
         StartCoroutine(TryToRemove());
     }
 

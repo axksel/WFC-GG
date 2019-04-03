@@ -28,7 +28,7 @@ public class Modulescript : MonoBehaviour
     
     public int moduleIndex;
 
-    public enum ModuleType { Corner, InverseCorner, Wall, Door, Floor, FloorPillar, FloorWithEnemy}
+    public enum ModuleType { Corner, InverseCorner, Wall, Door, Floor, FloorPillar, FloorWithEnemy, WaterFloor, WaterWall}
 
     public ModuleType moduleType;
 
