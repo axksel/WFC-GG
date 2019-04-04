@@ -306,51 +306,66 @@ public class GridManager : MonoBehaviour
 
     void SetBlendWeights(GameObject module, int i, int k, int j)
     {
-        if(module.transform.rotation.eulerAngles.y == 0)
+        SkinnedMeshRenderer skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
+        Mesh tmpMesh = new Mesh();
+        Material tmpMaterial;
+        MeshFilter meshFilter = module.GetComponent<MeshFilter>();
+        Bounds bounds;
+
+        if (module.transform.rotation.eulerAngles.y == 0)
         {
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[1].offsetX) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[1].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[2].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[2].offsetZ) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(0, (grid[i, k, j].points[1].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(1, (grid[i, k, j].points[1].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[2].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[2].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * -50);
         }
         else if (module.transform.rotation.eulerAngles.y == 90)
         {
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[0].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[0].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[1].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[1].offsetX) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[2].offsetZ) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[2].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[3].offsetZ) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[3].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(0, (grid[i, k, j].points[0].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(1, (grid[i, k, j].points[0].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[1].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[1].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[2].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[2].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[3].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[3].offsetX) * -50);
         }
         else if (module.transform.rotation.eulerAngles.y == 180)
         {
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[0].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[0].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[1].offsetX) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[1].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[2].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[2].offsetZ) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[3].offsetX) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[3].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[0].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[0].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[1].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[1].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(0, (grid[i, k, j].points[2].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(1, (grid[i, k, j].points[2].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[3].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[3].offsetZ) * -50);
         }
         else if (module.transform.rotation.eulerAngles.y == 270)
         {
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(6, (grid[i, k, j].points[0].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(7, (grid[i, k, j].points[0].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(2, (grid[i, k, j].points[1].offsetZ) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(3, (grid[i, k, j].points[1].offsetX) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(4, (grid[i, k, j].points[2].offsetZ) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(5, (grid[i, k, j].points[2].offsetX) * 50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (grid[i, k, j].points[3].offsetZ) * -50);
-            module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(1, (grid[i, k, j].points[3].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[0].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[0].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[1].offsetZ) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[1].offsetX) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[2].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[2].offsetX) * 50);
+            skinnedMeshRenderer.SetBlendShapeWeight(0, (grid[i, k, j].points[3].offsetZ) * -50);
+            skinnedMeshRenderer.SetBlendShapeWeight(1, (grid[i, k, j].points[3].offsetX) * -50);
         }
 
+        skinnedMeshRenderer.BakeMesh(tmpMesh);
+        bounds = meshFilter.mesh.bounds;
+        bounds.Expand(new Vector3(1, 1, 1));
+        tmpMesh.bounds = bounds;
+        meshFilter.mesh = tmpMesh;
+        tmpMaterial = skinnedMeshRenderer.material;
+        Destroy(skinnedMeshRenderer);
+        module.AddComponent<MeshRenderer>();
+        module.GetComponent<MeshRenderer>().material = tmpMaterial;
     }
 
 

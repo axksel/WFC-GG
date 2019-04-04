@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7308084425106616493}
   - component: {fileID: 7847544821103290715}
   - component: {fileID: 8312388888828453940}
+  - component: {fileID: 2150009999069779500}
   m_Layer: 0
   m_Name: AirModule
   m_TagString: Untagged
@@ -208,3 +209,11 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.4677375, z: 0}
     m_Extent: {x: 0.5, y: 0.5177375, z: 0.5}
   m_DirtyAABB: 0
+--- !u!33 &2150009999069779500
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587041743614604716}
+  m_Mesh: {fileID: 0}
