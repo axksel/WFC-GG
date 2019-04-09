@@ -320,7 +320,7 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                 //   SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                   SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
                     //CreateStaticMesh(grid[i, k, j].instantiatedModule);
                 }
             }
@@ -432,19 +432,23 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    tmpVec = grid[i, k, j].points[0].offsetPos - grid[i, k, j].points[0].position; 
+
+                    Vector3 offsetMiddle = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
+                    Vector3 positionMiddle = (grid[i, k, j].points[0].position + grid[i, k, j].points[1].position + grid[i, k, j].points[2].position + grid[i, k, j].points[3].position) / 4;
+
+                    tmpVec = (offsetMiddle-grid[i, k, j].points[0].offsetPos) - (positionMiddle-grid[i, k, j].points[0].position); 
                     grid[i, k, j].points[0].offsetX = tmpVec.x;
                     grid[i, k, j].points[0].offsetZ = tmpVec.z;
 
-                    tmpVec = grid[i, k, j].points[1].offsetPos - grid[i, k, j].points[1].position;
+                    tmpVec = (offsetMiddle - grid[i, k, j].points[1].offsetPos) - (positionMiddle - grid[i, k, j].points[1].position);
                     grid[i, k, j].points[1].offsetX = tmpVec.x;
                     grid[i, k, j].points[1].offsetZ = tmpVec.z;
 
-                    tmpVec = grid[i, k, j].points[2].offsetPos - grid[i, k, j].points[2].position;
+                    tmpVec = (offsetMiddle - grid[i, k, j].points[2].offsetPos) - (positionMiddle - grid[i, k, j].points[2].position);
                     grid[i, k, j].points[2].offsetX = tmpVec.x;
                     grid[i, k, j].points[2].offsetZ = tmpVec.z;
 
-                    tmpVec = grid[i, k, j].points[3].offsetPos - grid[i, k, j].points[3].position;
+                    tmpVec = (offsetMiddle - grid[i, k, j].points[3].offsetPos) - (positionMiddle - grid[i, k, j].points[3].position);
                     grid[i, k, j].points[3].offsetX = tmpVec.x;
                     grid[i, k, j].points[3].offsetZ = tmpVec.z;
                 }
