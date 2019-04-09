@@ -35,9 +35,16 @@ public class GridManager : MonoBehaviour
     OnLevelCreated onLevelCreated;
     MachineLearning mL;
 
+    //BlendWeights
+    SkinnedMeshRenderer skinnedMeshRenderer;
+    Mesh tmpMesh;
+    Material tmpMaterial;
+    MeshFilter meshFilter;
+    Bounds bounds;
+
     //Point system
     public List<Point> allPoints = new List<Point>();
-    Vector3 offset = new Vector3(-1,0,-1);
+    Vector3 offset = new Vector3(0,0,0);
 
     void Start()
     {
@@ -190,7 +197,7 @@ public class GridManager : MonoBehaviour
                         grid[i, k, j].IsInstantiated = true;
                         if(grid[i, k, j].isPath || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Wall || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.FloorWithEnemy || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Corner || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.InverseCorner)
                         {
-                            SetBlendWeights(tmpGo, i, k, j);
+                            //SetBlendWeights(tmpGo, i, k, j);
                         }
 
                     }
@@ -288,7 +295,22 @@ public class GridManager : MonoBehaviour
 
     private void LevelGenerationDone()
     {
+        //UpdateSlotPositions();
+        UpdatePointOffsets();
         onLevelCreated.DeactivateEnemies();
+
+        for (int i = 0; i < gridX; i++)
+        {
+            for (int k = 0; k < gridY; k++)
+            {
+                for (int j = 0; j < gridZ; j++)
+                {
+                    SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                    //CreateStaticMesh(grid[i, k, j].instantiatedModule);
+                }
+            }
+        }
+
         bnm.BuildNavMeshButton();
         onLevelCreated.ActivateEnemies();
         onLevelCreated.ActivatePlayer(20,0.5f,4);
@@ -306,11 +328,7 @@ public class GridManager : MonoBehaviour
 
     void SetBlendWeights(GameObject module, int i, int k, int j)
     {
-        SkinnedMeshRenderer skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
-        Mesh tmpMesh = new Mesh();
-        Material tmpMaterial;
-        MeshFilter meshFilter = module.GetComponent<MeshFilter>();
-        Bounds bounds;
+        skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
 
         if (module.transform.rotation.eulerAngles.y == 0)
         {
@@ -356,6 +374,13 @@ public class GridManager : MonoBehaviour
             skinnedMeshRenderer.SetBlendShapeWeight(0, (grid[i, k, j].points[3].offsetZ) * -50);
             skinnedMeshRenderer.SetBlendShapeWeight(1, (grid[i, k, j].points[3].offsetX) * -50);
         }
+    }
+
+    void CreateStaticMesh(GameObject module)
+    {
+        skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
+        tmpMesh = new Mesh();
+        meshFilter = module.GetComponent<MeshFilter>();
 
         skinnedMeshRenderer.BakeMesh(tmpMesh);
         bounds = meshFilter.mesh.bounds;
@@ -366,6 +391,49 @@ public class GridManager : MonoBehaviour
         Destroy(skinnedMeshRenderer);
         module.AddComponent<MeshRenderer>();
         module.GetComponent<MeshRenderer>().material = tmpMaterial;
+    }
+
+    void UpdateSlotPositions()
+    {
+        for (int i = 0; i < gridX; i++)
+        {
+            for (int k = 0; k < gridY; k++)
+            {
+                for (int j = 0; j < gridZ; j++)
+                {
+                    grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].position + grid[i, k, j].points[1].position + grid[i, k, j].points[2].position + grid[i, k, j].points[3].position) / 4;
+                }
+            }
+        }
+    }
+
+    void UpdatePointOffsets()
+    {
+        Vector3 tmpVec = new Vector3(0, 0, 0);
+        for (int i = 0; i < gridX; i++)
+        {
+            for (int k = 0; k < gridY; k++)
+            {
+                for (int j = 0; j < gridZ; j++)
+                {
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[0].position) - (new Vector3(-0.5f,0,0.5f));
+                    grid[i, k, j].points[0].offsetX = tmpVec.x;
+                    grid[i, k, j].points[0].offsetZ = tmpVec.z;
+
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[1].position) - (new Vector3(0.5f, 0, 0.5f));
+                    grid[i, k, j].points[1].offsetX = tmpVec.x;
+                    grid[i, k, j].points[1].offsetZ = tmpVec.z;
+
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[2].position) - (new Vector3(-0.5f, 0, -0.5f));
+                    grid[i, k, j].points[2].offsetX = tmpVec.x;
+                    grid[i, k, j].points[2].offsetZ = tmpVec.z;
+
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[3].position) - (new Vector3(0.5f, 0, -0.5f));
+                    grid[i, k, j].points[3].offsetX = tmpVec.x;
+                    grid[i, k, j].points[3].offsetZ = tmpVec.z;
+                }
+            }
+        }
     }
 
 
@@ -388,7 +456,7 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    /*void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         for (int i = 0; i < gridX; i++)
         {
@@ -429,5 +497,5 @@ public class GridManager : MonoBehaviour
                 }
             }   
         }
-    }*/
+    }
 }
