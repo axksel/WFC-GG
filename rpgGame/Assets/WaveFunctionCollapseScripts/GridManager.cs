@@ -44,7 +44,7 @@ public class GridManager : MonoBehaviour
 
     //Point system
     public List<Point> allPoints = new List<Point>();
-    Vector3 offset = new Vector3(0,0,0);
+    Vector3 offset = new Vector3(-1,0,-1);
 
     void Start()
     {
@@ -72,7 +72,7 @@ public class GridManager : MonoBehaviour
         {
             for (int k = 0; k < gridX + 1; k++)
             {
-                Point tmpPoint = new Point(new Vector3(k * 2, 0, i * 2), UnityEngine.Random.Range(-0.5f, 0.5f), UnityEngine.Random.Range(-0.5f, 0.5f));
+                Point tmpPoint = new Point(new Vector3(k * 2, 0, i * 2), k * 2+ UnityEngine.Random.Range(-0.5f, 0.5f), i * 2+ UnityEngine.Random.Range(-0.5f, 0.5f));
                 allPoints.Add(tmpPoint);
             }
         }
@@ -416,19 +416,19 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[0].position) - (new Vector3(-0.5f,0,0.5f));
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[0].position) -(grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[0].offsetPos);
                     grid[i, k, j].points[0].offsetX = tmpVec.x;
                     grid[i, k, j].points[0].offsetZ = tmpVec.z;
 
-                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[1].position) - (new Vector3(0.5f, 0, 0.5f));
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[1].position) - (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[1].offsetPos);
                     grid[i, k, j].points[1].offsetX = tmpVec.x;
                     grid[i, k, j].points[1].offsetZ = tmpVec.z;
 
-                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[2].position) - (new Vector3(-0.5f, 0, -0.5f));
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[2].position) - (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[2].offsetPos);
                     grid[i, k, j].points[2].offsetX = tmpVec.x;
                     grid[i, k, j].points[2].offsetZ = tmpVec.z;
 
-                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[3].position) - (new Vector3(0.5f, 0, -0.5f));
+                    tmpVec = (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[3].position) - (grid[i, k, j].instantiatedModule.transform.position - grid[i, k, j].points[3].offsetPos);
                     grid[i, k, j].points[3].offsetX = tmpVec.x;
                     grid[i, k, j].points[3].offsetZ = tmpVec.z;
                 }
@@ -490,10 +490,10 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    Gizmos.DrawLine(grid[i, k, j].points[0].position + offset, grid[i, k, j].points[1].position + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[1].position + offset, grid[i, k, j].points[3].position + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[2].position + offset, grid[i, k, j].points[3].position + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[2].position + offset, grid[i, k, j].points[0].position + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[0].offsetPos + offset, grid[i, k, j].points[1].offsetPos + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[1].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[0].offsetPos + offset);
                 }
             }   
         }
