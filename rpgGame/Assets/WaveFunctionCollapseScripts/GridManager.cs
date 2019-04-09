@@ -22,6 +22,7 @@ public class GridManager : MonoBehaviour
     public bool enableChiseling;
 
     public slot[,,] grid;
+    public Point[,,] pointgrid;
     public int size;
     public GameObjectList loadScreen;
     public GameObjectList progressBar;
@@ -41,6 +42,7 @@ public class GridManager : MonoBehaviour
     Material tmpMaterial;
     MeshFilter meshFilter;
     Bounds bounds;
+    GGManager gg;
 
     //Point system
     public List<Point> allPoints = new List<Point>();
@@ -48,16 +50,16 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        mL = GetComponent<MachineLearning>();
+         mL = GetComponent<MachineLearning>();
         weights = GetComponent<Weights>();
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
         noiseMap = GetComponent<NoiseMap>();
         chiseling = GetComponent<Chiseling>();
         bnm = GetComponent<BuildNavMesh>();
+        gg = GetComponent<GGManager>();
 
-        size = gridX * gridY * gridZ;
-        grid = new slot[gridX, gridY, gridZ];
+        
 
         modules.AddRange(moduleSO.list);
         weights.AssignWeights(modules);
@@ -68,17 +70,30 @@ public class GridManager : MonoBehaviour
             loadScreen.list[0].transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        for (int i = 0; i < gridZ + 1; i++)
+        //Chiseling();
+    }
+
+
+    public void InitializePoints()
+    {
+
+        size = gridX * gridY * gridZ;
+        grid = new slot[gridX, gridY, gridZ];
+        pointgrid = new Point[gridX+1, gridY, gridZ+1];
+
+        for (int i = 0; i < gridX + 1; i++)
         {
-            for (int k = 0; k < gridX + 1; k++)
+            for (int k = 0; k < gridZ + 1; k++)
             {
-                Point tmpPoint = new Point(new Vector3(k * 2, 0, i * 2), k * 2+ UnityEngine.Random.Range(-0.5f, 0.5f), i * 2+ UnityEngine.Random.Range(-0.5f, 0.5f));
+                Point tmpPoint = new Point(new Vector3(i * 2, 0, k * 2), i * 2 + UnityEngine.Random.Range(-0.5f, 0.5f), k * 2 + UnityEngine.Random.Range(-0.5f, 0.5f));
+                tmpPoint.offsetPos = gg.points[i, k].position;
                 allPoints.Add(tmpPoint);
+                pointgrid[i, 0, k] = tmpPoint;
             }
         }
-
-        Chiseling();
     }
+
+
 
     public void Chiseling()
     {
@@ -89,7 +104,7 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    slot tmpSlot = new slot(allPoints[i + (gridZ + 1) * j], allPoints[(i + (gridZ + 1) * j) + 1], allPoints[i + (gridX + 1) + (gridZ + 1) * j], allPoints[i + (gridX + 2) + (gridZ + 1) * j]);
+                    slot tmpSlot = new slot(pointgrid[i,k,j], pointgrid[i+1, k, j], pointgrid[i, k, j+1], pointgrid[i+1, k, j+1]);
                     grid[i, k, j] = tmpSlot;
                     if (enableChiseling) grid[i, k, j].isPath = true;
                     grid[i, k, j].index = index;
@@ -295,7 +310,7 @@ public class GridManager : MonoBehaviour
 
     private void LevelGenerationDone()
     {
-        //UpdateSlotPositions();
+        UpdateSlotPositions();
         UpdatePointOffsets();
         onLevelCreated.DeactivateEnemies();
 
@@ -305,7 +320,7 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                 //   SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
                     //CreateStaticMesh(grid[i, k, j].instantiatedModule);
                 }
             }
@@ -401,7 +416,8 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].position + grid[i, k, j].points[1].position + grid[i, k, j].points[2].position + grid[i, k, j].points[3].position) / 4;
+                    grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
+
                 }
             }
         }
