@@ -76,23 +76,49 @@ public class GGManager : MonoBehaviour
             int index = 0;
             gm.gridX = xSize-1;
             gm.gridZ = ySize-1;
+            CheckFlip();
             gm.InitializePoints();
-
-            //for (int i = 0; i < xSize; i++)
-            //{
-            //    for (int k = 0; k < ySize; k++)
-            //    {
-
-            //        gm.allPoints[index].offsetPos = points[i, k].position;
-            //        index++;
-            //    }
-            //}
-            //Debug.Log(index);
             gm.Chiseling();
             Destroy(this);
         }
 
         
+    }
+
+    public void CheckFlip()
+    {
+        if(Vector3.Cross(points[1, 0].position-points[0, 0].position, points[0, 1].position - points[0, 0].position).y > 0)
+        {
+            FlipArray(points);
+
+            Debug.Log("den er reveser");
+            
+        }
+
+    }
+
+    public void FlipArray(Point[,] arrayToFlip)
+    {
+        Point temp;
+        int rows =xSize;
+        int columns = ySize;
+
+        for (int i = 0; i < rows; i++)
+        {
+            if (i < ((rows - 1) - i))
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    temp = arrayToFlip[i, j];
+                    arrayToFlip[i, j] = arrayToFlip[(rows - 1) - i, j];
+                    arrayToFlip[(rows - 1) - i, j] = temp;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 
     public void Iterate()

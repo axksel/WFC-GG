@@ -440,22 +440,22 @@ public class GridManager : MonoBehaviour
                     tmpVec = grid[i, k, j].points[0].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f,0, -1f)); 
                     grid[i, k, j].points[0].offsetX = tmpVec.x;
                     grid[i, k, j].points[0].offsetZ = tmpVec.z;
-                    Debug.Log(tmpVec);
+                   
 
                     tmpVec = grid[i, k, j].points[1].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f));
                     grid[i, k, j].points[1].offsetX = tmpVec.x;
                     grid[i, k, j].points[1].offsetZ = tmpVec.z;
-                    Debug.Log(tmpVec);
+                   
 
                     tmpVec = grid[i, k, j].points[2].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f));
                     grid[i, k, j].points[2].offsetX = tmpVec.x;
                     grid[i, k, j].points[2].offsetZ = tmpVec.z;
-                    Debug.Log(tmpVec);
+                    
 
                     tmpVec = grid[i, k, j].points[3].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f));
                     grid[i, k, j].points[3].offsetX = tmpVec.x;
                     grid[i, k, j].points[3].offsetZ = tmpVec.z;
-                    Debug.Log(tmpVec);
+                    
 
                     SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
                     CreateStaticMesh(grid[i, k, j].instantiatedModule);
@@ -518,20 +518,20 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    /*Gizmos.color = Color.green;
-                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, -1f), 0.1f);
-                    Gizmos.DrawSphere(grid[i, k, j].points[0].offsetPos, 0.1f);
-                    Gizmos.color = Color.magenta;
-                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f), 0.1f);
-                    Gizmos.DrawSphere(grid[i, k, j].points[1].offsetPos, 0.1f);
-                    Gizmos.color = Color.yellow;
-                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f), 0.1f);
-                    Gizmos.DrawSphere(grid[i, k, j].points[2].offsetPos, 0.1f);
-                    Gizmos.color = Color.black;
-                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f), 0.1f);
-                    Gizmos.DrawSphere(grid[i, k, j].points[3].offsetPos, 0.1f);
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position, 0.1f);*/
+                    Gizmos.color = Color.green;
+                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, -1f), 0.1f);
+                   // Gizmos.DrawSphere(grid[i, k, j].points[0].upVector, 0.1f);
+                    //Gizmos.color = Color.magenta;
+                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f), 0.1f);
+                   // Gizmos.DrawSphere(grid[i, k, j].points[1].upVector, 0.1f);
+                    //Gizmos.color = Color.yellow;
+                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f), 0.1f);
+                   // Gizmos.DrawSphere(grid[i, k, j].points[2].upVector, 0.1f);
+                    //Gizmos.color = Color.black;
+                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f), 0.1f);
+                   // Gizmos.DrawSphere(grid[i, k, j].points[3].upVector, 0.1f);
+                    //Gizmos.color = Color.red;
+                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position, 0.1f);
 
 
 

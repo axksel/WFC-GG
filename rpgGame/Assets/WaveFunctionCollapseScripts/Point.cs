@@ -12,6 +12,7 @@ public class Point
     public int counter = 0;
     public int xIndex;
     public int yIndex;
+   
 
 
 
@@ -19,7 +20,9 @@ public class Point
     {
         this.offsetX = offsetX;
         this.offsetZ = offsetZ;
-        //this.offsetPos = new Vector3(offsetX, 0, offsetZ);
+        this.offsetPos = new Vector3(offsetX, 0, offsetZ);
         position = pos;
+        
+
     }
 }
