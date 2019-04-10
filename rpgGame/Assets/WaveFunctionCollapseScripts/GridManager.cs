@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 using System;
-
+//Hej Jonas
 public class GridManager : MonoBehaviour
 {
     public int gridX = 4;
