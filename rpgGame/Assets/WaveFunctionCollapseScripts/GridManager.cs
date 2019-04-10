@@ -406,6 +406,7 @@ public class GridManager : MonoBehaviour
         Destroy(skinnedMeshRenderer);
         module.AddComponent<MeshRenderer>();
         module.GetComponent<MeshRenderer>().material = tmpMaterial;
+        meshFilter.mesh.RecalculateNormals();
     }
 
     void UpdateSlotPositions()
@@ -457,6 +458,7 @@ public class GridManager : MonoBehaviour
                     Debug.Log(tmpVec);
 
                     SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                    CreateStaticMesh(grid[i, k, j].instantiatedModule);
                 }
             }
         }
@@ -516,7 +518,7 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    Gizmos.color = Color.green;
+                    /*Gizmos.color = Color.green;
                     Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, -1f), 0.1f);
                     Gizmos.DrawSphere(grid[i, k, j].points[0].offsetPos, 0.1f);
                     Gizmos.color = Color.magenta;
@@ -529,7 +531,7 @@ public class GridManager : MonoBehaviour
                     Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f), 0.1f);
                     Gizmos.DrawSphere(grid[i, k, j].points[3].offsetPos, 0.1f);
                     Gizmos.color = Color.red;
-                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position, 0.1f);
+                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position, 0.1f);*/
 
 
 

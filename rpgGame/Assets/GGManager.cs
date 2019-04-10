@@ -46,6 +46,7 @@ public class GGManager : MonoBehaviour
             for (int k = 0; k < ySize; k++)
             {
                 int tmpIndex = Random.Range(0, distributionPoints.Count);
+                //points[i, k] = new Point(new Vector3(i * 2, 0, k * 2),0,0);
                 points[i, k] = chosenPoints[tmpIndex];
                 points[i, k].xIndex = i;
                 points[i, k].yIndex = k;

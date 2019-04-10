@@ -29,7 +29,6 @@ public class ImageParser : MonoBehaviour
                 }
             }
         }
-
         gm.distributionPoints.AddRange(distributionPoints);
     }
 
