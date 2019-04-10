@@ -26,6 +26,7 @@ public class GGManager : MonoBehaviour
 
     public  Point[,] points;
     public List<Point> distributionPoints = new List<Point>();
+    List<Point> chosenPoints = new List<Point>();
     public bool growthPhase = true;
     public bool fineTunePhase = false;
 
@@ -37,20 +38,22 @@ public class GGManager : MonoBehaviour
 
     void Start()
     {
+        chosenPoints = distributionPoints;
         points = new Point[maxNumberOfNodes, maxNumberOfNodes];
 
         for (int i = 0; i < xSize; i++)
         {
             for (int k = 0; k < ySize; k++)
             {
-
-                points[i, k] = distributionPoints[Random.Range(0,distributionPoints.Count)];
+                int tmpIndex = Random.Range(0, distributionPoints.Count);
+                points[i, k] = chosenPoints[tmpIndex];
                 points[i, k].xIndex = i;
                 points[i, k].yIndex = k;
+                chosenPoints.RemoveAt(tmpIndex);
             }
         }
 
-        
+
     }
 
     private void Update()
