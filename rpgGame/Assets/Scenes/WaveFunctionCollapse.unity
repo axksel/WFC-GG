@@ -200,6 +200,8 @@ GameObject:
   - component: {fileID: 1213997717}
   - component: {fileID: 1213997718}
   - component: {fileID: 1213997719}
+  - component: {fileID: 1213997721}
+  - component: {fileID: 1213997720}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -227,7 +229,7 @@ MonoBehaviour:
   floorGO: {fileID: 480407965697156524, guid: 47344057bbd8ebe45ad415603ce86915, type: 3}
   bnm: {fileID: 0}
   isImproved: 1
-  enableChiseling: 1
+  enableChiseling: 0
   size: 0
   loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
   progressBar: {fileID: 11400000, guid: 8c72052eaec8e3b439c2e410c611dc58, type: 2}
@@ -477,3 +479,39 @@ MonoBehaviour:
   - {x: 5, y: 5}
   - {x: 8, y: 18}
   - {x: 18, y: 18}
+--- !u!114 &1213997720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213997708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38782447f52f1fa448c4219b89db95f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSize: 5
+  ySize: 5
+  gm: {fileID: 0}
+  timeCounter: 0
+  maxNumberOfNodes: 50
+  neighbourhoodRange: 2
+  epochSize: 50
+  learningRate: 0.03
+  growthPhase: 1
+  fineTunePhase: 0
+--- !u!114 &1213997721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213997708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f630c759cf6dbc4bbf8ae29496bbfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: 50df273de0fb28042a5e4bfafab98064, type: 3}
+  gm: {fileID: 0}
