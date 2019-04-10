@@ -314,7 +314,7 @@ public class GridManager : MonoBehaviour
         UpdatePointOffsets();
         onLevelCreated.DeactivateEnemies();
 
-        for (int i = 0; i < gridX; i++)
+        /*for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
             {
@@ -324,7 +324,7 @@ public class GridManager : MonoBehaviour
                     //CreateStaticMesh(grid[i, k, j].instantiatedModule);
                 }
             }
-        }
+        }*/
 
         bnm.BuildNavMeshButton();
         onLevelCreated.ActivateEnemies();
@@ -433,24 +433,30 @@ public class GridManager : MonoBehaviour
                 for (int j = 0; j < gridZ; j++)
                 {
 
-                    Vector3 offsetMiddle = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
+                    Vector3 offsetMiddle = (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-0.5f, 0, 0.5f));
                     Vector3 positionMiddle = (grid[i, k, j].points[0].position + grid[i, k, j].points[1].position + grid[i, k, j].points[2].position + grid[i, k, j].points[3].position) / 4;
 
-                    tmpVec = (offsetMiddle-grid[i, k, j].points[0].offsetPos) - (positionMiddle-grid[i, k, j].points[0].position); 
+                    tmpVec = grid[i, k, j].points[0].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f,0, -1f)); 
                     grid[i, k, j].points[0].offsetX = tmpVec.x;
                     grid[i, k, j].points[0].offsetZ = tmpVec.z;
+                    Debug.Log(tmpVec);
 
-                    tmpVec = (offsetMiddle - grid[i, k, j].points[1].offsetPos) - (positionMiddle - grid[i, k, j].points[1].position);
+                    tmpVec = grid[i, k, j].points[1].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f));
                     grid[i, k, j].points[1].offsetX = tmpVec.x;
                     grid[i, k, j].points[1].offsetZ = tmpVec.z;
+                    Debug.Log(tmpVec);
 
-                    tmpVec = (offsetMiddle - grid[i, k, j].points[2].offsetPos) - (positionMiddle - grid[i, k, j].points[2].position);
+                    tmpVec = grid[i, k, j].points[2].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f));
                     grid[i, k, j].points[2].offsetX = tmpVec.x;
                     grid[i, k, j].points[2].offsetZ = tmpVec.z;
+                    Debug.Log(tmpVec);
 
-                    tmpVec = (offsetMiddle - grid[i, k, j].points[3].offsetPos) - (positionMiddle - grid[i, k, j].points[3].position);
+                    tmpVec = grid[i, k, j].points[3].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f));
                     grid[i, k, j].points[3].offsetX = tmpVec.x;
                     grid[i, k, j].points[3].offsetZ = tmpVec.z;
+                    Debug.Log(tmpVec);
+
+                    SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
                 }
             }
         }
@@ -510,6 +516,26 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, -1f), 0.1f);
+                    Gizmos.DrawSphere(grid[i, k, j].points[0].offsetPos, 0.1f);
+                    Gizmos.color = Color.magenta;
+                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f), 0.1f);
+                    Gizmos.DrawSphere(grid[i, k, j].points[1].offsetPos, 0.1f);
+                    Gizmos.color = Color.yellow;
+                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f), 0.1f);
+                    Gizmos.DrawSphere(grid[i, k, j].points[2].offsetPos, 0.1f);
+                    Gizmos.color = Color.black;
+                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f), 0.1f);
+                    Gizmos.DrawSphere(grid[i, k, j].points[3].offsetPos, 0.1f);
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position, 0.1f);
+
+
+
+
+
+                    Gizmos.color = Color.red;
                     Gizmos.DrawLine(grid[i, k, j].points[0].offsetPos + offset, grid[i, k, j].points[1].offsetPos + offset);
                     Gizmos.DrawLine(grid[i, k, j].points[1].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
                     Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
