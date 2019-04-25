@@ -17,7 +17,7 @@ public class GGManager : MonoBehaviour
     [Range(0.01f, 9.91f)]
     public float neighbourhoodRange = 2;//Sigma
 
-    [Range(0, 200)]
+    [Range(0, 2000)]
     public int epochSize =50;//lampda
 
     [Range(0.0f, 0.1f)]
@@ -53,21 +53,26 @@ public class GGManager : MonoBehaviour
                 chosenPoints.RemoveAt(tmpIndex);
             }
         }
-
-
     }
 
     private void Update()
     {
         if (growthPhase)
         {
-            Iterate();
-            timeCounter++;
+            for (int i = 0; i < 500; i++)
+            {
+                Iterate();
+                timeCounter++;
+            }
         }
         else if (fineTunePhase)
         {
-            FineTune();
-            timeCounter++;
+            for (int i = 0; i < 500; i++)
+            {
+                FineTune();
+                timeCounter++;
+            }
+
         }
         else
         {
@@ -127,7 +132,7 @@ public class GGManager : MonoBehaviour
         time++;
         winningPoint.counter++;
         Adapt();
-        if (epochSize * xSize * ySize < time)
+        if (epochSize < time)
         {
            
             mostWinningPoint = FindPointWithMostWins();
@@ -136,12 +141,9 @@ public class GGManager : MonoBehaviour
             time = 0;
             ResetCount();
             CheckSize();
+            neighbourhoodRange -= 0.03f;
         }
-
-
-
     }
-
 
     public void FineTune()
     {
@@ -149,7 +151,7 @@ public class GGManager : MonoBehaviour
         time++;
         winningPoint.counter++;
         Adapt();
-        if (epochSize * xSize * ySize < time)
+        if (epochSize * 100 < time)
         {
             fineTunePhase = false;
         }
@@ -157,7 +159,6 @@ public class GGManager : MonoBehaviour
 
     public void CheckSize()
     {
-
         if (xSize * ySize > maxNumberOfNodes)
         {
             growthPhase = false;
@@ -165,7 +166,6 @@ public class GGManager : MonoBehaviour
             Debug.Log("Now Tuning");
         }
     }
-
 
     public void ResetCount()
     {
@@ -178,13 +178,11 @@ public class GGManager : MonoBehaviour
                     points[i, k].counter = 0;
                 }
             }
-
         }
     }
 
     public void CheckRowVsColumns()
     {
-
         if (mostWinningPoint.xIndex == mostDistantPoint.xIndex)
         {
             InsertRow();
@@ -192,9 +190,7 @@ public class GGManager : MonoBehaviour
         else
         {
             InsertColumn();
-        }
-
-      
+        }    
     }
 
     public void InsertColumn()
@@ -300,8 +296,7 @@ public class GGManager : MonoBehaviour
         }
         catch (System.IndexOutOfRangeException) { }
         catch (System.NullReferenceException) { }
-
-      
+     
         return tmpPoint;
     }
 
@@ -314,37 +309,27 @@ public class GGManager : MonoBehaviour
             for (int i = 0; i < xSize; i++)
             {
                 for (int k = 0; k < ySize; k++)
-                {
-                    
+                {                    
                     if (points[i,k].counter > tmpCount)
                     {
                         tmpPoint = points[i, k];
                         tmpCount = points[i, k].counter;
                     }
-
                 }
-            }
-
-        
+            }      
         return tmpPoint;
     }
 
-
     public void Adapt()
     {
-
-
         for (int i = 0; i < xSize; i++)
         {
             for (int k = 0; k < ySize; k++)
             {
                 Vector3 direction = randomPoint.position - points[i, k].position;
-                points[i, k].position += learningRate*AdaptationStrength(winningPoint, points[i, k]) * direction;
-                
-
+                points[i, k].position += learningRate*AdaptationStrength(winningPoint, points[i, k]) * direction;               
             }
         }
-
     }
 
     public Point CalculateWinner()
@@ -364,13 +349,10 @@ public class GGManager : MonoBehaviour
                     tmpPoint = points[i, k];
                     tmpDistance = distance;
                 }
-
             }
-        }
-        
+        }        
         return tmpPoint;
     }
-
 
     public float AdaptationStrength(Point point1, Point point2)
     {
@@ -386,17 +368,16 @@ public class GGManager : MonoBehaviour
     public float Distance(Point vector1, Point vector2)
     {
         return Mathf.Abs(vector1.xIndex - vector2.xIndex) + Mathf.Abs(vector1.yIndex - vector2.yIndex);
-
     }
-
 
     private void OnDrawGizmos()
     {
 
-        for (int i = 0; i < distributionPoints.Count; i++)
+        /*for (int i = 0; i < distributionPoints.Count; i++)
         {
             Gizmos.DrawSphere(distributionPoints[i].position, 0.5f);
-        }
+        }*/
+        /*
         Gizmos.color =Color.red;
 
         for (int i = 0; i < xSize; i++)
@@ -412,7 +393,8 @@ public class GGManager : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(randomPoint.position, 0.6f);
 
-
+        */
+        Gizmos.color = Color.red;
         for (int i = 0; i < xSize; i++)
         {
             for (int k = 0; k < ySize; k++)
@@ -433,10 +415,7 @@ public class GGManager : MonoBehaviour
                 {
                     Gizmos.DrawLine(points[i, k].position, points[i, k - 1].position);
                 }
-
             }
         }
     }
-
-
 }

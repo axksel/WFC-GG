@@ -210,7 +210,12 @@ public class GridManager : MonoBehaviour
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
-                        if(grid[i, k, j].isPath || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Wall || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.FloorWithEnemy || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Corner || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.InverseCorner)
+
+                        grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
+                        UpdatePointOffsets(i, k, j);
+                        SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                        CreateStaticMesh(grid[i, k, j].instantiatedModule);
+                        if (grid[i, k, j].isPath || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Wall || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.FloorWithEnemy || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Corner || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.InverseCorner)
                         {
                             //SetBlendWeights(tmpGo, i, k, j);
                         }
@@ -310,35 +315,13 @@ public class GridManager : MonoBehaviour
 
     private void LevelGenerationDone()
     {
-        UpdateSlotPositions();
-        UpdatePointOffsets();
         onLevelCreated.DeactivateEnemies();
 
-        /*for (int i = 0; i < gridX; i++)
-        {
-            for (int k = 0; k < gridY; k++)
-            {
-                for (int j = 0; j < gridZ; j++)
-                {
-                   SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
-                    //CreateStaticMesh(grid[i, k, j].instantiatedModule);
-                }
-            }
-        }*/
-
-        bnm.BuildNavMeshButton();
+        //bnm.BuildNavMeshButton();
         onLevelCreated.ActivateEnemies();
         onLevelCreated.ActivatePlayer(20,0.5f,4);
         onLevelCreated.DeactiveLoadScreen();
-        GetComponent<AudioSource>().Play();
         //weights.CalculateWeights();
-        /*for (int j = 20; j < 26; j++)
-        {
-            for (int i = 0; i < weights.moduleParents[j].transform.childCount; i++)
-            {
-                weights.moduleParents[j].transform.GetChild(i).GetComponent<Renderer>().material = floor;
-            }
-        }*/
     }
 
     void SetBlendWeights(GameObject module, int i, int k, int j)
@@ -417,51 +400,39 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
+
 
                 }
             }
         }
     }
 
-    void UpdatePointOffsets()
+    void UpdatePointOffsets(int i, int k, int j)
     {
         Vector3 tmpVec = new Vector3(0, 0, 0);
-        for (int i = 0; i < gridX; i++)
-        {
-            for (int k = 0; k < gridY; k++)
-            {
-                for (int j = 0; j < gridZ; j++)
-                {
 
-                    Vector3 offsetMiddle = (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-0.5f, 0, 0.5f));
-                    Vector3 positionMiddle = (grid[i, k, j].points[0].position + grid[i, k, j].points[1].position + grid[i, k, j].points[2].position + grid[i, k, j].points[3].position) / 4;
+                        Vector3 offsetMiddle = (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-0.5f, 0, 0.5f));
+                        Vector3 positionMiddle = (grid[i, k, j].points[0].position + grid[i, k, j].points[1].position + grid[i, k, j].points[2].position + grid[i, k, j].points[3].position) / 4;
 
-                    tmpVec = grid[i, k, j].points[0].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f,0, -1f)); 
-                    grid[i, k, j].points[0].offsetX = tmpVec.x;
-                    grid[i, k, j].points[0].offsetZ = tmpVec.z;
-                   
+                        tmpVec = grid[i, k, j].points[0].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, -1f));
+                        grid[i, k, j].points[0].offsetX = tmpVec.x;
+                        grid[i, k, j].points[0].offsetZ = tmpVec.z;
 
-                    tmpVec = grid[i, k, j].points[1].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f));
-                    grid[i, k, j].points[1].offsetX = tmpVec.x;
-                    grid[i, k, j].points[1].offsetZ = tmpVec.z;
-                   
 
-                    tmpVec = grid[i, k, j].points[2].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f));
-                    grid[i, k, j].points[2].offsetX = tmpVec.x;
-                    grid[i, k, j].points[2].offsetZ = tmpVec.z;
-                    
+                        tmpVec = grid[i, k, j].points[1].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f));
+                        grid[i, k, j].points[1].offsetX = tmpVec.x;
+                        grid[i, k, j].points[1].offsetZ = tmpVec.z;
 
-                    tmpVec = grid[i, k, j].points[3].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f));
-                    grid[i, k, j].points[3].offsetX = tmpVec.x;
-                    grid[i, k, j].points[3].offsetZ = tmpVec.z;
-                    
 
-                    SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
-                    CreateStaticMesh(grid[i, k, j].instantiatedModule);
-                }
-            }
-        }
+                        tmpVec = grid[i, k, j].points[2].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f));
+                        grid[i, k, j].points[2].offsetX = tmpVec.x;
+                        grid[i, k, j].points[2].offsetZ = tmpVec.z;
+
+
+                        tmpVec = grid[i, k, j].points[3].offsetPos - (grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f));
+                        grid[i, k, j].points[3].offsetX = tmpVec.x;
+                        grid[i, k, j].points[3].offsetZ = tmpVec.z;  
+
     }
 
 
@@ -486,7 +457,7 @@ public class GridManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        for (int i = 0; i < gridX; i++)
+        /*for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
             {
@@ -501,7 +472,7 @@ public class GridManager : MonoBehaviour
                     catch (System.NullReferenceException) { }
                 }
             }
-        }
+        }*/
         Gizmos.color = Color.blue;
 
         Gizmos.color = Color.red;
@@ -538,10 +509,10 @@ public class GridManager : MonoBehaviour
 
 
                     Gizmos.color = Color.red;
-                    Gizmos.DrawLine(grid[i, k, j].points[0].offsetPos + offset, grid[i, k, j].points[1].offsetPos + offset);
+                    /*Gizmos.DrawLine(grid[i, k, j].points[0].offsetPos + offset, grid[i, k, j].points[1].offsetPos + offset);
                     Gizmos.DrawLine(grid[i, k, j].points[1].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
                     Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[0].offsetPos + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[0].offsetPos + offset);*/
                 }
             }   
         }
