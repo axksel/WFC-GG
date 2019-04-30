@@ -30,10 +30,7 @@ public class CreateMap : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            RestoreMaterial();
-        }
+
     }
 
     void CreateStaticMesh(GameObject module)
@@ -64,7 +61,7 @@ public class CreateMap : MonoBehaviour
         }
     }
 
-    void RestoreMaterial() 
+    public void RestoreMaterial() 
     {
         for (int i = 0; i < mapPrefab.transform.childCount; i++)
         {

@@ -12,6 +12,8 @@ TagManager:
   - Key
   - Projectile
   - joystickAttack
+  - StartSphere
+  - GoalSphere
   layers:
   - Default
   - TransparentFX
