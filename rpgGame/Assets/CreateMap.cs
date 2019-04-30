@@ -70,7 +70,7 @@ public class CreateMap : MonoBehaviour
         {
             for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
             {
-                    if(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject.GetComponent<Modulescript>().isPath)
+                    if(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor)
                     mapPrefab.transform.GetChild(i).transform.GetChild(j).GetComponent<Renderer>().material = floor;
             }
         }
