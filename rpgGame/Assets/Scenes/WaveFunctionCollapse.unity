@@ -267,7 +267,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7e9eb0f85f5e01b43b53138538663d41, type: 2}
+      objectReference: {fileID: 2100000, guid: cd86fe041c451a74385dd4f11ea1727f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0178a2ebd5514340bcdd81d939450f0, type: 3}
 --- !u!1 &1213997708
@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f630c759cf6dbc4bbf8ae29496bbfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 763bf72e89be3f944a05d71ed70cf6ad, type: 3}
+  image: {fileID: 2800000, guid: 4712b1a7f2fd18a4c9bcf539bb119e0d, type: 3}
   gm: {fileID: 0}
 --- !u!114 &1213997722
 MonoBehaviour:

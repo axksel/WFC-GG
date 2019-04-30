@@ -42,6 +42,7 @@ public class CreateMap : MonoBehaviour
         module.AddComponent<MeshRenderer>();
         module.GetComponent<MeshRenderer>().material = tmpMaterial;
         meshFilter.mesh.RecalculateNormals();
+        module.AddComponent<MeshCollider>();
     }
 
     void UnSkew(GameObject module)
@@ -52,4 +53,18 @@ public class CreateMap : MonoBehaviour
             module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, 0);
         }
     } 
+
+    void RestoreMaterial() //set size of for loop TODO
+    {
+        for (int i = 0; i < 1; i++)
+        {
+            for (int k = 0; k < 1; k++)
+            {
+                for (int j = 0; j < 1; j++)
+                {
+                    //if (grid[i, k, j].isPath) grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material = floor;    
+                }
+            }
+        }
+    }
 }
