@@ -12,7 +12,7 @@ public class CreateMap : MonoBehaviour
     MeshFilter meshFilter;
     Bounds bounds;
     GGManager gg;
-    public bool isSkewed;
+    public bool restoreMap;
     public Material floor;
     public Material path;
 
@@ -22,7 +22,7 @@ public class CreateMap : MonoBehaviour
         {
             for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
             {
-                if (!isSkewed) UnSkew(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
+                if (restoreMap) UnSkew(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
                 CreateStaticMesh(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
             }
         }
