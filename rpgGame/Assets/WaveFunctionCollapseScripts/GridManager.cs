@@ -108,6 +108,7 @@ public class GridManager : MonoBehaviour
                     grid[i, k, j] = tmpSlot;
                     if (enableChiseling) grid[i, k, j].isPath = true;
                     grid[i, k, j].index = index;
+                    grid[i, k, j].pos = new Vector3(i, k, j);
                     index++;
                     mL.randomPool.Add(index);
                 }
@@ -210,11 +211,11 @@ public class GridManager : MonoBehaviour
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
                         grid[i, k, j].IsInstantiated = true;
-
+                        grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().pos = grid[i, k, j].pos;
                         grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
                         UpdatePointOffsets(i, k, j);
                         SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
-                        CreateStaticMesh(grid[i, k, j].instantiatedModule);
+                        //CreateStaticMesh(grid[i, k, j].instantiatedModule);
                         if (grid[i, k, j].isPath || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Wall || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.FloorWithEnemy || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Corner || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.InverseCorner)
                         {
                             //SetBlendWeights(tmpGo, i, k, j);

@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Modulescript : MonoBehaviour
 {
-
+    public Vector3 pos;
    
     public int[] neighbours = new int[6];
     public bool[] flipped = new bool[6];

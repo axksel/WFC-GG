@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class slot
 {
+    public Vector3 pos;
+
     public int index =0;
     public bool shouldBeIterated = true;
     public slot[] neighbours = new slot[6];
