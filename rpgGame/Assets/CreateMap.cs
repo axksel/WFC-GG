@@ -13,6 +13,8 @@ public class CreateMap : MonoBehaviour
     Bounds bounds;
     GGManager gg;
     public bool isSkewed;
+    public Material floor;
+    public Material path;
 
     void Start()
     {
@@ -23,6 +25,14 @@ public class CreateMap : MonoBehaviour
                 if (!isSkewed) UnSkew(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
                 CreateStaticMesh(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            RestoreMaterial();
         }
     }
 
@@ -52,18 +62,16 @@ public class CreateMap : MonoBehaviour
         {
             module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, 0);
         }
-    } 
+    }
 
-    void RestoreMaterial() //set size of for loop TODO
+    void RestoreMaterial() 
     {
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < mapPrefab.transform.childCount; i++)
         {
-            for (int k = 0; k < 1; k++)
+            for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
             {
-                for (int j = 0; j < 1; j++)
-                {
-                    //if (grid[i, k, j].isPath) grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material = floor;    
-                }
+                    if(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject.GetComponent<Modulescript>().isPath)
+                    mapPrefab.transform.GetChild(i).transform.GetChild(j).GetComponent<Renderer>().material = floor;
             }
         }
     }
