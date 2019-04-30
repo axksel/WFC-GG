@@ -17,12 +17,14 @@ public class Chiseling : MonoBehaviour
 
     private void Awake()
     {
-        gridManager = GetComponent<GridManager>();
-        size = gridManager.gridX * gridManager.gridZ;
+
     }
 
     public void AssignFixedPoints()
     {
+        gridManager = GetComponent<GridManager>();
+        size = gridManager.gridX * gridManager.gridZ;
+
         for (int i = 0; i < gridManager.gridX; i++)
         {
             for (int k = 0; k < gridManager.gridY; k++)

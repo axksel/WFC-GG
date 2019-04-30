@@ -16,6 +16,8 @@ public class GridManager : MonoBehaviour
     public List<GameObject> modules = new List<GameObject>();
     public ScriptableObjectList moduleSO;
     public GameObject floorGO;
+    public GameObject solidGO;
+    public List<GameObject> walls = new List<GameObject>();
     public BuildNavMesh bnm;
     public bool isImproved = true;
     bool isTried = false;
@@ -156,6 +158,8 @@ public class GridManager : MonoBehaviour
             }
         }
 
+
+
         if (enableChiseling)
         {
             chiseling.grid = grid;
@@ -186,6 +190,22 @@ public class GridManager : MonoBehaviour
         }
         mL.randomPooltmp.AddRange(mL.randomPool);
 
+        /*for (int i = 0; i < gridX; i++)
+        {
+            grid[i, 0, gridZ - 1].posibilitySpace.Clear();
+            grid[i, 0, gridZ - 1].posibilitySpace.AddRange(walls);
+
+            grid[i, 0, 0].posibilitySpace.Clear();
+            grid[i, 0, 0].posibilitySpace.AddRange(walls);
+        }
+        for (int j = 0; j < gridZ; j++)
+        {
+            grid[gridX - 1, 0, j].posibilitySpace.Clear();
+            grid[gridX - 1, 0, j].posibilitySpace.AddRange(walls);
+
+            grid[0, 0, j].posibilitySpace.Clear();
+            grid[0, 0, j].posibilitySpace.AddRange(walls);
+        }*/
 
 
         mL.grid = grid;
@@ -210,16 +230,18 @@ public class GridManager : MonoBehaviour
                         StartCoroutine(Progress(size));
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
+                        if (grid[i, k, j].isPath)
+                        {
+                            grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material.color = Color.red;
+                            grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().isPath = true;
+                        }
                         grid[i, k, j].IsInstantiated = true;
                         grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().pos = grid[i, k, j].pos;
                         grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
                         UpdatePointOffsets(i, k, j);
                         SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
                         //CreateStaticMesh(grid[i, k, j].instantiatedModule);
-                        if (grid[i, k, j].isPath || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Wall || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.FloorWithEnemy || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Floor || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.Corner || tmpGo.GetComponent<Modulescript>().moduleType == Modulescript.ModuleType.InverseCorner)
-                        {
-                            //SetBlendWeights(tmpGo, i, k, j);
-                        }
+
 
                     }
                 }
@@ -323,6 +345,18 @@ public class GridManager : MonoBehaviour
         onLevelCreated.ActivatePlayer(20,0.5f,4);
         onLevelCreated.DeactiveLoadScreen();
         //weights.CalculateWeights();
+
+
+        for (int i = 0; i < gridX; i++)
+        {
+            for (int k = 0; k < gridY; k++)
+            {
+                for (int j = 0; j < gridZ; j++)
+                {                       
+                        //if (grid[i, k, j].isPath) grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material = floor;    
+                }
+            }
+        }
     }
 
     void SetBlendWeights(GameObject module, int i, int k, int j)
@@ -391,6 +425,7 @@ public class GridManager : MonoBehaviour
         module.AddComponent<MeshRenderer>();
         module.GetComponent<MeshRenderer>().material = tmpMaterial;
         meshFilter.mesh.RecalculateNormals();
+        module.AddComponent<MeshCollider>();
     }
 
     void UpdateSlotPositions()
@@ -458,7 +493,7 @@ public class GridManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        /*for (int i = 0; i < gridX; i++)
+        for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
             {
@@ -473,7 +508,7 @@ public class GridManager : MonoBehaviour
                     catch (System.NullReferenceException) { }
                 }
             }
-        }*/
+        }
         Gizmos.color = Color.blue;
 
         Gizmos.color = Color.red;

@@ -8,6 +8,7 @@ public class GGManager : MonoBehaviour
     public int xSize =2;
     public int ySize =2;
     public GridManager gm;
+    Chiseling chiseling;
     public int timeCounter=0;
     int time =0;
 
@@ -40,6 +41,7 @@ public class GGManager : MonoBehaviour
     {
         chosenPoints = distributionPoints;
         points = new Point[maxNumberOfNodes, maxNumberOfNodes];
+        chiseling = GetComponent<Chiseling>();
 
         for (int i = 0; i < xSize; i++)
         {
@@ -82,6 +84,10 @@ public class GGManager : MonoBehaviour
             gm.gridX = xSize-1;
             gm.gridZ = ySize-1;
             CheckFlip();
+            chiseling.fixedPointsPositions.Add(new Vector2(xSize - 2, ySize - 2));
+            chiseling.fixedPointsPositions.Add(new Vector2(0, ySize - 2));
+            chiseling.fixedPointsPositions.Add(new Vector2(Random.Range(0, xSize - 1), Random.Range(0, ySize - 1)));
+            chiseling.fixedPointsPositions.Add(new Vector2(Random.Range(0, xSize - 1), Random.Range(0, ySize - 1)));
             gm.InitializePoints();
             gm.Chiseling();
             Destroy(this);
@@ -151,7 +157,7 @@ public class GGManager : MonoBehaviour
         time++;
         winningPoint.counter++;
         Adapt();
-        if (epochSize * 100 < time)
+        if (epochSize * 25 < time)
         {
             fineTunePhase = false;
         }

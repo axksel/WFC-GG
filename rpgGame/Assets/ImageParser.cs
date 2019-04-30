@@ -22,10 +22,21 @@ public class ImageParser : MonoBehaviour
         {
             for (int j = 0; j < image.height; j++)
             {
-
-                if (image.GetPixel(i, j).r < 0.5f)
+                if (image.GetPixel(i, j).grayscale < 0.40f)
                 {
-                    distributionPoints.Add(new Point(new Vector3(i,0,j),0,0));
+                    distributionPoints.Add(new Point(new Vector3(i, 0, j), 0, 0));
+                }
+                if (image.GetPixel(i, j).grayscale < 0.60f)
+                {
+                    distributionPoints.Add(new Point(new Vector3(i, 0, j), 0, 0));
+                }
+                if (image.GetPixel(i, j).grayscale < 0.80f)
+                {
+                    distributionPoints.Add(new Point(new Vector3(i, 0, j), 0, 0));
+                }
+                if (image.GetPixel(i, j).grayscale < 0.95f)
+                {
+                    distributionPoints.Add(new Point(new Vector3(i, 0, j), 0, 0));
                 }
             }
         }

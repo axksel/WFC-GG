@@ -267,7 +267,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 856dbaa3006be0849aeab15331ef79bf, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e9eb0f85f5e01b43b53138538663d41, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0178a2ebd5514340bcdd81d939450f0, type: 3}
 --- !u!1 &1213997708
@@ -317,9 +317,15 @@ MonoBehaviour:
   modules: []
   moduleSO: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
   floorGO: {fileID: 480407965697156524, guid: 47344057bbd8ebe45ad415603ce86915, type: 3}
+  solidGO: {fileID: 8587041743614604716, guid: 446921e5a4d066943869f3d04cbba88b, type: 3}
+  walls:
+  - {fileID: 5225446557080183971, guid: 700b4f7498801df458af29f8f8692dd1, type: 3}
+  - {fileID: 5225446557080183971, guid: bd0465b380c154a4d8815d79f8293ee9, type: 3}
+  - {fileID: 5225446557080183971, guid: e07950cf69f771947bd01ea2cdafa1a7, type: 3}
+  - {fileID: 5225446557080183971, guid: 89d2e9ec7cbdf75489cbb9573c595c9d, type: 3}
   bnm: {fileID: 0}
   isImproved: 1
-  enableChiseling: 0
+  enableChiseling: 1
   size: 0
   loadScreen: {fileID: 11400000, guid: 5fb13e22d62de25459564540bd076832, type: 2}
   progressBar: {fileID: 11400000, guid: 8c72052eaec8e3b439c2e410c611dc58, type: 2}
@@ -548,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885f702971fb9414c93f0bb32cf92aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noise: {fileID: 2800000, guid: 62748631b8c33434f8556d0238331ccc, type: 3}
+  noise: {fileID: 2800000, guid: 763bf72e89be3f944a05d71ed70cf6ad, type: 3}
   modules: {fileID: 11400000, guid: 2f3a22d104e59c9499faeb774e9926a4, type: 2}
 --- !u!114 &1213997719
 MonoBehaviour:
@@ -563,12 +569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixedPointsPositions:
-  - {x: 0, y: 0}
-  - {x: 0, y: 15}
-  - {x: 15, y: 0}
-  - {x: 5, y: 5}
-  - {x: 8, y: 18}
-  - {x: 18, y: 18}
+  - {x: 3, y: 3}
 --- !u!114 &1213997720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,7 +586,7 @@ MonoBehaviour:
   ySize: 2
   gm: {fileID: 0}
   timeCounter: 0
-  maxNumberOfNodes: 450
+  maxNumberOfNodes: 600
   neighbourhoodRange: 3
   epochSize: 500
   learningRate: 0.05
@@ -603,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f630c759cf6dbc4bbf8ae29496bbfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: fb81045810e5ac64ca0c57161d9d2381, type: 3}
+  image: {fileID: 2800000, guid: 763bf72e89be3f944a05d71ed70cf6ad, type: 3}
   gm: {fileID: 0}
 --- !u!114 &1213997722
 MonoBehaviour:
