@@ -493,7 +493,7 @@ public class GridManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        for (int i = 0; i < gridX; i++)
+        /*for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
             {
@@ -508,7 +508,7 @@ public class GridManager : MonoBehaviour
                     catch (System.NullReferenceException) { }
                 }
             }
-        }
+        }*/
         Gizmos.color = Color.blue;
 
         Gizmos.color = Color.red;

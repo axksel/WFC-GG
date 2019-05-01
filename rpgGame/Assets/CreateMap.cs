@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CreateMap : MonoBehaviour
@@ -22,6 +23,20 @@ public class CreateMap : MonoBehaviour
         {
             for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
             {
+                mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject.AddComponent<MeshCollider>();
+                ;
+            }
+        }
+
+        StartCoroutine(StartLate());
+    }
+
+    void Init()
+    {
+        for (int i = 0; i < mapPrefab.transform.childCount; i++)
+        {
+            for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
+            {
                 if (restoreMap) UnSkew(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
                 CreateStaticMesh(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
             }
@@ -33,15 +48,29 @@ public class CreateMap : MonoBehaviour
 
     }
 
+    IEnumerator StartLate()
+    {
+        yield return new WaitForSeconds(0.1f);
+        Init();
+    }
+
     void CreateStaticMesh(GameObject module)
     {
+        /*skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
+        tmpMesh = new Mesh();
+        meshFilter = module.GetComponent<MeshFilter>();
+        meshFilter.mesh.RecalculateNormals();
+        skinnedMeshRenderer.sharedMesh.RecalculateNormals();
+        module.AddComponent<MeshCollider>();*/
+
+
         skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
         tmpMesh = new Mesh();
         meshFilter = module.GetComponent<MeshFilter>();
 
         skinnedMeshRenderer.BakeMesh(tmpMesh);
         bounds = meshFilter.mesh.bounds;
-        bounds.Expand(new Vector3(1, 1, 1));
+        bounds.Expand(new Vector3(5, 5, 5));
         tmpMesh.bounds = bounds;
         meshFilter.mesh = tmpMesh;
         tmpMaterial = skinnedMeshRenderer.material;
@@ -72,4 +101,37 @@ public class CreateMap : MonoBehaviour
             }
         }
     }
+
+    void CombineMeshes(Transform module)
+    {
+        MeshFilter[] meshFilters = module.GetComponentsInChildren<MeshFilter>();
+        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+
+        int i = 0;
+        while (i < meshFilters.Length)
+        {
+            combine[i].mesh = meshFilters[i].sharedMesh;
+            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            meshFilters[i].gameObject.SetActive(false);
+
+            i++;
+        }
+
+        module.gameObject.AddComponent<MeshFilter>();
+        module.transform.GetComponent<MeshFilter>().mesh = new Mesh();
+        module.transform.GetComponent<MeshFilter>().mesh.CombineMeshes(combine);
+        module.gameObject.AddComponent<MeshRenderer>();
+        module.transform.gameObject.SetActive(true);
+    }
+
+    /*void SaveAsset(Transform module, string index)
+    {
+        MeshFilter mf = module.GetComponent<MeshFilter>();
+        if (mf)
+        {
+            var savePath = "Assets/SavedMeshes/" + "TestMesh" + index + ".asset";
+            Debug.Log("Saved Mesh to:" + savePath);
+            AssetDatabase.CreateAsset(mf.mesh, savePath);
+        }
+    }*/
 }

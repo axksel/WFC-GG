@@ -1,56 +1,152 @@
 fileFormatVersion: 2
 guid: c06dc5c1643fd29479bff6e9956ea7cd
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Cube
-    100002: //RootNode
-    100004: nvx
-    100006: nvy
-    100008: "n\xF8x"
-    100010: "n\xF8y"
-    100012: svx
-    100014: svy
-    100016: "s\xF8x"
-    100018: "s\xF8y"
-    400000: Cube
-    400002: //RootNode
-    400004: nvx
-    400006: nvy
-    400008: "n\xF8x"
-    400010: "n\xF8y"
-    400012: svx
-    400014: svy
-    400016: "s\xF8x"
-    400018: "s\xF8y"
-    2100000: No Name
-    2300000: nvx
-    2300002: nvy
-    2300004: "n\xF8x"
-    2300006: "n\xF8y"
-    2300008: svx
-    2300010: svy
-    2300012: "s\xF8x"
-    2300014: "s\xF8y"
-    3300000: nvx
-    3300002: nvy
-    3300004: "n\xF8x"
-    3300006: "n\xF8y"
-    3300008: svx
-    3300010: svy
-    3300012: "s\xF8x"
-    3300014: "s\xF8y"
-    4300000: Cube
-    4300002: "s\xF8y"
-    4300004: "s\xF8x"
-    4300006: svy
-    4300008: svx
-    4300010: "n\xF8y"
-    4300012: "n\xF8x"
-    4300014: nvy
-    4300016: nvx
-    9500000: //RootNode
-    13700000: Cube
+  serializedVersion: 25
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Cube
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: nvx
+  - first:
+      1: 100006
+    second: nvy
+  - first:
+      1: 100008
+    second: "n\xF8x"
+  - first:
+      1: 100010
+    second: "n\xF8y"
+  - first:
+      1: 100012
+    second: svx
+  - first:
+      1: 100014
+    second: svy
+  - first:
+      1: 100016
+    second: "s\xF8x"
+  - first:
+      1: 100018
+    second: "s\xF8y"
+  - first:
+      4: 400000
+    second: Cube
+  - first:
+      4: 400002
+    second: //RootNode
+  - first:
+      4: 400004
+    second: nvx
+  - first:
+      4: 400006
+    second: nvy
+  - first:
+      4: 400008
+    second: "n\xF8x"
+  - first:
+      4: 400010
+    second: "n\xF8y"
+  - first:
+      4: 400012
+    second: svx
+  - first:
+      4: 400014
+    second: svy
+  - first:
+      4: 400016
+    second: "s\xF8x"
+  - first:
+      4: 400018
+    second: "s\xF8y"
+  - first:
+      21: 2100000
+    second: No Name
+  - first:
+      23: 2300000
+    second: nvx
+  - first:
+      23: 2300002
+    second: nvy
+  - first:
+      23: 2300004
+    second: "n\xF8x"
+  - first:
+      23: 2300006
+    second: "n\xF8y"
+  - first:
+      23: 2300008
+    second: svx
+  - first:
+      23: 2300010
+    second: svy
+  - first:
+      23: 2300012
+    second: "s\xF8x"
+  - first:
+      23: 2300014
+    second: "s\xF8y"
+  - first:
+      33: 3300000
+    second: nvx
+  - first:
+      33: 3300002
+    second: nvy
+  - first:
+      33: 3300004
+    second: "n\xF8x"
+  - first:
+      33: 3300006
+    second: "n\xF8y"
+  - first:
+      33: 3300008
+    second: svx
+  - first:
+      33: 3300010
+    second: svy
+  - first:
+      33: 3300012
+    second: "s\xF8x"
+  - first:
+      33: 3300014
+    second: "s\xF8y"
+  - first:
+      43: 4300000
+    second: Cube
+  - first:
+      43: 4300002
+    second: "s\xF8y"
+  - first:
+      43: 4300004
+    second: "s\xF8x"
+  - first:
+      43: 4300006
+    second: svy
+  - first:
+      43: 4300008
+    second: svx
+  - first:
+      43: 4300010
+    second: "n\xF8y"
+  - first:
+      43: 4300012
+    second: "n\xF8x"
+  - first:
+      43: 4300014
+    second: nvy
+  - first:
+      43: 4300016
+    second: nvx
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Cube
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -93,30 +189,32 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
-    normalSmoothAngle: 60
+    normalSmoothAngle: 180
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 2
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 0
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -126,6 +224,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
