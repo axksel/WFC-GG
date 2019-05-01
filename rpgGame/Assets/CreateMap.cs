@@ -50,8 +50,8 @@ public class CreateMap : MonoBehaviour
 
     IEnumerator StartLate()
     {
-        yield return new WaitForSeconds(0.1f);
         Init();
+        yield return new WaitForSeconds(0.1f);
     }
 
     void CreateStaticMesh(GameObject module)

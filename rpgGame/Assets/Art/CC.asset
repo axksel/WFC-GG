@@ -43,9 +43,9 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 0.55
-      radius: 1.29
-      sampleCount: 6
+      intensity: 0.5
+      radius: 4
+      sampleCount: 10
       downsampling: 1
       forceForwardCompatibility: 0
       ambientOnly: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
       logMin: -8
       logMax: 4
   bloom:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       bloom:
         intensity: 0.5
@@ -122,11 +122,11 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 0
-        temperature: 5.1
-        tint: 1.5
+        temperature: 13.3
+        tint: 3.7
         hueShift: 3
-        saturation: 1.393
-        contrast: 0.695
+        saturation: 1.46
+        contrast: 0.807
       channelMixer:
         red: {x: 1, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
