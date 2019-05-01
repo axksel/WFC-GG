@@ -79,6 +79,7 @@ public class CreateMap : MonoBehaviour
         module.GetComponent<MeshRenderer>().material = tmpMaterial;
         meshFilter.mesh.RecalculateNormals();
         module.AddComponent<MeshCollider>();
+        module.GetComponent<MeshCollider>().sharedMesh = meshFilter.sharedMesh;
     }
 
     void UnSkew(GameObject module)
