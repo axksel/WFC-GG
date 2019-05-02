@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class GuideText : MonoBehaviour
 {
-    public movementTracker mt;
+    movementTracker mt;
     public TextMeshProUGUI tmp;
     bool reachedEnd;
     public CreateMap cm;
 
     void Start()
     {
-        
+        mt = GetComponent<movementTracker>();
     }
 
     void Update()
@@ -23,6 +23,17 @@ public class GuideText : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         tmp.text = "";
+
+        if (other.gameObject.tag == "GoalSphere")
+        {
+            mt.startTime = Time.time;
+            mt.SummedLength = 0;
+        }
+        if (other.gameObject.tag == "StartSphere")
+        {
+            mt.startTime = Time.time;
+            mt.SummedLength = 0;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,14 +43,27 @@ public class GuideText : MonoBehaviour
             tmp.text = "Go back to where you started";
             cm.RestoreMaterial();
             reachedEnd = true;
+
+            mt.firstTripTime = Time.time - mt.startTime;
+            mt.firstSummedLength = mt.SummedLength;
         }
+
         if (other.gameObject.tag == "StartSphere")
         {
             tmp.text = "Follow the red path";
         }
+
         if (other.gameObject.tag == "StartSphere" && reachedEnd)
         {
             tmp.text = "ggwp";
+
+            mt.secondTripTime = Time.time - mt.startTime;
+            mt.secondSummedLength = mt.SummedLength;
         }
+    }
+
+    private void Finished()
+    {
+        mt.results.list.Add(mt.firstTripTime);
     }
 }
