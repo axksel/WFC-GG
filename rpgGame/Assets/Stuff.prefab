@@ -886,7 +886,7 @@ MonoBehaviour:
   startTime: 0
   firstTripTime: 0
   secondTripTime: 0
-  results: {fileID: 0}
+  results: {fileID: 11400000, guid: f60cf336ebe28be47968ec4493fcb82f, type: 2}
 --- !u!1 &8959571609376745107
 GameObject:
   m_ObjectHideFlags: 0

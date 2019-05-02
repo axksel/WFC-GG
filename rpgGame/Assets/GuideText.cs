@@ -56,7 +56,7 @@ public class GuideText : MonoBehaviour
 
         if (other.gameObject.tag == "StartSphere" && reachedEnd)
         {
-            tmp.text = "ggwp";
+            tmp.text = "Well done. Loading next level";
 
             mt.secondTripTime = Time.time - mt.startTime;
             mt.secondSummedLength = mt.SummedLength;

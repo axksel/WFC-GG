@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
+
+    public FloatList scenesToPlay;
+
     void Start()
     {
         
@@ -12,6 +15,8 @@ public class LoadScene : MonoBehaviour
 
     public void LoadTest()
     {
-        SceneManager.LoadScene(1);
+        int index = (int)scenesToPlay.list[0];
+        scenesToPlay.list.RemoveAt(0);
+        SceneManager.LoadScene(index);
     }
 }

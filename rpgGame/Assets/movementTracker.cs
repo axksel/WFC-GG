@@ -15,6 +15,8 @@ public class movementTracker : MonoBehaviour
     public float firstTripTime;
     public float secondTripTime;
     public FloatList results;
+    public FloatList scenesToPlay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,14 @@ public class movementTracker : MonoBehaviour
         results.list.Add(secondTripTime);
         results.list.Add(firstSummedLength);
         results.list.Add(secondSummedLength);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        if(scenesToPlay.list.Count == 0)
+        {
+            SceneManager.LoadScene(13);
+        }
+
+        int index = (int)scenesToPlay.list[0];
+        scenesToPlay.list.RemoveAt(0);
+        SceneManager.LoadScene(index);
     }
 }

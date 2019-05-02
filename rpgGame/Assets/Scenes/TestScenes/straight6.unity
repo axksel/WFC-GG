@@ -209,7 +209,20 @@ PrefabInstance:
       propertyPath: cm
       value: 
       objectReference: {fileID: 1777140064}
-    m_RemovedComponents: []
+    - target: {fileID: 6609038172158683229, guid: 4170d3bb9b312b84ba5661d2769cfac7,
+        type: 3}
+      propertyPath: results
+      value: 
+      objectReference: {fileID: 11400000, guid: f60cf336ebe28be47968ec4493fcb82f,
+        type: 2}
+    - target: {fileID: 6609038172158683229, guid: 4170d3bb9b312b84ba5661d2769cfac7,
+        type: 3}
+      propertyPath: scenesToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: c2eb107518e2c0e45877501e1a441ec0,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 7737745907995130315, guid: 4170d3bb9b312b84ba5661d2769cfac7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4170d3bb9b312b84ba5661d2769cfac7, type: 3}
 --- !u!1001 &1283589299
 PrefabInstance:

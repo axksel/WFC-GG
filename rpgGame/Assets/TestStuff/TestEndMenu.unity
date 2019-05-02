@@ -177,14 +177,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "In this test you will be asked to follow a path to the end. When you have
-    reached the end the path will disappear and you will be asked to find your way
-    back to the start. There will be a glowing sphere, which marks the start and end
-    of the path. You will play 6 different maps with the same objective. \nYour time
-    to complete each map and your walking distance will automatically be logged. No
-    other information will be logged. \n\nYou control the character with WASD and
-    look around with the mouse. \n\nThanks for helping us evaluate our master thesis.
-    \nJonas & Tobias"
+  m_text: "The test is finished. Your results has been logged and you may close this
+    window now. \nRelease your mouse by pressing escape. \n\nThanks for helping us
+    evaluate our master thesis. \nJonas & Tobias"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e5c9e87f8b78bef4088c8d9682298992, type: 2}
   m_sharedMaterial: {fileID: 21158195907814904, guid: e5c9e87f8b78bef4088c8d9682298992,
@@ -213,7 +208,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 20.15
+  m_fontSize: 37.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -254,12 +249,12 @@ MonoBehaviour:
   m_margin: {x: -242.08174, y: -183.57881, z: -233.77852, w: 0.86139727}
   m_textInfo:
     textComponent: {fileID: 91548145}
-    characterCount: 565
+    characterCount: 193
     spriteCount: 0
-    spaceCount: 110
-    wordCount: 104
+    spaceCount: 36
+    wordCount: 32
     linkCount: 0
-    lineCount: 11
+    lineCount: 6
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -996,7 +991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &879567682
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1122,7 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a3323c8c324aa244b2371945db23bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenesToPlay: {fileID: 11400000, guid: c2eb107518e2c0e45877501e1a441ec0, type: 2}
+  scenesToPlay: {fileID: 0}
 --- !u!1 &1183597827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1231,7 @@ GameObject:
   - component: {fileID: 1355860103}
   - component: {fileID: 1355860102}
   - component: {fileID: 1355860101}
-  - component: {fileID: 1355860105}
+  - component: {fileID: 1355860104}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1309,7 +1304,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1355860105
+--- !u!114 &1355860104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1318,10 +1313,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1355860100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48785e2f14318574e83c7f8d0b45eea7, type: 3}
+  m_Script: {fileID: 11500000, guid: eacc50b75ca2c7f478b86a99df75f55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenesToPlay: {fileID: 11400000, guid: c2eb107518e2c0e45877501e1a441ec0, type: 2}
+  results: {fileID: 11400000, guid: f60cf336ebe28be47968ec4493fcb82f, type: 2}
 --- !u!1 &1743259329
 GameObject:
   m_ObjectHideFlags: 0
