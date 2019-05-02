@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GuideText : MonoBehaviour
 {
+    public movementTracker mt;
     public TextMeshProUGUI tmp;
     bool reachedEnd;
     public CreateMap cm;
