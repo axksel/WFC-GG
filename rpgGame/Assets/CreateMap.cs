@@ -43,11 +43,6 @@ public class CreateMap : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-
-    }
-
     IEnumerator StartLate()
     {
         Init();
