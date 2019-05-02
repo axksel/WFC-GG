@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movementTracker : MonoBehaviour
 {
@@ -26,5 +27,15 @@ public class movementTracker : MonoBehaviour
     {
         SummedLength+=Vector3.Distance(transform.position, position);
         position = transform.position;
+    }
+
+    public void Finished()
+    {
+        results.list.Add(SceneManager.GetActiveScene().buildIndex);
+        results.list.Add(firstTripTime);
+        results.list.Add(secondTripTime);
+        results.list.Add(firstSummedLength);
+        results.list.Add(secondSummedLength);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

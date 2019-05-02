@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GuideText : MonoBehaviour
 {
@@ -59,11 +60,9 @@ public class GuideText : MonoBehaviour
 
             mt.secondTripTime = Time.time - mt.startTime;
             mt.secondSummedLength = mt.SummedLength;
+            mt.Finished();
         }
     }
 
-    private void Finished()
-    {
-        mt.results.list.Add(mt.firstTripTime);
-    }
+
 }
