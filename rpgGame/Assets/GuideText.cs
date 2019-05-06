@@ -10,6 +10,7 @@ public class GuideText : MonoBehaviour
     public TextMeshProUGUI tmp;
     bool reachedEnd;
     public CreateMap cm;
+    bool firstTimeLogged = true;
 
     void Start()
     {
@@ -27,8 +28,12 @@ public class GuideText : MonoBehaviour
 
         if (other.gameObject.tag == "GoalSphere")
         {
-            mt.startTime = Time.time;
-            mt.SummedLength = 0;
+            if (firstTimeLogged)
+            {
+                mt.startTime = Time.time;
+                mt.SummedLength = 0;
+                firstTimeLogged = false;
+            }
         }
         if (other.gameObject.tag == "StartSphere")
         {
@@ -45,8 +50,11 @@ public class GuideText : MonoBehaviour
             cm.RestoreMaterial();
             reachedEnd = true;
 
-            mt.firstTripTime = Time.time - mt.startTime;
-            mt.firstSummedLength = mt.SummedLength;
+            if (firstTimeLogged)
+            {
+                mt.firstTripTime = Time.time - mt.startTime;
+                mt.firstSummedLength = mt.SummedLength;
+            }
         }
 
         if (other.gameObject.tag == "StartSphere")

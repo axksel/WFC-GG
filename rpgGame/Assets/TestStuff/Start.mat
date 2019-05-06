@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glow
+  m_Name: Start
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8035915, g: 0.8113208, b: 0.23344605, a: 1}
+    - _Color: {r: 0.8117647, g: 0.2739584, b: 0.23529412, a: 1}
     - _EmissionColor: {r: 0.7075472, g: 0.07198945, b: 0, a: 1}

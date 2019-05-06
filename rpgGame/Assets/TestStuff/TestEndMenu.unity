@@ -177,7 +177,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "The test is finished. Your results has been logged and you may close this
+  m_text: "The test is finished. Your results have been logged and you may close this
     window now. \nRelease your mouse by pressing escape. \n\nThanks for helping us
     evaluate our master thesis. \nJonas & Tobias"
   m_isRightToLeft: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_margin: {x: -242.08174, y: -183.57881, z: -233.77852, w: 0.86139727}
   m_textInfo:
     textComponent: {fileID: 91548145}
-    characterCount: 193
+    characterCount: 194
     spriteCount: 0
     spaceCount: 36
     wordCount: 32
