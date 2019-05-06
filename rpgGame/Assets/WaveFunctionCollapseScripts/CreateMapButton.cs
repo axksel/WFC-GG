@@ -1,11 +1,11 @@
 ﻿
-/*
+
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using System;
 
-[CustomEditor(typeof(GridManager))]
+[CustomEditor(typeof(CreateMap))]
 public class ObjectBuilderEditor : Editor
 {
 
@@ -13,21 +13,17 @@ public class ObjectBuilderEditor : Editor
     {
         DrawDefaultInspector();
 
-        GridManager myScript = (GridManager)target;
+        CreateMap myScript = (CreateMap)target;
       
 
         if (GUILayout.Button("Collapse Random"))
         {
-            myScript.Collapse();
+            
         }
 
-        if (GUILayout.Button("Iterate and Collapse"))
-        {
-            myScript.StartCoroutine(myScript.IterateAndCollapse());
-        }
+       
 
      
     }
 
 }
-*/

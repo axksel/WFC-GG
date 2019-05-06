@@ -10,6 +10,7 @@ public class GuideText : MonoBehaviour
     public TextMeshProUGUI tmp;
     bool reachedEnd;
     public CreateMap cm;
+    public GameObject guld;
     bool firstTimeLogged = true;
 
     void Start()
@@ -30,6 +31,7 @@ public class GuideText : MonoBehaviour
         {
             if (firstTimeLogged)
             {
+               
                 mt.startTime = Time.time;
                 mt.SummedLength = 0;
                 firstTimeLogged = false;
@@ -52,6 +54,7 @@ public class GuideText : MonoBehaviour
 
             if (firstTimeLogged)
             {
+                Destroy(guld);
                 mt.firstTripTime = Time.time - mt.startTime;
                 mt.firstSummedLength = mt.SummedLength;
             }
