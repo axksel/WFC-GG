@@ -178,15 +178,15 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "In this test you play a game as a poor treasure hunter looking to find
-    some gold. There will be a treasure at the end of a red path painted on the floor.
-    When you have found the treasure, the path will disappear and you will have to
-    find your way back to the start. \nBe careful to not get lost! \n\nYou will play
-    6 different maps with the same objective. \n\nYour time to complete each map and
-    your walking distance will automatically be logged. No other information will
-    be logged. All data is anonymous. \n\nYou control your character with WASD and
-    look around with the mouse. \n\nThanks for helping us evaluate our master thesis.
-    \nJonas & Tobias"
+  m_text: "In this game you play as a poor treasure hunter looking to prove yourself
+    in the mysterious labyrinths. There will be a treasure at the end of a red path
+    painted on the floor. When you have found the treasure, the path will disappear
+    and you will have to find your way back to the entrance. \nMake sure you can find
+    your way back, so you don't get lost.\n\nYou will play 6 different labyrinths
+    with the same objective. \n\nYour time to complete each labyrinth and your walking
+    distance will automatically be logged. No other information will be logged. All
+    data is anonymous. \n\nYou control your character with WASD and look around with
+    the mouse. \n\nThanks for helping us evaluate our master thesis. \nJonas & Tobias"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e5c9e87f8b78bef4088c8d9682298992, type: 2}
   m_sharedMaterial: {fileID: 21158195907814904, guid: e5c9e87f8b78bef4088c8d9682298992,
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 575
+  m_firstOverflowCharacterIndex: 644
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -256,10 +256,10 @@ MonoBehaviour:
   m_margin: {x: -242.08174, y: -183.57881, z: -233.77852, w: 0.86139727}
   m_textInfo:
     textComponent: {fileID: 91548145}
-    characterCount: 640
+    characterCount: 709
     spriteCount: 0
-    spaceCount: 127
-    wordCount: 117
+    spaceCount: 134
+    wordCount: 125
     linkCount: 0
     lineCount: 14
     pageCount: 1

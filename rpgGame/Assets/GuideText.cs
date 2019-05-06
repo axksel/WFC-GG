@@ -48,7 +48,7 @@ public class GuideText : MonoBehaviour
     {
         if(other.gameObject.tag == "GoalSphere")
         {
-            tmp.text = "Go back to where you started";
+            tmp.text = "Good job! Escape the labyrinth by finding your way back to the entrance.";
             cm.RestoreMaterial();
             reachedEnd = true;
 
@@ -62,12 +62,12 @@ public class GuideText : MonoBehaviour
 
         if (other.gameObject.tag == "StartSphere")
         {
-            tmp.text = "Follow the red path";
+            tmp.text = "Follow the red path to the treasure. Remember you need to find your way back.";
         }
 
         if (other.gameObject.tag == "StartSphere" && reachedEnd)
         {
-            tmp.text = "Well done. Loading next level";
+            tmp.text = "Well done. Loading next labyrinth";
 
             mt.secondTripTime = Time.time - mt.startTime;
             mt.secondSummedLength = mt.SummedLength;
