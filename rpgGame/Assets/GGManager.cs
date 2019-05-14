@@ -89,7 +89,7 @@ public class GGManager : MonoBehaviour
             chiseling.fixedPointsPositions.Add(new Vector2(Random.Range(0, xSize - 1), Random.Range(0, ySize - 1)));
             chiseling.fixedPointsPositions.Add(new Vector2(Random.Range(0, xSize - 1), Random.Range(0, ySize - 1)));
             gm.InitializePoints();
-            gm.Chiseling();
+            gm.InitializeSlots();
             Destroy(this);
         }
 
