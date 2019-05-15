@@ -130,7 +130,9 @@ public class slot
         //Collapse with noiseWeights
         for (int i = 0; i < posibilitySpace.Count; i++)
         {
-            posibilitySpace[i].GetComponent<Modulescript>().weight = Mathf.Pow(Mathf.Lerp(1 - posibilitySpace[i].GetComponent<Modulescript>().weightModifier, posibilitySpace[i].GetComponent<Modulescript>().weightModifier, noiseWeight), 8);
+            posibilitySpace[i].GetComponent<Modulescript>().weight = 
+            Mathf.Pow(Mathf.Lerp(1 - posibilitySpace[i].GetComponent<Modulescript>().weightModifier, 
+            posibilitySpace[i].GetComponent<Modulescript>().weightModifier, noiseWeight), 8);
         }
 
         float weightSum = 0;
