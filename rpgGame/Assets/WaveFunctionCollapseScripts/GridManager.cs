@@ -72,7 +72,7 @@ public class GridManager : MonoBehaviour
             loadScreen.list[0].transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        //Chiseling();
+        //InitializeSlots();
     }
 
 
@@ -97,7 +97,7 @@ public class GridManager : MonoBehaviour
 
 
 
-    public void Chiseling()
+    public void InitializeSlots()
     {
         int index = 0;
         for (int i = 0; i < gridX; i++)
