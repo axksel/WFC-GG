@@ -77,14 +77,14 @@ SkinnedMeshRenderer:
   m_Mesh: {fileID: -462981019419857548, guid: 5a2f36f129d1bf1479a4cd32a6e550b1, type: 3}
   m_Bones: []
   m_BlendShapeWeights:
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   m_RootBone: {fileID: 0}
   m_AABB:
     m_Center: {x: 0, y: 0, z: 0}
@@ -123,9 +123,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos: {x: 0, y: 0, z: 0}
   isPath: 0
-  neighbours: 000000000000000000000000000000000000000000000000
-  flipped: 000000000000
-  symmetrical: 000000000000
+  neighbours: 010000000100000001000000010000000000000000000000
+  flipped: 000100010000
+  symmetrical: 010101010000
   neighbourNorth: []
   neighbourEast: []
   neighbourSouth: []
@@ -133,7 +133,7 @@ MonoBehaviour:
   neighbourUp: []
   neighbourDown: []
   modules: []
-  moduleSO: {fileID: 0}
+  moduleSO: {fileID: 11400000, guid: c3da487b19ca8d241a9bea242c660455, type: 2}
   weight: 0
   weightModifier: 0
   moduleIndex: 0
