@@ -245,7 +245,7 @@ public class GridManager : MonoBehaviour
                         {
                             
                             SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
-                            CreateStaticMesh(grid[i, k, j].instantiatedModule);
+                           // CreateStaticMesh(grid[i, k, j].instantiatedModule);
                         }
                        
 

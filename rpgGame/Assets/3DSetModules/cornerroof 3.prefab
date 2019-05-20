@@ -184,6 +184,7 @@ MonoBehaviour:
   - {fileID: 8570747417978990748, guid: ce62620ca3d8a424bb2472d40148b362, type: 3}
   - {fileID: 8570747417978990748, guid: 27755f11664a41247a32e9cc2de7815e, type: 3}
   - {fileID: 8570747417978990748, guid: 4b47c1b1f70b55949a6c1ebf0c220238, type: 3}
+  - {fileID: 6525853136783863058, guid: 094d5c0d82f77f7428aa6c0e7dc488a5, type: 3}
   moduleSO: {fileID: 11400000, guid: 9d233b08683f74c4ba36e84d1f8cab97, type: 2}
   weight: 62.405342
   weightModifier: 0

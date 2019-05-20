@@ -621,9 +621,9 @@ MonoBehaviour:
   ySize: 2
   gm: {fileID: 0}
   timeCounter: 0
-  maxNumberOfNodes: 502
-  neighbourhoodRange: 2.27
-  epochSize: 201
+  maxNumberOfNodes: 203
+  neighbourhoodRange: 2.35
+  epochSize: 632
   learningRate: 0.05
   growthPhase: 1
   fineTunePhase: 0
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f630c759cf6dbc4bbf8ae29496bbfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 4712b1a7f2fd18a4c9bcf539bb119e0d, type: 3}
+  image: {fileID: 2800000, guid: ac0c49420100801489ba2c4e9ce3d890, type: 3}
   gm: {fileID: 0}
 --- !u!114 &1213997722
 MonoBehaviour:

@@ -9,7 +9,7 @@ public class CreateMap : MonoBehaviour
 
     SkinnedMeshRenderer skinnedMeshRenderer;
     Mesh tmpMesh;
-    Material tmpMaterial;
+    Material[] tmpMaterial;
     MeshFilter meshFilter;
     Bounds bounds;
     GGManager gg;
@@ -37,8 +37,10 @@ public class CreateMap : MonoBehaviour
         {
             for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
             {
+                if (mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject.GetComponent<SkinnedMeshRenderer>()!=null) { 
                 if (restoreMap) UnSkew(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
                 CreateStaticMesh(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
+            }
             }
         }
     }
@@ -57,7 +59,7 @@ public class CreateMap : MonoBehaviour
         meshFilter.mesh.RecalculateNormals();
         skinnedMeshRenderer.sharedMesh.RecalculateNormals();
         module.AddComponent<MeshCollider>();*/
-
+        module.AddComponent<MeshFilter>();
 
         skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
         tmpMesh = new Mesh();
@@ -68,10 +70,10 @@ public class CreateMap : MonoBehaviour
         bounds.Expand(new Vector3(5, 5, 5));
         tmpMesh.bounds = bounds;
         meshFilter.mesh = tmpMesh;
-        tmpMaterial = skinnedMeshRenderer.material;
+        tmpMaterial = skinnedMeshRenderer.materials;
         Destroy(skinnedMeshRenderer);
         module.AddComponent<MeshRenderer>();
-        module.GetComponent<MeshRenderer>().material = tmpMaterial;
+        module.GetComponent<MeshRenderer>().materials = tmpMaterial;
         meshFilter.mesh.RecalculateNormals();
         module.AddComponent<MeshCollider>();
         module.GetComponent<MeshCollider>().sharedMesh = meshFilter.sharedMesh;
@@ -79,7 +81,12 @@ public class CreateMap : MonoBehaviour
 
     void UnSkew(GameObject module)
     {
-        module.transform.position = module.GetComponent<Modulescript>().pos * 2;
+        module.transform.position = module.GetComponent<Modulescript>().pos * 2.5f;
+        if (module.tag == "flooor")
+        {
+
+            module.transform.position += new Vector3(0, 0.15f, 0);
+        }
         for (int i = 0; i < 8; i++)
         {
             module.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(i, 0);
