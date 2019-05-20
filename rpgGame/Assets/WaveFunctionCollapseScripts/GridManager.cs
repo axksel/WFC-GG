@@ -41,7 +41,7 @@ public class GridManager : MonoBehaviour
     //BlendWeights
     SkinnedMeshRenderer skinnedMeshRenderer;
     Mesh tmpMesh;
-    Material tmpMaterial;
+    Material[] tmpMaterial;
     MeshFilter meshFilter;
     Bounds bounds;
     GGManager gg;
@@ -239,13 +239,15 @@ public class GridManager : MonoBehaviour
                         }
                         grid[i, k, j].IsInstantiated = true;
                         grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().pos = grid[i, k, j].pos;
-                        grid[i, k, j].instantiatedModule.transform.position =new Vector3(0,k*2,0)+ ((grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4);
+                        grid[i, k, j].instantiatedModule.transform.position = grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(0,k*2,0)+ ((grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4);
                         UpdatePointOffsets(i, k, j);
                         if (grid[i, k, j].instantiatedModule.GetComponent<SkinnedMeshRenderer>() != null)
                         {
+                            
                             SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                            CreateStaticMesh(grid[i, k, j].instantiatedModule);
                         }
-                        //CreateStaticMesh(grid[i, k, j].instantiatedModule);
+                       
 
 
                     }
@@ -426,10 +428,10 @@ public class GridManager : MonoBehaviour
         bounds.Expand(new Vector3(1, 1, 1));
         tmpMesh.bounds = bounds;
         meshFilter.mesh = tmpMesh;
-        tmpMaterial = skinnedMeshRenderer.material;
+        tmpMaterial = skinnedMeshRenderer.materials;
         Destroy(skinnedMeshRenderer);
         module.AddComponent<MeshRenderer>();
-        module.GetComponent<MeshRenderer>().material = tmpMaterial;
+        module.GetComponent<MeshRenderer>().materials = tmpMaterial;
         meshFilter.mesh.RecalculateNormals();
         module.AddComponent<MeshCollider>();
     }
@@ -498,7 +500,7 @@ public class GridManager : MonoBehaviour
     }
 
     void OnDrawGizmos()
-    {
+    {/*
         for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
@@ -515,7 +517,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        
+        */
         Gizmos.color = Color.blue;
 
         Gizmos.color = Color.red;

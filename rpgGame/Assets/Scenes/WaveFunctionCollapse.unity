@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridX: 20
-  gridY: 5
+  gridY: 10
   gridZ: 20
   modules: []
   moduleSO: {fileID: 11400000, guid: 9d233b08683f74c4ba36e84d1f8cab97, type: 2}
@@ -373,7 +373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213997708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.8207464, z: -23.6}
+  m_LocalPosition: {x: 0, y: 0, z: -23.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885f702971fb9414c93f0bb32cf92aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noise: {fileID: 2800000, guid: 994ac706999779348945de9b93896e36, type: 3}
+  noise: {fileID: 2800000, guid: 62748631b8c33434f8556d0238331ccc, type: 3}
   modules: {fileID: 11400000, guid: 9d233b08683f74c4ba36e84d1f8cab97, type: 2}
 --- !u!114 &1213997719
 MonoBehaviour:
@@ -621,8 +621,8 @@ MonoBehaviour:
   ySize: 2
   gm: {fileID: 0}
   timeCounter: 0
-  maxNumberOfNodes: 94
-  neighbourhoodRange: 0.93
+  maxNumberOfNodes: 502
+  neighbourhoodRange: 2.27
   epochSize: 201
   learningRate: 0.05
   growthPhase: 1
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f630c759cf6dbc4bbf8ae29496bbfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 071c4c61bf1c31a4aa480d91493dc198, type: 3}
+  image: {fileID: 2800000, guid: 4712b1a7f2fd18a4c9bcf539bb119e0d, type: 3}
   gm: {fileID: 0}
 --- !u!114 &1213997722
 MonoBehaviour:
