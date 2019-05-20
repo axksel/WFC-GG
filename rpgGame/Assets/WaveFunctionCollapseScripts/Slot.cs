@@ -128,6 +128,7 @@ public class slot
     public void collapse()
     {
         //Collapse with noiseWeights
+        /*
         for (int i = 0; i < posibilitySpace.Count; i++)
         {
             posibilitySpace[i].GetComponent<Modulescript>().weight = 
@@ -157,14 +158,15 @@ public class slot
         GameObject tmpModule = posibilitySpace[moduleToCollapse];
         posibilitySpace.Clear();
         posibilitySpace.Add(tmpModule);
-
+        */
         //Remove from possibilitySpace
         int random2 = Random.Range(0, posibilitySpace.Count);
-
+        
         if (posibilitySpace.Count > 1)
         {
             posibilitySpace.RemoveAt(random2);
         }
+        
     }
 
     public void collapse(int k)

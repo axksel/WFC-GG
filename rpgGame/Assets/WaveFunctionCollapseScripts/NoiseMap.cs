@@ -18,6 +18,7 @@ public class NoiseMap : MonoBehaviour
             for (int j = 0; j < modules.list[i].GetComponent<Modulescript>().neighbours.Length - 2; j++)
             {
                 if (modules.list[i].GetComponent<Modulescript>().neighbours[j] == 0) modules.list[i].GetComponent<Modulescript>().weightModifier += 0.25f;
+                if (modules.list[i].GetComponent<Modulescript>().neighbours[j] == 1) modules.list[i].GetComponent<Modulescript>().weightModifier += 0.1f;
             }
 
         }

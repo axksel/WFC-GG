@@ -67,10 +67,10 @@ public class GridManager : MonoBehaviour
         weights.AssignWeights(modules);
         //startBuilding();
 
-        for (int i = 0; i < loadScreen.list[0].transform.childCount; i++)
-        {
-            loadScreen.list[0].transform.GetChild(i).gameObject.SetActive(true);
-        }
+        //for (int i = 0; i < loadScreen.list[0].transform.childCount; i++)
+        //{
+        //    loadScreen.list[0].transform.GetChild(i).gameObject.SetActive(true);
+        //}
 
         //InitializeSlots();
     }
@@ -87,7 +87,7 @@ public class GridManager : MonoBehaviour
         {
             for (int k = 0; k < gridZ + 1; k++)
             {
-                Point tmpPoint = new Point(new Vector3(i * 2, 0, k * 2), i * 2 + UnityEngine.Random.Range(-0.5f, 0.5f), k * 2 + UnityEngine.Random.Range(-0.5f, 0.5f));
+                Point tmpPoint = new Point(new Vector3(i * 2, 0, k * 2), i * 2 , k * 2 );
                 tmpPoint.offsetPos = gg.points[i, k].position;
                 allPoints.Add(tmpPoint);
                 pointgrid[i, 0, k] = tmpPoint;
@@ -106,7 +106,7 @@ public class GridManager : MonoBehaviour
             {
                 for (int j = 0; j < gridZ; j++)
                 {
-                    slot tmpSlot = new slot(pointgrid[i,k,j], pointgrid[i+1, k, j], pointgrid[i, k, j+1], pointgrid[i+1, k, j+1]);
+                    slot tmpSlot = new slot(pointgrid[i,0,j], pointgrid[i+1, 0, j], pointgrid[i, 0, j+1], pointgrid[i+1, 0, j+1]);
                     grid[i, k, j] = tmpSlot;
                     if (enableChiseling) grid[i, k, j].isPath = true;
                     grid[i, k, j].index = index;
@@ -190,6 +190,8 @@ public class GridManager : MonoBehaviour
         }
         mL.randomPooltmp.AddRange(mL.randomPool);
 
+        grid[3, 0, 3].collapse(3);
+
         /*for (int i = 0; i < gridX; i++)
         {
             grid[i, 0, gridZ - 1].posibilitySpace.Clear();
@@ -227,7 +229,7 @@ public class GridManager : MonoBehaviour
                     //if(grid[i, k, j].isPath && grid[i, k, j].IsInstantiated != true)
                     {
                         size--;
-                        StartCoroutine(Progress(size));
+                        //StartCoroutine(Progress(size));
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
                         if (grid[i, k, j].isPath)
@@ -237,9 +239,12 @@ public class GridManager : MonoBehaviour
                         }
                         grid[i, k, j].IsInstantiated = true;
                         grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().pos = grid[i, k, j].pos;
-                        grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
+                        grid[i, k, j].instantiatedModule.transform.position =new Vector3(0,k*2,0)+ ((grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4);
                         UpdatePointOffsets(i, k, j);
-                        SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                        if (grid[i, k, j].instantiatedModule.GetComponent<SkinnedMeshRenderer>() != null)
+                        {
+                            SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
+                        }
                         //CreateStaticMesh(grid[i, k, j].instantiatedModule);
 
 
@@ -296,7 +301,7 @@ public class GridManager : MonoBehaviour
 
                         if (grid[i, k, j].Contradiction() == true)
                         {
-                            mL.UnCollapseWithPosition(6, 1, 6, i, k, j);
+                           // mL.UnCollapseWithPosition(6, 1, 6, i, k, j);
                         }
 
                         if (gridTmp != grid[i, k, j].posibilitySpace.Count)
@@ -363,7 +368,7 @@ public class GridManager : MonoBehaviour
     {
         skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
 
-        if (module.transform.rotation.eulerAngles.y == 0)
+        if (module.transform.rotation.eulerAngles.y == 180)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * 50);
@@ -374,7 +379,7 @@ public class GridManager : MonoBehaviour
             skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * -50);
             skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * -50);
         }
-        else if (module.transform.rotation.eulerAngles.y == 90)
+        else if (module.transform.rotation.eulerAngles.y == 270)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(0, (grid[i, k, j].points[0].offsetZ) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(1, (grid[i, k, j].points[0].offsetX) * 50);
@@ -385,7 +390,7 @@ public class GridManager : MonoBehaviour
             skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[3].offsetZ) * -50);
             skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[3].offsetX) * -50);
         }
-        else if (module.transform.rotation.eulerAngles.y == 180)
+        else if (module.transform.rotation.eulerAngles.y == 0)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[0].offsetX) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[0].offsetZ) * 50);
@@ -396,7 +401,7 @@ public class GridManager : MonoBehaviour
             skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[3].offsetX) * -50);
             skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[3].offsetZ) * -50);
         }
-        else if (module.transform.rotation.eulerAngles.y == 270)
+        else if (module.transform.rotation.eulerAngles.y == 90)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[0].offsetZ) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[0].offsetX) * 50);
@@ -413,6 +418,7 @@ public class GridManager : MonoBehaviour
     {
         skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
         tmpMesh = new Mesh();
+        module.AddComponent<MeshFilter>();
         meshFilter = module.GetComponent<MeshFilter>();
 
         skinnedMeshRenderer.BakeMesh(tmpMesh);
@@ -493,7 +499,7 @@ public class GridManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        /*for (int i = 0; i < gridX; i++)
+        for (int i = 0; i < gridX; i++)
         {
             for (int k = 0; k < gridY; k++)
             {
@@ -508,7 +514,8 @@ public class GridManager : MonoBehaviour
                     catch (System.NullReferenceException) { }
                 }
             }
-        }*/
+        }
+        
         Gizmos.color = Color.blue;
 
         Gizmos.color = Color.red;
