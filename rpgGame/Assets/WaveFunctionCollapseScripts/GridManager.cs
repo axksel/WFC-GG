@@ -227,12 +227,12 @@ public class GridManager : MonoBehaviour
                     //if(grid[i, k, j].isPath && grid[i, k, j].IsInstantiated != true)
                     {
                         size--;
-                        StartCoroutine(Progress(size));
+                        //StartCoroutine(Progress(size));
                         GameObject tmpGo = Instantiate(grid[i, k, j].posibilitySpace[0], new Vector3(i * 2, k * 2, j * 2), grid[i, k, j].posibilitySpace[0].transform.rotation, weights.moduleParents[grid[i, k, j].posibilitySpace[0].GetComponent<Modulescript>().moduleIndex].transform);
                         grid[i, k, j].instantiatedModule = tmpGo;
                         if (grid[i, k, j].isPath)
                         {
-                            grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material.color = Color.red;
+                            //grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material.color = Color.red;
                             grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().isPath = true;
                         }
                         grid[i, k, j].IsInstantiated = true;
@@ -240,7 +240,7 @@ public class GridManager : MonoBehaviour
                         grid[i, k, j].instantiatedModule.transform.position = (grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4;
                         UpdatePointOffsets(i, k, j);
                         SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
-                        //CreateStaticMesh(grid[i, k, j].instantiatedModule);
+                        CreateStaticMesh(grid[i, k, j].instantiatedModule);
 
 
                     }
@@ -413,11 +413,12 @@ public class GridManager : MonoBehaviour
     {
         skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
         tmpMesh = new Mesh();
+        module.AddComponent<MeshFilter>();
         meshFilter = module.GetComponent<MeshFilter>();
 
         skinnedMeshRenderer.BakeMesh(tmpMesh);
         bounds = meshFilter.mesh.bounds;
-        bounds.Expand(new Vector3(1, 1, 1));
+        bounds.Expand(new Vector3(20,20,20));
         tmpMesh.bounds = bounds;
         meshFilter.mesh = tmpMesh;
         tmpMaterial = skinnedMeshRenderer.material;

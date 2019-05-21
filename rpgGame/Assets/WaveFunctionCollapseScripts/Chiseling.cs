@@ -14,6 +14,7 @@ public class Chiseling : MonoBehaviour
     int size = 0;
     int progress;
     int fixedSlotsVisited;
+    Coroutine visit;
 
     private void Awake()
     {
@@ -68,11 +69,12 @@ public class Chiseling : MonoBehaviour
         {
             gridManager.startBuilding();
             //gridManager.Build();
+            yield return null;
         }
         else
         {
             Reset();
-            yield return null;
+            yield return 0;
             StartCoroutine(TryToRemove());
         }
     }
@@ -81,6 +83,7 @@ public class Chiseling : MonoBehaviour
 
     public IEnumerator Visit(slot slot)
     {
+
         if (fixedSlotsVisited == fixedPoints.Count)
         {
             yield return null;
@@ -98,16 +101,24 @@ public class Chiseling : MonoBehaviour
                 }
 
                 if (slot.neighbours[0] != null)
+                {
                     StartCoroutine(Visit(slot.neighbours[0]));
+                }
                 if (slot.neighbours[1] != null)
+                {
                     StartCoroutine(Visit(slot.neighbours[1]));
+                }
                 if (slot.neighbours[2] != null)
+                {
                     StartCoroutine(Visit(slot.neighbours[2]));
+                }
                 if (slot.neighbours[3] != null)
+                {
                     StartCoroutine(Visit(slot.neighbours[3]));
+                }
             }
+            yield return null;
         }
-
 
     }
 
@@ -124,7 +135,7 @@ public class Chiseling : MonoBehaviour
     private bool CheckFixedPoints()
     {
         fixedSlotsVisited = 0;
-        StartCoroutine(Visit(fixedPoints[0]));
+        visit = StartCoroutine(Visit(fixedPoints[0]));
         for (int i = 0; i < fixedPoints.Count; i++)
         {
             if (!fixedPoints[i].isVisited)

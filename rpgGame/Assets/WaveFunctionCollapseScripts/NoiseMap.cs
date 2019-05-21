@@ -9,6 +9,9 @@ public class NoiseMap : MonoBehaviour
     public Color[,] pixelValues;
     public slot[,,] grid;
     public ScriptableObjectList modules;
+    GridManager gm;
+
+    public Texture2D nTex;
 
     void Awake()
     {
@@ -22,18 +25,24 @@ public class NoiseMap : MonoBehaviour
 
         }
 
-        pixelValues = new Color[noise.width, noise.height];
-        for (int i = 0; i < noise.width; i++)
-        {
-            for (int j = 0; j < noise.height; j++)
-            {
-                pixelValues[i, j] = noise.GetPixel(i, j);
-            }
-        }
+
     }
 
     public void InitNoiseWeights(int sizeX, int sizeY, int sizeZ)
     {
+        gm = GetComponent<GridManager>();
+        Texture2D noise2 = noise;
+        TextureScale.Bilinear(noise2, gm.gridX, gm.gridZ);
+
+        pixelValues = new Color[noise2.width, noise2.height];
+        for (int i = 0; i < noise2.width; i++)
+        {
+            for (int j = 0; j < noise2.height; j++)
+            {
+                pixelValues[i, j] = noise2.GetPixel(i, j);
+            }
+        }
+
         //Debug.Log(pixelValues.Length);
         for (int i = 0; i < sizeX; i++)
         {
@@ -45,5 +54,21 @@ public class NoiseMap : MonoBehaviour
                 }
             }
         }
+    }
+
+    private Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
+    {
+        Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, true);
+        Color[] rpixels = result.GetPixels(0);
+        float incX = ((float)1 / source.width) * ((float)source.width / targetWidth);
+        float incY = ((float)1 / source.height) * ((float)source.height / targetHeight);
+        for (int px = 0; px < rpixels.Length; px++)
+        {
+            rpixels[px] = source.GetPixelBilinear(incX * ((float)px % targetWidth),
+                              incY * ((float)Mathf.Floor(px / targetWidth)));
+        }
+        result.SetPixels(rpixels, 0);
+        result.Apply();
+        return result;
     }
 }
