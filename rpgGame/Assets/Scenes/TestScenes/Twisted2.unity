@@ -1326,7 +1326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapPrefab: {fileID: 1861214336}
-  restoreMap: 1
+  restoreMap: 0
   floor: {fileID: 2100000, guid: cd9d8388a4ed1834f8179b4c40df104e, type: 2}
   path: {fileID: 0}
 --- !u!1 &2135227317
