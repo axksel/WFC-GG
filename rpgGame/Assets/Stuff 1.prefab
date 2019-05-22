@@ -628,8 +628,6 @@ GameObject:
   - component: {fileID: 5423630827093335019}
   - component: {fileID: 5423630827086707499}
   - component: {fileID: 5423630827084713327}
-  - component: {fileID: 5423630826287990698}
-  - component: {fileID: 8907381584232633916}
   m_Layer: 0
   m_Name: RigidBodyFPSController
   m_TagString: Untagged
@@ -742,42 +740,6 @@ MonoBehaviour:
     slowDownRate: 20
     airControl: 0
     shellOffset: 0
---- !u!114 &5423630826287990698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5423630827090245773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b43a28377aa1214fb991bfe2704d2d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tmp: {fileID: 0}
-  cm: {fileID: 0}
-  guld: {fileID: 0}
---- !u!114 &8907381584232633916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5423630827090245773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49aac189e8a0644eaf867a44186c590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SummedLength: 74.97348
-  firstSummedLength: 0
-  secondSummedLength: 0
-  time: 0
-  startTime: 0
-  firstTripTime: 0
-  secondTripTime: 0
-  results: {fileID: 11400000, guid: f60cf336ebe28be47968ec4493fcb82f, type: 2}
-  scenesToPlay: {fileID: 11400000, guid: c2eb107518e2c0e45877501e1a441ec0, type: 2}
 --- !u!1 &5423630827090245775
 GameObject:
   m_ObjectHideFlags: 0

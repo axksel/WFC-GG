@@ -15,6 +15,7 @@ TagManager:
   - StartSphere
   - GoalSphere
   - flooor
+  - Air
   layers:
   - Default
   - TransparentFX

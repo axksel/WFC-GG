@@ -357,7 +357,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 431.331
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8773473232706695675, guid: 738505e7c75caed449a8178add9e10cb, type: 3}
+    - {fileID: 5267057278878130285, guid: 738505e7c75caed449a8178add9e10cb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 738505e7c75caed449a8178add9e10cb, type: 3}
 --- !u!4 &269980196 stripped
 Transform:
@@ -554,6 +556,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8875052274233914566, guid: 9cfa888c4d09b4c4eae9fb4d45084eaa,
+        type: 3}
+      propertyPath: restoreMap
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6641333619636179060, guid: 9cfa888c4d09b4c4eae9fb4d45084eaa,
         type: 3}
       propertyPath: m_Name
@@ -1103,6 +1110,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuideText
       objectReference: {fileID: 0}
+    - target: {fileID: 660998741378414211, guid: a6351646051eab44e85ed003119c5af3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7482028994332264131, guid: a6351646051eab44e85ed003119c5af3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1307,28 +1319,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1666927476}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1861214336 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6641333619636179060, guid: 9cfa888c4d09b4c4eae9fb4d45084eaa,
-    type: 3}
-  m_PrefabInstance: {fileID: 426067693}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1861214337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861214336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7766dbcaf609047499a850a6f9c56f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPrefab: {fileID: 1861214336}
-  restoreMap: 0
-  floor: {fileID: 2100000, guid: cd9d8388a4ed1834f8179b4c40df104e, type: 2}
-  path: {fileID: 0}
 --- !u!1 &2135227317
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,43 +26,58 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TestStuff/TestStartMenu.unity
     guid: eecdb27af32b5e74e963cbf53b92086b
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/Twisted1.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/3f87f559623c17c49ba0f83c02bfde68
     guid: 3f87f559623c17c49ba0f83c02bfde68
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/Straight1.unity
     guid: 5ab49698cb70088449b34048b6087e7f
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/Twisted2.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/4ae0478ec062dd749be43c2de1866a56
     guid: 4ae0478ec062dd749be43c2de1866a56
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/straight2.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/58b4a18da5083a546b57f0abaecb8102
     guid: 58b4a18da5083a546b57f0abaecb8102
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/Twisted3.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/735314c0618d6c347b21a11408b6305a
     guid: 735314c0618d6c347b21a11408b6305a
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/Straight3.unity
+  - enabled: 0
+    path: Assets/__DELETED_GUID_Trash/fcb811f569b0b6a428acb4c3ffc4d478
     guid: fcb811f569b0b6a428acb4c3ffc4d478
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/Twisted4.unity
     guid: 2c8b85f7a8636014f8c244e343a44340
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/straight4.unity
     guid: b3a85c8f9617187468dfb1ea19f7f16e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/Twisted5.unity
     guid: ec960a69bc84bda4cbe0ded34f078593
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/straight5.unity
     guid: 68da87eac8c380b4f8977c17fabd79a4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/Twisted6.unity
     guid: 95b7ce0fff780e84c9c6376343bf08bb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScenes/straight6.unity
     guid: 8c53069c7811a7946b2f176675e85224
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestStuff/TestEndMenu.unity
     guid: fe5be793cfe901041a47db24a01fabc5
+  - enabled: 0
+    path: Assets/Scenes/TestScenes/straight2.unity
+    guid: 37948f718d54ff94f89923d6098252be
+  - enabled: 0
+    path: Assets/Scenes/TestScenes/Straight3.unity
+    guid: 79138fa697c8ac045b33f81c464c2d3c
+  - enabled: 0
+    path: Assets/Scenes/TestScenes/Twisted1.unity
+    guid: b2104b9cdf776ed44824329e204b0d67
+  - enabled: 0
+    path: Assets/Scenes/TestScenes/Twisted2.unity
+    guid: c6e771776256d154bbd72ad6e36134f8
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/Twisted3.unity
+    guid: 878f848a8cdfe9a46bb209074a76a6d0
   m_configObjects: {}

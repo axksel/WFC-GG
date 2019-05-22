@@ -127,6 +127,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5228779131281618706, guid: 2d52d2fc20df69d44b1d1477bd7ce174,
         type: 3}
       propertyPath: m_Name
@@ -189,28 +197,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d52d2fc20df69d44b1d1477bd7ce174, type: 3}
---- !u!1 &874728966 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4888127961356980998, guid: 053fd7a7d1da7c54a84ff6acd400a87c,
-    type: 3}
-  m_PrefabInstance: {fileID: 916049606}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &874728967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874728966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7766dbcaf609047499a850a6f9c56f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPrefab: {fileID: 874728966}
-  restoreMap: 1
-  floor: {fileID: 2100000, guid: cd9d8388a4ed1834f8179b4c40df104e, type: 2}
-  path: {fileID: 0}
 --- !u!1001 &916049606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,10 +204,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1617920549173866190, guid: 053fd7a7d1da7c54a84ff6acd400a87c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4888127961356980998, guid: 053fd7a7d1da7c54a84ff6acd400a87c,
         type: 3}
       propertyPath: m_Name
       value: Main 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888127961356980998, guid: 053fd7a7d1da7c54a84ff6acd400a87c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4888127961356980996, guid: 053fd7a7d1da7c54a84ff6acd400a87c,
         type: 3}
@@ -493,6 +489,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GuideText
+      objectReference: {fileID: 0}
+    - target: {fileID: 660998741378414211, guid: a6351646051eab44e85ed003119c5af3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7482028994332264131, guid: a6351646051eab44e85ed003119c5af3,
         type: 3}

@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff35e73cf36582418fa960ddb72a94c, type: 3}
   m_Name: ScenesToPlay
   m_EditorClassIdentifier: 
-  list: []
+  list:
+  - 1
+  - 3
+  - 5
+  - 8
+  - 9
+  - 12

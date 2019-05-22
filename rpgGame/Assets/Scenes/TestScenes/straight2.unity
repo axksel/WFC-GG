@@ -403,6 +403,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GuideText
       objectReference: {fileID: 0}
+    - target: {fileID: 660998741378414211, guid: a6351646051eab44e85ed003119c5af3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7482028994332264131, guid: a6351646051eab44e85ed003119c5af3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -516,28 +521,6 @@ Light:
     type: 3}
   m_PrefabInstance: {fileID: 3353143960011630452}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1861214336 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6641333619636179060, guid: 9cfa888c4d09b4c4eae9fb4d45084eaa,
-    type: 3}
-  m_PrefabInstance: {fileID: 426067693}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1861214337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861214336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7766dbcaf609047499a850a6f9c56f3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapPrefab: {fileID: 1861214336}
-  restoreMap: 1
-  floor: {fileID: 2100000, guid: cd9d8388a4ed1834f8179b4c40df104e, type: 2}
-  path: {fileID: 0}
 --- !u!1001 &1894486889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -605,7 +588,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7223136659278637881, guid: db80fdbf25d984844b2319532745c2f6, type: 3}
+    - {fileID: 6117092663644420783, guid: db80fdbf25d984844b2319532745c2f6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: db80fdbf25d984844b2319532745c2f6, type: 3}
 --- !u!1001 &3353143960011630452
 PrefabInstance:

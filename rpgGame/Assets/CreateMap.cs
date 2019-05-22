@@ -19,15 +19,6 @@ public class CreateMap : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < mapPrefab.transform.childCount; i++)
-        {
-            for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
-            {
-                mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject.AddComponent<MeshCollider>();
-                ;
-            }
-        }
-
         StartCoroutine(StartLate());
     }
 
@@ -37,11 +28,13 @@ public class CreateMap : MonoBehaviour
         {
             for (int j = 0; j < mapPrefab.transform.GetChild(i).transform.childCount; j++)
             {
-                if (mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject.GetComponent<SkinnedMeshRenderer>()!=null) { 
-                if (restoreMap) UnSkew(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
-                CreateStaticMesh(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
+                if(mapPrefab.transform.GetChild(i).tag != "Air")
+                {
+                    if (restoreMap) UnSkew(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
+                    CreateStaticMesh(mapPrefab.transform.GetChild(i).transform.GetChild(j).gameObject);
+                }
             }
-            }
+
         }
     }
 
@@ -67,7 +60,7 @@ public class CreateMap : MonoBehaviour
 
         skinnedMeshRenderer.BakeMesh(tmpMesh);
         bounds = meshFilter.mesh.bounds;
-        bounds.Expand(new Vector3(5, 5, 5));
+        bounds.Expand(new Vector3(20,20,20));
         tmpMesh.bounds = bounds;
         meshFilter.mesh = tmpMesh;
         tmpMaterial = skinnedMeshRenderer.materials;
