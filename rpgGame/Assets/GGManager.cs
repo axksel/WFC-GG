@@ -157,7 +157,7 @@ public class GGManager : MonoBehaviour
         time++;
         winningPoint.counter++;
         Adapt();
-        if (epochSize * 150 < time)
+        if (epochSize * 25 < time)
         {
             fineTunePhase = false;
         }

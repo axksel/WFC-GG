@@ -239,13 +239,13 @@ public class GridManager : MonoBehaviour
                         }
                         grid[i, k, j].IsInstantiated = true;
                         grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().pos = grid[i, k, j].pos;
-                        grid[i, k, j].instantiatedModule.transform.position = grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(0,k*2,0)+ ((grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4);
+                        grid[i, k, j].instantiatedModule.transform.position = grid[i, k, j].posibilitySpace[0].transform.position + new Vector3(0,k*15,0)+ ((grid[i, k, j].points[0].offsetPos + grid[i, k, j].points[1].offsetPos + grid[i, k, j].points[2].offsetPos + grid[i, k, j].points[3].offsetPos) / 4);
                         UpdatePointOffsets(i, k, j);
                         if (grid[i, k, j].instantiatedModule.GetComponent<SkinnedMeshRenderer>() != null)
                         {
                             
                             SetBlendWeights(grid[i, k, j].instantiatedModule, i, k, j);
-                           // CreateStaticMesh(grid[i, k, j].instantiatedModule);
+                            CreateStaticMesh(grid[i, k, j].instantiatedModule);
                         }
                        
 
