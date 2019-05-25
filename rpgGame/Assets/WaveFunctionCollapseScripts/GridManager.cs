@@ -87,8 +87,8 @@ public class GridManager : MonoBehaviour
         {
             for (int k = 0; k < gridZ + 1; k++)
             {
-                Point tmpPoint = new Point(new Vector3(i * 2, 0, k * 2), i * 2 + UnityEngine.Random.Range(-0.5f, 0.5f), k * 2 + UnityEngine.Random.Range(-0.5f, 0.5f));
-                tmpPoint.offsetPos = gg.points[i, k].position;
+                Point tmpPoint = new Point(new Vector3(i * 2, 0, k * 2), i * 2, k * 2);
+                //tmpPoint.offsetPos = gg.points[i, k].position;
                 allPoints.Add(tmpPoint);
                 pointgrid[i, 0, k] = tmpPoint;
             }
@@ -232,8 +232,12 @@ public class GridManager : MonoBehaviour
                         grid[i, k, j].instantiatedModule = tmpGo;
                         if (grid[i, k, j].isPath)
                         {
-                            //grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material.color = Color.red;
+                            grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material.color = Color.red;
                             grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().isPath = true;
+                        }
+                        if(grid[i, k, j].isFixed)
+                        {
+                            grid[i, k, j].instantiatedModule.GetComponent<Renderer>().material.color = Color.blue;
                         }
                         grid[i, k, j].IsInstantiated = true;
                         grid[i, k, j].instantiatedModule.GetComponent<Modulescript>().pos = grid[i, k, j].pos;
@@ -502,7 +506,7 @@ public class GridManager : MonoBehaviour
                 {
                     try
                     {
-                        Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
+                        Handles.Label(new Vector3(i*2 + 1, k*2, j*2 + 1) , grid[i, k, j].posibilitySpace.Count.ToString());
                        
 
                     }
@@ -515,9 +519,9 @@ public class GridManager : MonoBehaviour
         Gizmos.color = Color.red;
         for (int i = 0; i < allPoints.Count; i++)
         {
-            //Gizmos.DrawSphere(allPoints[i].position + offset, 0.1f);
-            //Handles.Label(allPoints[i].position + offset, Math.Round(allPoints[i].offsetX, 2).ToString() + " and " + Math.Round(allPoints[i].offsetZ, 2).ToString());
-
+            /*Gizmos.DrawSphere(allPoints[i].position + offset, 0.1f);
+            Handles.Label(allPoints[i].position + offset, Math.Round(allPoints[i].offsetX, 2).ToString() + " and " + Math.Round(allPoints[i].offsetZ, 2).ToString());
+            */
         }
 
         for (int i = 0; i < gridX; i++)
@@ -546,10 +550,10 @@ public class GridManager : MonoBehaviour
 
 
                     Gizmos.color = Color.red;
-                    /*Gizmos.DrawLine(grid[i, k, j].points[0].offsetPos + offset, grid[i, k, j].points[1].offsetPos + offset);
+                    Gizmos.DrawLine(grid[i, k, j].points[0].offsetPos + offset, grid[i, k, j].points[1].offsetPos + offset);
                     Gizmos.DrawLine(grid[i, k, j].points[1].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
                     Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[0].offsetPos + offset);*/
+                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[0].offsetPos + offset);
                 }
             }   
         }
