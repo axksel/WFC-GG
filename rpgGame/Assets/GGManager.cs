@@ -61,7 +61,7 @@ public class GGManager : MonoBehaviour
     {
         if (growthPhase)
         {
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 150; i++)
             {
                 Iterate();
                 timeCounter++;
@@ -69,7 +69,7 @@ public class GGManager : MonoBehaviour
         }
         else if (fineTunePhase)
         {
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 150; i++)
             {
                 FineTune();
                 timeCounter++;
@@ -85,9 +85,9 @@ public class GGManager : MonoBehaviour
             gm.gridZ = ySize-1;
             CheckFlip();
             chiseling.fixedPointsPositions.Add(new Vector2(xSize - 2, ySize - 2));
-            chiseling.fixedPointsPositions.Add(new Vector2(0, ySize - 2));
-            chiseling.fixedPointsPositions.Add(new Vector2(Random.Range(0, xSize - 1), Random.Range(0, ySize - 1)));
-            chiseling.fixedPointsPositions.Add(new Vector2(Random.Range(0, xSize - 1), Random.Range(0, ySize - 1)));
+            chiseling.fixedPointsPositions.Add(new Vector2(0, 0));
+            chiseling.fixedPointsPositions.Add(new Vector2(xSize - 2, 0));
+
             gm.InitializePoints();
             gm.InitializeSlots();
             Destroy(this);
