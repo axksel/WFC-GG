@@ -12,7 +12,7 @@ public class GGManager : MonoBehaviour
     public int timeCounter=0;
     int time =0;
 
-    [Range(1, 1000)]
+    [Range(1, 5000)]
     public int maxNumberOfNodes =100; //nMax
 
     [Range(0.01f, 9.91f)]
@@ -61,7 +61,7 @@ public class GGManager : MonoBehaviour
     {
         if (growthPhase)
         {
-            for (int i = 0; i < 150; i++)
+            for (int i = 0; i < 500; i++)
             {
                 Iterate();
                 timeCounter++;
@@ -69,7 +69,7 @@ public class GGManager : MonoBehaviour
         }
         else if (fineTunePhase)
         {
-            for (int i = 0; i < 150; i++)
+            for (int i = 0; i < 500; i++)
             {
                 FineTune();
                 timeCounter++;
