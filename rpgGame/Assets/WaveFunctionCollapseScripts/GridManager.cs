@@ -19,21 +19,18 @@ public class GridManager : MonoBehaviour
     public GameObject solidGO;
     public List<GameObject> walls = new List<GameObject>();
     public BuildNavMesh bnm;
-    public bool isImproved = true;
     bool isTried = false;
     public bool enableChiseling;
 
     public slot[,,] grid;
     public Point[,,] pointgrid;
     public int size;
-    public GameObjectList loadScreen;
-    public GameObjectList progressBar;
     public Material floor;
     Color[,] noiseValues;
 
     FitnessFunction fitness;
     Weights weights;
-    NoiseMap noiseMap;
+    
     Chiseling chiseling;
     OnLevelCreated onLevelCreated;
     MachineLearning mL;
@@ -52,11 +49,11 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-         mL = GetComponent<MachineLearning>();
+        
         weights = GetComponent<Weights>();
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
-        noiseMap = GetComponent<NoiseMap>();
+        
         chiseling = GetComponent<Chiseling>();
         bnm = GetComponent<BuildNavMesh>();
         gg = GetComponent<GGManager>();
@@ -112,7 +109,7 @@ public class GridManager : MonoBehaviour
                     grid[i, k, j].index = index;
                     grid[i, k, j].pos = new Vector3(i, k, j);
                     index++;
-                    mL.randomPool.Add(index);
+                   
                 }
             }
         }
@@ -188,7 +185,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-        mL.randomPooltmp.AddRange(mL.randomPool);
+       
 
         grid[3, 0, 3].collapse(3);
 
@@ -210,9 +207,8 @@ public class GridManager : MonoBehaviour
         }*/
 
 
-        mL.grid = grid;
-        noiseMap.grid = grid;
-        noiseMap.InitNoiseWeights(gridX, gridY, gridZ);
+        
+       
 
         StartCoroutine(IterateAndCollapse());       
     }
@@ -336,7 +332,7 @@ public class GridManager : MonoBehaviour
             else
             {
 
-                LevelGenerationDone();
+                //LevelGenerationDone();
                 yield return null;
 
             }
@@ -480,86 +476,7 @@ public class GridManager : MonoBehaviour
     }
 
 
-    public IEnumerator Progress(int progress)
-    {
-        float pct = MathFunctions.Map(progress, (gridX * gridZ), 0, 0, 1);
-        loadScreen.list[0].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt((pct * 100)).ToString() + " %";
-        progressBar.list[0].GetComponent<Image>().fillAmount = pct;
-        if (Mathf.RoundToInt((pct * 100)) == 100)
-        {
-            loadScreen.list[0].transform.GetChild(1).gameObject.SetActive(false);
-            loadScreen.list[0].transform.GetChild(2).gameObject.SetActive(false);
-            loadScreen.list[0].transform.GetChild(4).gameObject.SetActive(false);
-            loadScreen.list[0].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Generating NavMesh";
-        }
-        else
-        {
-            loadScreen.list[0].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Generating Level";
-        }
-        yield return null;
-    }
-
-    void OnDrawGizmos()
-    {/*
-        for (int i = 0; i < gridX; i++)
-        {
-            for (int k = 0; k < gridY; k++)
-            {
-                for (int j = 0; j < gridZ; j++)
-                {
-                    try
-                    {
-                        Handles.Label(new Vector3(i*2, k*2, j*2) , grid[i, k, j].posibilitySpace.Count.ToString());
-                       
-
-                    }
-                    catch (System.NullReferenceException) { }
-                }
-            }
-        }
-        */
-        Gizmos.color = Color.blue;
-
-        Gizmos.color = Color.red;
-        for (int i = 0; i < allPoints.Count; i++)
-        {
-            //Gizmos.DrawSphere(allPoints[i].position + offset, 0.1f);
-            //Handles.Label(allPoints[i].position + offset, Math.Round(allPoints[i].offsetX, 2).ToString() + " and " + Math.Round(allPoints[i].offsetZ, 2).ToString());
-
-        }
-
-        for (int i = 0; i < gridX; i++)
-        {
-            for (int k = 0; k < gridY; k++)
-            {
-                for (int j = 0; j < gridZ; j++)
-                {
-                    Gizmos.color = Color.green;
-                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, -1f), 0.1f);
-                   // Gizmos.DrawSphere(grid[i, k, j].points[0].upVector, 0.1f);
-                    //Gizmos.color = Color.magenta;
-                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, -1f), 0.1f);
-                   // Gizmos.DrawSphere(grid[i, k, j].points[1].upVector, 0.1f);
-                    //Gizmos.color = Color.yellow;
-                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(-1f, 0, 1f), 0.1f);
-                   // Gizmos.DrawSphere(grid[i, k, j].points[2].upVector, 0.1f);
-                    //Gizmos.color = Color.black;
-                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position + new Vector3(1f, 0, 1f), 0.1f);
-                   // Gizmos.DrawSphere(grid[i, k, j].points[3].upVector, 0.1f);
-                    //Gizmos.color = Color.red;
-                    //Gizmos.DrawSphere(grid[i, k, j].instantiatedModule.transform.position, 0.1f);
+  
 
 
-
-
-
-                    Gizmos.color = Color.red;
-                    /*Gizmos.DrawLine(grid[i, k, j].points[0].offsetPos + offset, grid[i, k, j].points[1].offsetPos + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[1].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[3].offsetPos + offset);
-                    Gizmos.DrawLine(grid[i, k, j].points[2].offsetPos + offset, grid[i, k, j].points[0].offsetPos + offset);*/
-                }
-            }   
-        }
-    }
 }

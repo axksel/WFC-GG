@@ -56,7 +56,6 @@ public class Chiseling : MonoBehaviour
             tries = 0;
             progress++;
             allPoints.RemoveAt(itemToRemove);
-            StartCoroutine(gridManager.Progress(size - (int)(0.1f * progress)));
         }
         else
         {

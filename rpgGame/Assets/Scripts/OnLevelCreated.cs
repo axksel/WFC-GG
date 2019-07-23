@@ -18,7 +18,7 @@ public class OnLevelCreated : MonoBehaviour
             {
                 enemyList.list[i].SetActive(true);
                 enemyList.list[i].GetComponent<NavMeshAgent>().enabled = true;
-                enemyList.list[i].GetComponent<enemyScript>().enabled = true;
+              
             }
 
         }
