@@ -51,6 +51,7 @@ public class GridManager : MonoBehaviour
     {
         
         weights = GetComponent<Weights>();
+        weights.moduleSO = moduleSO;
         fitness = GetComponent<FitnessFunction>();
         onLevelCreated = gameObject.GetComponent<OnLevelCreated>();
         

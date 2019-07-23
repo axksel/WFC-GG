@@ -6,6 +6,7 @@ public class Weights : MonoBehaviour
 {
     public FloatList weights;
     public FloatList summedWeights;
+    [HideInInspector]
     public ScriptableObjectList moduleSO;
     [HideInInspector]
     public GameObject[] moduleParents;
