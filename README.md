@@ -1,4 +1,6 @@
 # WFC-GG
+
+![alt text](https://github.com/axksel/WFC-GG/blob/CleanupBranch/rpgGame/Assets/Images/by.png)
 Wave Function Collapse and Growing Neural Grids combined! The main branch is cleaned up version  of our implementation without all the extra things we have worked on. The project was made for our master thesis. The master thesis can be found [here](https://www.researchgate.net/publication/334416222_Expanding_Wave_Function_Collapse_with_Growing_Grids_for_Procedural_Content_Generation_Project_Expanding_Wave_Function_Collapse_with_Growing_Grids_for_Procedural_Content_Generation).
 
 #### Modulesets.
