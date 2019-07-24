@@ -21,7 +21,8 @@ public class GridManager : MonoBehaviour
     [HideInInspector]
     public BuildNavMesh bnm;
     bool isTried = false;
-    
+
+    public bool CornerSetupClockwise;
 
     public slot[,,] grid;
     public Point[,,] pointgrid;
@@ -293,7 +294,7 @@ public class GridManager : MonoBehaviour
     {
         skinnedMeshRenderer = module.GetComponent<SkinnedMeshRenderer>();
 
-        if (module.transform.rotation.eulerAngles.y == 180)
+        if (module.transform.rotation.eulerAngles.y == 180 || CornerSetupClockwise && module.transform.rotation.eulerAngles.y == 0)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[0].offsetX) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[0].offsetZ) * 50);
@@ -304,7 +305,7 @@ public class GridManager : MonoBehaviour
             skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[3].offsetX) * -50);
             skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[3].offsetZ) * -50);
         }
-        else if (module.transform.rotation.eulerAngles.y == 270)
+        else if (module.transform.rotation.eulerAngles.y == 270 || CornerSetupClockwise && module.transform.rotation.eulerAngles.y == 90)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(0, (grid[i, k, j].points[0].offsetZ) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(1, (grid[i, k, j].points[0].offsetX) * 50);
@@ -315,7 +316,7 @@ public class GridManager : MonoBehaviour
             skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[3].offsetZ) * -50);
             skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[3].offsetX) * -50);
         }
-        else if (module.transform.rotation.eulerAngles.y == 0)
+        else if (module.transform.rotation.eulerAngles.y == 0 || CornerSetupClockwise && module.transform.rotation.eulerAngles.y == 180)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(4, (grid[i, k, j].points[0].offsetX) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(5, (grid[i, k, j].points[0].offsetZ) * 50);
@@ -326,7 +327,7 @@ public class GridManager : MonoBehaviour
             skinnedMeshRenderer.SetBlendShapeWeight(2, (grid[i, k, j].points[3].offsetX) * -50);
             skinnedMeshRenderer.SetBlendShapeWeight(3, (grid[i, k, j].points[3].offsetZ) * -50);
         }
-        else if (module.transform.rotation.eulerAngles.y == 90)
+        else if (module.transform.rotation.eulerAngles.y == 90 || CornerSetupClockwise && module.transform.rotation.eulerAngles.y == 270)
         {
             skinnedMeshRenderer.SetBlendShapeWeight(6, (grid[i, k, j].points[0].offsetZ) * 50);
             skinnedMeshRenderer.SetBlendShapeWeight(7, (grid[i, k, j].points[0].offsetX) * 50);

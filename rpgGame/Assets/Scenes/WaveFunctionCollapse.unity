@@ -224,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1213997710}
   - component: {fileID: 1213997709}
-  - component: {fileID: 1213997719}
   - component: {fileID: 1213997721}
   - component: {fileID: 1213997720}
   - component: {fileID: 1213997711}
@@ -252,12 +251,8 @@ MonoBehaviour:
   gridZ: 20
   modules: []
   moduleSO: {fileID: 11400000, guid: 9d233b08683f74c4ba36e84d1f8cab97, type: 2}
-  floorGO: {fileID: 480407965697156524, guid: 47344057bbd8ebe45ad415603ce86915, type: 3}
-  solidGO: {fileID: 8587041743614604716, guid: 446921e5a4d066943869f3d04cbba88b, type: 3}
   bnm: {fileID: 0}
-  enableChiseling: 0
   size: 0
-  floor: {fileID: 2100000, guid: cd9d8388a4ed1834f8179b4c40df104e, type: 2}
 --- !u!4 &1213997710
 Transform:
   m_ObjectHideFlags: 0
@@ -288,20 +283,6 @@ MonoBehaviour:
   summedWeights: {fileID: 11400000, guid: 631761df1d3601a43851bda2650e4d92, type: 2}
   moduleSO: {fileID: 11400000, guid: 9d233b08683f74c4ba36e84d1f8cab97, type: 2}
   moduleParents: []
---- !u!114 &1213997719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213997708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd06a12484994f24388398ccb3a2de2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fixedPointsPositions:
-  - {x: 3, y: 3}
 --- !u!114 &1213997720
 MonoBehaviour:
   m_ObjectHideFlags: 0
