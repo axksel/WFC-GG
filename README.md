@@ -9,7 +9,8 @@ The growing grid implementation is based on Dr. Bernd Fritzkes [work](https://ww
 The adjustable parameters is largely the same as in his implementation and a explanation can found at the demo website.
 
 #### Instructions
-There are three different modulesets included.
+There are three different modulesets included. Each have a scriptable object that needs to be added to the "gridmanager" script in the main gameObject.
+
 - 3dModuleSet. This set contains a city moduleset made for three dimmensions. The bool "Corner Setup Clockwise" should be false when using this set.
 
 - HandDrawnset. This is a two dimmensional set of a handrawn city. The Grid Y should be set to 1 and the "Corner Setup Clockwise" should be true.
