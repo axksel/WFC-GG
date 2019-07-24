@@ -83,9 +83,7 @@ public class GGManager : MonoBehaviour
             gm.gridX = xSize-1;
             gm.gridZ = ySize-1;
             CheckFlip();
-            chiseling.fixedPointsPositions.Add(new Vector2(xSize - 2, ySize - 2));
-            chiseling.fixedPointsPositions.Add(new Vector2(0, 0));
-            chiseling.fixedPointsPositions.Add(new Vector2(xSize - 2, 0));
+           
 
             gm.InitializePoints();
             gm.InitializeSlots();
