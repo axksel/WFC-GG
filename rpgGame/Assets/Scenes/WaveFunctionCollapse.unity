@@ -247,11 +247,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridX: 20
-  gridY: 10
+  gridY: 1
   gridZ: 20
   modules: []
-  moduleSO: {fileID: 11400000, guid: 9d233b08683f74c4ba36e84d1f8cab97, type: 2}
+  moduleSO: {fileID: 11400000, guid: c3da487b19ca8d241a9bea242c660455, type: 2}
   bnm: {fileID: 0}
+  CornerSetupClockwise: 1
   size: 0
 --- !u!4 &1213997710
 Transform:
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 1ea5a0206f934754480bbd0f296eae63, type: 2}
+  profile: {fileID: 0}
 --- !u!81 &1444320061
 AudioListener:
   m_ObjectHideFlags: 0
