@@ -19,6 +19,9 @@ There are three different modulesets included. Each have a scriptable object tha
 
 - modules. This is the original set and is a 2.5 dimmensional cavern set. The Grid Y should be set to 1 and the "Corner Setup Clockwise" should be true.
 
+
+![alt text](https://github.com/axksel/WFC-GG/blob/CleanupBranch/rpgGame/Assets/TestStuff/outputfromhandrawn.PNG)
+
 #### Made by
 - [Tobias]( https://github.com/Tobiasnm)
 - [Jonas]( https://github.com/axksel)
